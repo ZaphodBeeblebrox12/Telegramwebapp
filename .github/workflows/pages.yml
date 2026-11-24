@@ -33,6 +33,9 @@ jobs:
         with:
           path: .
           include-hidden-files: true
+      # GitHub's artifact metadata can lag behind the upload completion response.
+      - name: Wait for Pages artifact indexing
+        run: sleep 10
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
