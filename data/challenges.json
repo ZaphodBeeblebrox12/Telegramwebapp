@@ -1,10 +1,11 @@
 {
-  "generated_at": "2026-11-24T17:38:48.571697+00:00",
+  "generated_at": "2026-11-24T19:12:59.831952+00:00",
   "basis_note": "Current balance = starting balance + realised FIFO ledger P&L. No position-size normalisation or FX conversion is applied.",
   "challenges": [
     {
       "id": "6",
       "name": "General Challenge",
+      "brief": "",
       "asset_class": "GENERAL",
       "instrument": "GENERAL",
       "currency": "USD",
@@ -33,20 +34,21 @@
     {
       "id": "5",
       "name": "General Challenge",
+      "brief": "",
       "asset_class": "GENERAL",
       "instrument": "GENERAL",
       "currency": "USD",
       "starting_balance": 500.0,
       "target_balance": 5000.0,
-      "current_balance": 516.2,
-      "realised_pnl": 16.2,
-      "progress_pct": 0.4,
-      "remaining_to_target": 4483.8,
+      "current_balance": 500.0,
+      "realised_pnl": 0,
+      "progress_pct": 0.0,
+      "remaining_to_target": 4500.0,
       "above_target": 0,
-      "total_trades": 1,
-      "closed_trades": 1,
+      "total_trades": 0,
+      "closed_trades": 0,
       "open_trades": 0,
-      "wins": 1,
+      "wins": 0,
       "losses": 0,
       "breakeven": 0,
       "status": "ACTIVE",
@@ -56,22 +58,12 @@
       "archived": false,
       "subtitle": "GENERAL · Active",
       "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
-      "trade_history": [
-        {
-          "opened_at": "2026-11-24T21:54:02.593815+05:30",
-          "symbol": "NIFTY 27 OCT 2026 CE 227",
-          "side": "LONG",
-          "status": "CLOSED",
-          "leverage_multiplier": 1,
-          "entry_price": 52.5,
-          "exit_price": 68.7,
-          "realised_pnl": 16.2
-        }
-      ]
+      "trade_history": []
     },
     {
       "id": "4",
       "name": "General Challenge",
+      "brief": "",
       "asset_class": "GENERAL",
       "instrument": "GENERAL",
       "currency": "USD",
@@ -100,6 +92,7 @@
     {
       "id": "3",
       "name": "Gold Rush",
+      "brief": "",
       "asset_class": "METAL",
       "instrument": "GOLD",
       "currency": "USD",
@@ -128,6 +121,7 @@
     {
       "id": "2",
       "name": "Crypto Rush",
+      "brief": "",
       "asset_class": "CRYPTO",
       "instrument": "CRYPTO",
       "currency": "USD",
@@ -156,6 +150,7 @@
     {
       "id": "1",
       "name": "Gold Challenge",
+      "brief": "",
       "asset_class": "METAL",
       "instrument": "GOLD",
       "currency": "USD",
