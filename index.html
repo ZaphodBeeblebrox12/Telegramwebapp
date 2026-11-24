@@ -44,6 +44,7 @@
     .result{display:none;background:var(--sage2);padding:15px;margin-top:13px}.result.show{display:block}.result .result-label{font:9px "DM Mono",monospace;color:#5f705d;text-transform:uppercase;letter-spacing:.1em}.result strong{font:600 27px "Playfair Display",serif;display:block;margin:4px 0}.result small{font-size:10px;color:#5f705d;line-height:1.5}
     .note{font-size:10px;line-height:1.5;color:var(--muted);margin:10px 0 0}
     .empty-state{border:1px dashed #c9c1b4;padding:24px 18px;text-align:center;background:rgba(255,253,248,.45)}.empty-state .symbol{font:28px "Playfair Display",serif;color:var(--sage);margin-bottom:9px}.empty-state h3{font:600 19px "Playfair Display",serif;margin:0 0 6px}.empty-state p{font-size:11px;color:var(--muted);line-height:1.55;margin:0 auto;max-width:280px}
+    .campaign-balance{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:14px 0 10px}.campaign-balance span,.campaign-progress-meta span{font:9px "DM Mono",monospace;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}.campaign-balance strong{font:600 25px "Playfair Display",serif}.campaign-progress-meta{display:flex;justify-content:space-between;align-items:center;margin:10px 0 7px}.campaign-progress-meta b{font:12px "DM Mono",monospace;color:var(--sage)}.campaign-progress{height:7px;background:#e5e0d6;overflow:hidden}.campaign-progress i{display:block;height:100%;background:var(--sage)}.campaign-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}.campaign-metric{background:#f3f0e8;padding:10px 9px;min-width:0}.campaign-metric span{display:block;font:8px "DM Mono",monospace;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px}.campaign-metric strong{display:block;font:600 13px "DM Sans",sans-serif;overflow-wrap:anywhere}.campaign-foot{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:9px;line-height:1.5;color:var(--muted)}.campaign-trade-counts{font:10px "DM Mono",monospace;color:var(--muted);margin-top:10px;line-height:1.6}
     .link-list{display:flex;flex-direction:column}.link-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);background:none;border-left:0;border-right:0;border-top:0;text-align:left;width:100%}.link-row:last-child{border-bottom:0}.link-row strong{font:600 15px "Playfair Display",serif;display:block}.link-row span{font-size:10px;color:var(--muted);display:block;margin-top:4px}.link-row b{color:var(--terra);font-size:17px;font-weight:400}
     .quote{margin:16px 0;padding:18px 17px;border-left:2px solid var(--terra);background:#eee8dc;font:italic 17px/1.4 "Playfair Display",serif}.quote small{display:block;font:9px "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:10px}
     .bottom-nav{position:fixed;z-index:5;bottom:0;left:50%;transform:translateX(-50%);width:min(560px,100%);padding:10px 13px calc(10px + env(safe-area-inset-bottom));background:rgba(244,240,232,.96);backdrop-filter:blur(15px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr)}
@@ -184,26 +185,67 @@
     function calculateMargin(){const u=num('mUnits'),p=num('mPrice'),l=num('mLev');if(!(u>0&&p>0&&l>0)){showResult('marginResult','Check your inputs','—','All values must be greater than zero.');return}const n=u*p;showResult('marginResult','Indicative margin',fmt(n/l),'Notional exposure: '+fmt(n)+' · Leverage: '+fmt(l)+':1');}
     function calculatePip(){const u=num('pipUnits'),s=num('pipSize');if(!(u>0&&s>0)){showResult('pipResult','Check your inputs','—','Enter a positive position size.');return}showResult('pipResult','Pip value in quote currency',fmt(u*s),'Units × pip size. Convert the quote currency when it differs from your account currency.');}
 
+    function campaignMoney(value,currency){
+      const amount=Number(value||0);
+      try{return new Intl.NumberFormat('en-IN',{style:'currency',currency:currency||'USD',maximumFractionDigits:2}).format(amount)}
+      catch(e){return (currency||'')+' '+fmt(amount)}
+    }
+    function campaignCard(c,label){
+      const progress=Number(c.progress_pct||0);
+      const progressWidth=Math.min(100,Math.max(0,progress));
+      const progressText=fmt(progress)+'%';
+      const currency=c.currency||'USD';
+      const targetState=progress>=100?'Target reached':campaignMoney(c.remaining_to_target,currency)+' remaining';
+      return '<div class="panel">'+
+        '<div class="eyebrow">'+escapeHtml(label)+' · '+escapeHtml(c.instrument||c.asset_class||'Campaign')+'</div>'+
+        '<h3>'+escapeHtml(c.name||'Trading Challenge')+'</h3>'+
+        '<p class="sub">'+escapeHtml(c.description||'Campaign progress from the realised ledger.')+'</p>'+
+        '<div class="campaign-balance"><span>Current balance</span><strong>'+campaignMoney(c.current_balance,currency)+'</strong></div>'+
+        '<div class="campaign-progress-meta"><span>Target progress</span><b>'+progressText+'</b></div>'+
+        '<div class="campaign-progress"><i style="width:'+progressWidth+'%"></i></div>'+
+        '<div class="campaign-progress-meta"><span>'+escapeHtml(targetState)+'</span><span>Target '+campaignMoney(c.target_balance,currency)+'</span></div>'+
+        '<div class="campaign-metrics">'+
+          '<div class="campaign-metric"><span>Starting</span><strong>'+campaignMoney(c.starting_balance,currency)+'</strong></div>'+
+          '<div class="campaign-metric"><span>Realised P&amp;L</span><strong>'+campaignMoney(c.realised_pnl,currency)+'</strong></div>'+
+          '<div class="campaign-metric"><span>Trades</span><strong>'+fmt(c.total_trades||0)+'</strong></div>'+
+        '</div>'+
+        '<div class="campaign-trade-counts">WINS '+fmt(c.wins||0)+' · LOSSES '+fmt(c.losses||0)+' · OPEN '+fmt(c.open_trades||0)+'</div>'+
+        '<div class="campaign-foot">Balance is starting balance plus realised FIFO ledger P&amp;L. No position-size normalisation or FX conversion.</div>'+
+      '</div>';
+    }
     async function loadChallenges(){
       try{
         const response=await fetch('./data/challenges.json',{cache:'no-store'});
         if(!response.ok) throw new Error('No challenge data');
         const data=await response.json();
-        const active=(data.challenges||[]).filter(c=>c.active);
+        const campaigns=data.challenges||[];
+        const active=campaigns.filter(c=>c.active);
+        const archived=campaigns.filter(c=>!c.active&&c.archived);
         const banner=document.getElementById('activeChallenge');
         const content=document.getElementById('challengeContent');
         if(active.length){
-          const c=active[0];banner.style.display='block';document.getElementById('challengeName').textContent=c.name||'Trading Challenge';document.getElementById('challengeMeta').textContent=c.subtitle||'An active TradeThesis campaign';
-          content.innerHTML=active.map(c=>'<div class="panel"><div class="eyebrow">ACTIVE CAMPAIGN</div><h3>'+escapeHtml(c.name||'Trading Challenge')+'</h3><p class="sub">'+escapeHtml(c.description||'Follow the campaign and track your process.')+'</p>'+(c.public_url?'<a href="'+safeUrl(c.public_url)+'" target="_blank" rel="noopener" style="color:var(--terra);font-size:11px;font-weight:700">VIEW CAMPAIGN ↗</a>':'')+'</div>').join('');
+          const c=active[0];
+          banner.style.display='block';
+          document.getElementById('challengeName').textContent=c.name||'Trading Challenge';
+          document.getElementById('challengeMeta').textContent=(c.instrument||'Campaign')+' · '+campaignMoney(c.current_balance,c.currency)+' · '+fmt(c.progress_pct||0)+'% of target';
+          content.innerHTML=active.map(c=>campaignCard(c,'ACTIVE CAMPAIGN')).join('');
         }else{
           banner.style.display='none';
           content.innerHTML='<div class="empty-state"><div class="symbol">∴</div><h3>No active campaign</h3><p>There is no live challenge at the moment. When a campaign opens, you will find its details here.</p></div>';
         }
-        const archived=(data.challenges||[]).filter(c=>!c.active&&c.archived);
-        if(archived.length){content.innerHTML+='<div class="section-head"><h2>Past campaigns</h2></div>'+archived.map(c=>'<div class="panel"><div class="eyebrow">ARCHIVE</div><h3>'+escapeHtml(c.name||'Past campaign')+'</h3><p class="sub">'+escapeHtml(c.description||'Campaign archive')+'</p></div>').join('')}
-      }catch(e){document.getElementById('activeChallenge').style.display='none';document.getElementById('challengeContent').innerHTML='<div class="empty-state"><div class="symbol">∴</div><h3>No active campaign</h3><p>There is no live challenge at the moment. When a campaign opens, you will find its details here.</p></div>'}
+        if(archived.length){
+          content.innerHTML+='<div class="section-head"><h2>Past campaigns</h2></div>'+archived.map(c=>campaignCard(c,'COMPLETED')).join('');
+        }
+        if(data.generated_at){
+          const updated=new Date(data.generated_at);
+          if(!Number.isNaN(updated.getTime())) content.innerHTML+='<p class="note">Campaign figures last published '+updated.toLocaleString()+'</p>';
+        }
+      }catch(e){
+        document.getElementById('activeChallenge').style.display='none';
+        document.getElementById('challengeContent').innerHTML='<div class="empty-state"><div class="symbol">∴</div><h3>Challenge data unavailable</h3><p>Campaign figures will appear here when the publishing bot connects.</p></div>';
+      }
     }
-    function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+        function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
     function safeUrl(v){try{const u=new URL(v,location.href);return ['https:'].includes(u.protocol)?u.href:'#'}catch(e){return '#'}}
     document.getElementById('todayLabel').textContent=new Intl.DateTimeFormat(undefined,{month:'short',day:'2-digit'}).format(new Date()).toUpperCase();
     loadChallenges();
