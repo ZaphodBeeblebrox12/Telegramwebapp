@@ -85,6 +85,33 @@
     .campaign-hero.crypto.launch .countdown-unit b{color:#9bffe9}
     .campaign-hero.nugget.launch .countdown-unit b{color:#ffe1a0}
     .campaign-hero.launch .launch-date{opacity:.82}
+
+    .campaign-hero.launch{padding:14px 15px 12px}
+    .campaign-hero.launch .launch-main{display:grid;grid-template-columns:minmax(0,1fr) 94px;align-items:center;gap:4px;margin-top:8px}
+    .campaign-hero.launch .headline{font-size:clamp(25px,7.5vw,31px);line-height:.93;letter-spacing:.02em;margin-top:0;white-space:normal;max-width:230px}
+    .campaign-hero.launch .sub{font-size:8px;line-height:1.4;margin-top:7px}
+    .campaign-hero.launch .launch-art{height:88px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 7px 9px rgba(0,0,0,.32));pointer-events:none}
+    .campaign-hero.launch .launch-art svg{width:100%;height:100%;overflow:visible}
+    .campaign-hero.launch .countdown{margin-top:7px}
+    .campaign-hero.launch .countdown-unit{border-radius:2px;padding:8px 3px 7px;background:rgba(0,0,0,.2)}
+    .campaign-hero.launch .countdown-unit b{font-size:22px}
+    .campaign-hero.launch .launch-quest{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:10px;padding-top:8px;border-top:1px dashed rgba(255,255,255,.25)}
+    .campaign-hero.launch .launch-quest-step{min-width:0;text-align:center;font:7px/1.35 "DM Mono",monospace;letter-spacing:.045em;text-transform:uppercase;opacity:.88}
+    .campaign-hero.launch .launch-quest-step b{display:block;width:16px;height:16px;margin:0 auto 4px;border:1px solid currentColor;border-radius:50%;font:8px/14px "DM Mono",monospace}
+    .campaign-hero.nugget.launch .launch-quest-step b{color:#f5d27b;background:rgba(245,210,123,.08)}
+    .campaign-hero.crypto.launch .launch-quest-step b{color:#81f3d7;background:rgba(129,243,215,.08)}
+    .campaign-hero.launch .launch-date{margin-top:8px;padding-top:8px;font-size:7px}
+    .campaign-hero.launch .launch-date span{min-width:0}
+    .campaign-hero.launch .launch-date strong{overflow-wrap:anywhere}
+    @media(max-width:380px){
+      .campaign-hero.launch .launch-main{grid-template-columns:minmax(0,1fr) 76px}
+      .campaign-hero.launch .launch-art{height:76px}
+      .campaign-hero.launch .headline{font-size:clamp(23px,7.3vw,27px)}
+      .campaign-hero.launch .countdown-unit b{font-size:20px}
+      .campaign-hero.launch .launch-quest-step{font-size:6px}
+      .campaign-hero.launch .launch-date{font-size:6.5px}
+    }
+
     .tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .tool-tile{border:1px solid var(--line);background:var(--white);min-height:128px;padding:14px;text-align:left;position:relative;overflow:hidden;transition:transform .18s,border-color .18s}
     .tool-tile:active{transform:scale(.985)}.tool-tile:hover{border-color:#b6a99a}
@@ -317,15 +344,48 @@
         hour:'2-digit',minute:'2-digit',hour12:true
       })+' IST';
       const cls=isCrypto?'crypto':'nugget';
+      const headline=isCrypto?'BLOCK HUNT':'GOLD RUSH';
+      const subline=isCrypto?'THE NEXT BLOCK GOES LIVE IN':'THE GOLD HUNT BEGINS IN';
+      const quest=isCrypto
+        ?['WALLET READY','FIRST BLOCK','CHAIN BUILDS']
+        :['PICKAXE READY','FIRST STRIKE','GOLD VEIN'];
+      const art=isCrypto
+        ?'<svg viewBox="0 0 150 112" role="img" aria-label="A glowing crypto token on a connected blockchain trail">'+
+          '<path d="M10 82 C38 84 45 45 73 51 S106 88 139 22" fill="none" stroke="#70ead7" stroke-width="3" stroke-dasharray="4 6" opacity=".58"/>'+
+          '<path d="M15 82 L27 82 M125 36 L139 22" stroke="#c2fff0" stroke-width="2" opacity=".6"/>'+
+          '<path d="M71 17 L103 35 L103 72 L71 90 L39 72 L39 35 Z" fill="#082b3a" stroke="#a2fff0" stroke-width="2"/>'+
+          '<path d="M71 24 L96 39 L96 68 L71 83 L46 68 L46 39 Z" fill="#31b9b4" stroke="#d2fff3" stroke-width="1.5"/>'+
+          '<path d="M71 24 L71 83 M46 39 L96 68 M96 39 L46 68" stroke="#d4fff4" stroke-width="1" opacity=".45"/>'+
+          '<text x="71" y="63" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="900" fill="#063448">₿</text>'+
+          '<circle cx="17" cy="82" r="5" fill="#a2fff0" stroke="#e5fff8" stroke-width="1.5"/>'+
+          '<circle cx="133" cy="27" r="5" fill="#a2fff0" stroke="#e5fff8" stroke-width="1.5"/>'+
+          '<path d="M22 21 L25 12 L28 21 L37 24 L28 27 L25 36 L22 27 L13 24 Z" fill="#baffef" opacity=".8"/>'+
+          '</svg>'
+        :'<svg viewBox="0 0 150 112" role="img" aria-label="A shining gold nugget on a treasure trail leading to a locked chest">'+
+          '<path d="M8 86 C36 90 45 49 75 57 S111 83 141 28" fill="none" stroke="#f4ce76" stroke-width="3" stroke-dasharray="4 6" opacity=".68"/>'+
+          '<path d="M15 86 L27 86 M130 45 L141 28" stroke="#ffe7a4" stroke-width="2" opacity=".62"/>'+
+          '<path d="M34 61 L39 33 L58 15 L83 20 L100 43 L91 70 L63 82 L42 76 Z" fill="#b87926" stroke="#ffdf83" stroke-width="2"/>'+
+          '<path d="M39 34 L62 43 L83 20 M62 43 L63 82 M62 43 L100 43 M39 34 L34 61" fill="none" stroke="#fff0b6" stroke-width="2" opacity=".9"/>'+
+          '<path d="M47 29 L60 21 L72 29 L62 42 L42 38 Z" fill="#fff0a8" opacity=".72"/>'+
+          '<path d="M102 66 L132 66 L136 79 L128 91 L106 91 L98 79 Z" fill="#86501f" stroke="#f4cf7b" stroke-width="2"/>'+
+          '<path d="M99 67 L105 57 L130 57 L136 67 Z" fill="#d89a39" stroke="#ffe2a0" stroke-width="2"/>'+
+          '<path d="M111 70 L124 70 L124 86 L111 86 Z" fill="#f3ce76" stroke="#fff0b4" stroke-width="1.5"/>'+
+          '<circle cx="117.5" cy="77" r="2" fill="#684018"/>'+
+          '<circle cx="16" cy="86" r="5" fill="#ffe8a2" stroke="#fff7d6" stroke-width="1.5"/>'+
+          '<path d="M113 20 L116 10 L119 20 L129 23 L119 26 L116 36 L113 26 L103 23 Z" fill="#ffe8a2" opacity=".9"/>'+
+          '<path d="M30 14 L32 8 L34 14 L40 16 L34 18 L32 24 L30 18 L24 16 Z" fill="#ffe8a2" opacity=".75"/>'+
+          '</svg>';
       return '<div class="campaign-hero launch '+cls+'" role="group" aria-label="'+escapeHtml(title)+' upcoming campaign">'+
-        '<div class="top"><span class="tag">UP NEXT · '+escapeHtml(title.toUpperCase())+'</span><span class="micro stage">LAUNCH SCHEDULED</span></div>'+
-        '<div class="headline">THE COUNTDOWN<br>IS ON</div>'+
-        '<div class="sub">'+escapeHtml(market)+' · GET READY</div>'+
+        '<div class="top"><span class="tag">UP NEXT · '+escapeHtml(title.toUpperCase())+'</span><span class="micro stage">QUEST LOCKED</span></div>'+
+        '<div class="launch-main"><div><div class="headline">'+headline+'</div><div class="sub">'+subline+'</div></div><div class="launch-art" aria-hidden="true">'+art+'</div></div>'+
         '<div class="countdown" data-countdown-target="'+timestamp+'">'+
           '<div class="countdown-unit"><b data-countdown-days>00</b><span>DAYS</span></div>'+
           '<div class="countdown-unit"><b data-countdown-hours>00</b><span>HOURS</span></div>'+
           '<div class="countdown-unit"><b data-countdown-minutes>00</b><span>MINUTES</span></div>'+
           '<div class="countdown-unit"><b data-countdown-seconds>00</b><span>SECONDS</span></div>'+
+        '</div>'+
+        '<div class="launch-quest" aria-label="'+quest.join(', ')+'">'+
+          quest.map((step,index)=>'<div class="launch-quest-step"><b>'+(index+1)+'</b>'+step+'</div>').join('')+
         '</div>'+
         '<div class="launch-date"><span>LAUNCH · <strong>'+escapeHtml(launchLabel)+'</strong></span><span>TARGET · <strong>'+escapeHtml(goal)+'</strong></span></div>'+
       '</div>';
@@ -406,7 +466,7 @@
         if(active.length||scheduled.length){
           content.innerHTML=active.map(c=>campaignCard(c,'ACTIVE CAMPAIGN')).join('');
           if(scheduled.length){
-            content.innerHTML+='<div class="section-head"><h2>Coming up</h2></div>'+scheduled.map(c=>campaignCard(c,'UPCOMING CAMPAIGN')).join('');
+            content.innerHTML+='<div class="section-head"><h2>Coming up</h2></div>'+scheduled.map(c=>campaignLaunchBanner(c)+campaignCard(c,'UPCOMING CAMPAIGN')).join('');
           }
         }else{
           content.innerHTML='<div class="empty-state"><div class="symbol">∴</div><h3>No active campaign</h3><p>There is no live or upcoming campaign at the moment. New launches will appear here when announced.</p></div>';
