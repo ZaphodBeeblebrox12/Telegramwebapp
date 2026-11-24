@@ -308,6 +308,23 @@
     const tg = window.Telegram && window.Telegram.WebApp;
     if (tg) { tg.ready(); tg.expand(); try { tg.setHeaderColor('#f4f0e8'); tg.setBackgroundColor('#f4f0e8'); } catch(e) {} }
 
+    // Named Telegram Mini Apps pass a campaign id with startapp=challenge_<id>.
+    // Telegram exposes it through initDataUnsafe.start_param. The query fallback
+    // makes this route easy to test in an ordinary browser too.
+    const telegramStartParam = String(
+      (tg && tg.initDataUnsafe && tg.initDataUnsafe.start_param) ||
+      new URLSearchParams(window.location.search).get('tgWebAppStartParam') ||
+      ''
+    ).trim();
+    const challengeStart = /^challenge_([A-Za-z0-9_-]+)$/.exec(telegramStartParam);
+    if (challengeStart) {
+      const challengeUrl = new URL(
+        'challenges/' + encodeURIComponent(challengeStart[1]) + '/?from=challenges',
+        document.baseURI
+      );
+      window.location.replace(challengeUrl.href);
+    }
+
     const views = ['home','challenges','tools','tool','learn','about'];
     let currentView = 'home';
     const nav = document.querySelector('.bottom-nav');

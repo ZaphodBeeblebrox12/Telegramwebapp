@@ -32,6 +32,10 @@ The existing TradeThesis notification bot can own the Mini App. Register the app
 
 Then create a channel post with a URL button pointing to the direct Mini App link and pin that post. The channel remains the member-facing entry point; members do not need to open a separate bot conversation.
 
+For campaign-specific links, append a Telegram `startapp` value to the direct
+link, for example `?startapp=challenge_6`. The Mini App reads that value and
+opens the matching individual campaign page inside Telegram.
+
 A Telegram channel does not have the same customizable persistent Mini App menu button as a bot chat. The pinned post is the permanent launch entry point. Once the app opens, its own bottom navigation remains available.
 
 Suggested pinned post:
