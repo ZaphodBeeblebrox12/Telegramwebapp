@@ -24,9 +24,33 @@
     h1,h2,h3,p{margin-top:0}.intro{padding:28px 0 22px}.intro h1{font:600 35px/1.07 "Playfair Display",serif;letter-spacing:-.7px;margin:9px 0 10px;max-width:390px}.intro p{color:var(--muted);font-size:13px;line-height:1.6;max-width:360px;margin:0}
     .date-line{display:flex;align-items:center;justify-content:space-between;margin-top:18px;padding-top:13px;border-top:1px solid var(--line);font:10px "DM Mono",monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
     .section-head{display:flex;align-items:end;justify-content:space-between;margin:23px 0 12px}.section-head h2{font:600 21px "Playfair Display",serif;margin:0}.section-head button{border:0;background:none;color:var(--terra);font-size:11px;font-weight:700;padding:3px 0}
-    .challenge-banner{display:none;background:var(--ink);color:var(--white);border-radius:4px;padding:17px 18px;margin:0 0 18px;position:relative;overflow:hidden}
-    .challenge-banner:after{content:"";position:absolute;width:115px;height:115px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-17px;top:-48px;box-shadow:0 0 0 15px rgba(255,255,255,.035),0 0 0 31px rgba(255,255,255,.025)}
-    .challenge-banner .eyebrow{color:#e4a88e}.challenge-banner h3{font:600 22px "Playfair Display",serif;margin:7px 0}.challenge-banner p{font-size:11px;color:#c8c8bf;margin:0}.challenge-banner .arrow{position:absolute;right:17px;bottom:16px;color:#e4a88e}
+    .challenge-banner{display:none;min-height:178px;background:radial-gradient(ellipse at 92% 10%,rgba(232,181,82,.24),transparent 36%),linear-gradient(116deg,#0c1c15 0%,#173b2a 54%,#0b2118 100%);color:#fff9e9;border:1px solid rgba(204,158,75,.58);border-radius:8px;padding:16px 17px 13px;margin:0 0 18px;position:relative;overflow:hidden;isolation:isolate;cursor:pointer;box-shadow:0 10px 26px rgba(15,38,27,.18),inset 0 1px rgba(255,255,255,.08);transition:transform .18s,box-shadow .18s}
+    .challenge-banner:active{transform:scale(.99);box-shadow:0 5px 16px rgba(15,38,27,.2)}
+    .challenge-banner:before{content:"";position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(132deg,transparent 0 22px,rgba(255,255,255,.025) 23px 24px,transparent 25px 47px);mask-image:linear-gradient(90deg,transparent 15%,#000 100%)}
+    .challenge-banner:after{content:"";position:absolute;z-index:-1;width:190px;height:190px;right:-88px;top:-108px;border:1px solid rgba(242,198,105,.32);border-radius:50%;box-shadow:0 0 0 13px rgba(220,174,89,.055),0 0 0 28px rgba(220,174,89,.045),0 0 0 46px rgba(220,174,89,.03)}
+    .challenge-banner>*{position:relative;z-index:1}
+    .challenge-topline,.challenge-main,.challenge-balance-line,.challenge-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .challenge-live{display:inline-flex;align-items:center;gap:7px;padding:5px 9px;background:linear-gradient(135deg,#f6d78d,#c28c35);color:#17251b;border-radius:3px;font:700 9px "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 0 18px rgba(228,180,85,.22)}
+    .challenge-live i{width:6px;height:6px;border-radius:50%;background:#173c2a;box-shadow:0 0 0 3px rgba(23,60,42,.12);animation:livePulse 1.8s ease-in-out infinite}
+    @keyframes livePulse{0%,100%{opacity:1;box-shadow:0 0 0 3px rgba(23,60,42,.12)}50%{opacity:.55;box-shadow:0 0 0 6px rgba(23,60,42,.08)}}
+    .challenge-market{font:9px "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:#e8c987}
+    .challenge-main{align-items:flex-end;margin:13px 0 10px}
+    .challenge-banner .challenge-copy{min-width:0}
+    .challenge-banner .eyebrow{font:9px "DM Mono",monospace;letter-spacing:.16em;color:#d4a75f;margin-bottom:4px}
+    .challenge-banner h3{font:800 25px/1.02 "DM Sans",sans-serif;letter-spacing:-.8px;text-transform:uppercase;margin:0 0 5px;color:#fff9e9;text-shadow:0 2px 16px rgba(0,0,0,.2)}
+    .challenge-banner p{font:9px "DM Mono",monospace;color:#bdc9bb;letter-spacing:.055em;text-transform:uppercase;margin:0}
+    .challenge-score{text-align:right;flex:0 0 auto;padding-left:6px}
+    .challenge-score strong{display:block;font:800 31px/.95 "DM Sans",sans-serif;letter-spacing:-1.5px;color:#f4cc77;text-shadow:0 0 22px rgba(236,185,83,.2);font-variant-numeric:tabular-nums}
+    .challenge-score span{display:block;margin-top:4px;font:8px "DM Mono",monospace;letter-spacing:.15em;color:#d6c39d}
+    .challenge-balance-line{border-top:1px solid rgba(236,215,171,.18);padding-top:9px;margin-top:1px}
+    .challenge-balance-label{font:8px "DM Mono",monospace;letter-spacing:.12em;color:#b8c5b7;text-transform:uppercase}
+    .challenge-balance-value{font:700 15px "DM Sans",sans-serif;color:#fff8e7;font-variant-numeric:tabular-nums}
+    .challenge-profit{font:700 9px "DM Mono",monospace;color:#f0ca7a;background:rgba(222,174,82,.12);border:1px solid rgba(222,174,82,.24);padding:4px 6px;border-radius:2px}
+    .challenge-track{height:6px;background:rgba(255,255,255,.13);border-radius:10px;overflow:hidden;margin:9px 0 7px;box-shadow:inset 0 1px 2px rgba(0,0,0,.22)}
+    .challenge-track i{display:block;height:100%;width:0;border-radius:10px;background:linear-gradient(90deg,#c18a35,#f6d98d);box-shadow:0 0 12px rgba(244,199,111,.55);transition:width .8s cubic-bezier(.2,.7,.2,1)}
+    .challenge-bottom{font:8px "DM Mono",monospace;letter-spacing:.045em;color:#aebcae;text-transform:uppercase}
+    .challenge-bottom strong{color:#e8ca88;font-weight:500}
+    .challenge-cta{display:inline-flex;align-items:center;gap:4px;color:#f4d58f;font-weight:700;letter-spacing:.08em;white-space:nowrap}
     .tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .tool-tile{border:1px solid var(--line);background:var(--white);min-height:128px;padding:14px;text-align:left;position:relative;overflow:hidden;transition:transform .18s,border-color .18s}
     .tool-tile:active{transform:scale(.985)}.tool-tile:hover{border-color:#b6a99a}
@@ -69,8 +93,30 @@
         <p>A small collection of practical tools and considered learning for more disciplined market decisions.</p>
         <div class="date-line"><span>MARKET NOTES &amp; TOOLS</span><span id="todayLabel">TRADETHESIS DESK</span></div>
       </div>
-      <div class="challenge-banner" id="activeChallenge" role="button" tabindex="0" onclick="showView('challenges')">
-        <div class="eyebrow">A live campaign</div><h3 id="challengeName">Trading Challenge</h3><p id="challengeMeta">Follow the campaign and track progress.</p><span class="arrow">↗</span>
+      <div class="challenge-banner" id="activeChallenge" role="button" tabindex="0" onclick="showView('challenges')" aria-label="Open the live trading challenge">
+        <div class="challenge-topline">
+          <span class="challenge-live"><i></i> LIVE CHALLENGE</span>
+          <span class="challenge-market" id="challengeInstrument">GOLD / METALS</span>
+        </div>
+        <div class="challenge-main">
+          <div class="challenge-copy">
+            <div class="eyebrow">THE CHALLENGE IS ON</div>
+            <h3 id="challengeName">Trading Challenge</h3>
+            <p id="challengeMeta">Market campaign · Live now</p>
+          </div>
+          <div class="challenge-score"><strong id="challengeProgress">0%</strong><span>TARGET REACHED</span></div>
+        </div>
+        <div class="challenge-balance-line">
+          <span class="challenge-balance-label">CURRENT BALANCE</span>
+          <strong class="challenge-balance-value" id="challengeBalance">$0</strong>
+          <span class="challenge-profit" id="challengeProfit">+$0</span>
+        </div>
+        <div class="challenge-track" aria-label="Challenge target progress"><i id="challengeProgressBar"></i></div>
+        <div class="challenge-bottom">
+          <span id="challengeStart">START <strong>$0</strong></span>
+          <span id="challengeTarget">TARGET <strong>$0</strong></span>
+          <span class="challenge-cta">VIEW LIVE ↗</span>
+        </div>
       </div>
       <div class="section-head"><h2>Open your toolkit</h2><button onclick="showView('tools')">ALL TOOLS ↗</button></div>
       <div class="tool-grid">
@@ -228,7 +274,16 @@
           const c=active[0];
           banner.style.display='block';
           document.getElementById('challengeName').textContent=c.name||'Trading Challenge';
-          document.getElementById('challengeMeta').textContent=(c.instrument||'Campaign')+' · '+campaignMoney(c.current_balance,c.currency)+' · '+fmt(c.progress_pct||0)+'% of target';
+          document.getElementById('challengeInstrument').textContent=(c.instrument||c.asset_class||'MARKET').toUpperCase()+' / '+(c.asset_class||'TRADING').replace(/_/g,' ').toUpperCase();
+          document.getElementById('challengeMeta').textContent='LIVE MARKET CAMPAIGN · '+(c.status||'ACTIVE');
+          const progress=Number(c.progress_pct||0);
+          document.getElementById('challengeProgress').textContent=fmt(progress)+'%';
+          document.getElementById('challengeProgressBar').style.width=Math.min(100,Math.max(0,progress))+'%';
+          document.getElementById('challengeBalance').textContent=campaignMoney(c.current_balance,c.currency);
+          const realised=Number(c.realised_pnl||0);
+          document.getElementById('challengeProfit').textContent=(realised>=0?'+':'−')+campaignMoney(Math.abs(realised),c.currency);
+          document.getElementById('challengeStart').innerHTML='START <strong>'+campaignMoney(c.starting_balance,c.currency)+'</strong>';
+          document.getElementById('challengeTarget').innerHTML='TARGET <strong>'+campaignMoney(c.target_balance,c.currency)+'</strong>';
           content.innerHTML=active.map(c=>campaignCard(c,'ACTIVE CAMPAIGN')).join('');
         }else{
           banner.style.display='none';
