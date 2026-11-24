@@ -110,3 +110,7 @@ Challenge URLs retain the page from which the user opened them:
 - A direct/shared challenge URL without `from` defaults to the Challenges catalogue.
 
 The visible back link and Telegram Mini App BackButton use the same return destination.
+
+Individual challenge pages also retain the app's fixed five-tab bottom navigation
+(Home, Challenges, Tools, Learn and About), so users can move to another app
+section without first returning to the catalogue.
