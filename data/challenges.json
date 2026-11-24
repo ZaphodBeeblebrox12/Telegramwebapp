@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T20:31:17.568257+00:00",
+  "generated_at": "2026-11-24T20:31:45.593458+00:00",
   "basis_note": "Current balance = starting balance + realised FIFO ledger P&L. No position-size normalisation or FX conversion is applied.",
   "challenges": [
     {
@@ -167,12 +167,12 @@
       "wins": 0,
       "losses": 0,
       "breakeven": 0,
-      "status": "ACTIVE",
-      "active": true,
+      "status": "COMPLETED",
+      "active": false,
       "scheduled": false,
       "starts_at": null,
-      "archived": false,
-      "subtitle": "GENERAL · Active",
+      "archived": true,
+      "subtitle": "GENERAL · Completed",
       "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
       "trade_history": []
     },
