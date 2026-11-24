@@ -58,7 +58,19 @@
     .campaign-hero.nugget .progress-caption b,.campaign-hero.nugget .profit{color:#f5d27b}
     .campaign-hero.nugget .balance{color:#fff2cf}
     .campaign-hero.nugget .goal{color:#b8cbb8}
-    .campaign-hero.crypto{background:radial-gradient(circle at 82% 18%,rgba(62,222,197,.18),transparent 30%),linear-gradient(125deg,#071b2b,#14294e 54%,#092d38);color:#eafffb;border:1px solid #42cdbd}
+    .campaign-hero.general{background:radial-gradient(circle at 82% 18%,rgba(153,211,183,.17),transparent 31%),linear-gradient(125deg,#10241f,#1a3b34 55%,#102a29);color:#f0fff8;border:1px solid #8ab79f}
+    .campaign-hero.general:before{content:"ALL MARKETS · ONE CAMPAIGN";position:absolute;right:-47px;top:37px;transform:rotate(90deg);font:900 8px "DM Mono",monospace;letter-spacing:.16em;color:#c0ead044;z-index:-1}
+    .campaign-hero.general .tag{color:#b9e8c9}
+    .campaign-hero.general .stage{color:#b9d6c8}
+    .campaign-hero.general .headline{color:#d7f4df;text-shadow:0 0 20px rgba(141,218,176,.12)}
+    .campaign-hero.general .sub{color:#bcd4c8}
+    .campaign-hero.general .track{background:#294b43;border:1px solid #719b89}
+    .campaign-hero.general .track i{background:linear-gradient(90deg,#538b75,#b5e6be);box-shadow:0 0 14px #93d4ae}
+    .campaign-hero.general .progress-caption{color:#c6ded0}
+    .campaign-hero.general .progress-caption b,.campaign-hero.general .profit{color:#bce8c2}
+    .campaign-hero.general .balance{color:#f0fff6}
+    .campaign-hero.general .goal{color:#bdd5c9}
+        .campaign-hero.crypto{background:radial-gradient(circle at 82% 18%,rgba(62,222,197,.18),transparent 30%),linear-gradient(125deg,#071b2b,#14294e 54%,#092d38);color:#eafffb;border:1px solid #42cdbd}
     .campaign-hero.crypto:before{content:"BLOCK BY BLOCK";position:absolute;right:-15px;top:31px;transform:rotate(90deg);font:900 9px "DM Mono",monospace;letter-spacing:.2em;color:#75e5dd55;z-index:-1}
     .campaign-hero.crypto .tag{color:#81f3d7}
     .campaign-hero.crypto .stage{color:#a6c9dd}
@@ -313,6 +325,7 @@
     function campaignBanner(c){
       const kind=campaignKind(c);
       const isCrypto=kind==='crypto';
+      const isGeneral=kind==='general';
       const width=Math.min(100,Math.max(0,Number(c.progress_pct||0)));
       const progressValue=Number(c.progress_pct||0);
       const progress=fmt(progressValue);
@@ -323,8 +336,8 @@
       const balance=campaignMoney(c.current_balance,currency);
       const realised=Number(c.realised_pnl||0);
       const pnl=(realised>=0?'+':'−')+campaignMoney(Math.abs(realised),currency);
-      const label=isCrypto?'LIVE CRYPTO RUSH':kind==='gold'?'LIVE GOLD RUSH':'LIVE CAMPAIGN';
-      const headline=isCrypto?'CRYPTO RUSH':kind==='gold'?'GOLD RUSH':'MARKET RUSH';
+      const label=isCrypto?'LIVE CRYPTO RUSH':kind==='gold'?'LIVE GOLD RUSH':isGeneral?'LIVE GENERAL CAMPAIGN':'LIVE CAMPAIGN';
+      const headline=isCrypto?'CRYPTO RUSH':kind==='gold'?'GOLD RUSH':isGeneral?'GENERAL CHALLENGE':'MARKET RUSH';
       const markerId='campaign-marker-'+String(c.id||'live').replace(/[^a-z0-9_-]/gi,'');
       let marker='';
       if(isCrypto){
@@ -335,6 +348,14 @@
           '<path d="M24 2 L43 13 L43 35 L24 46 L5 35 L5 13 Z" fill="#061923" stroke="#9affeb" stroke-width="1.5"/>'+
           '<circle cx="24" cy="24" r="15" fill="url(#'+markerId+')" stroke="#d4fff5" stroke-width="1.4"/>'+
           '<text x="24" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="'+(symbol==='C'?19:21)+'" font-weight="900" fill="#073045">'+symbol+'</text></svg>';
+      }else if(isGeneral){
+        marker='<svg class="progress-marker" style="left:'+width+'%" viewBox="0 0 48 48" role="img" aria-label="All-market marker at current progress">'+
+          '<defs><linearGradient id="'+markerId+'" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8fff0"/><stop offset=".52" stop-color="#a5dfb6"/><stop offset="1" stop-color="#4e927d"/></linearGradient></defs>'+
+          '<circle cx="24" cy="24" r="21" fill="#0d2824" stroke="#c4efd0" stroke-width="1.6"/>'+
+          '<circle cx="24" cy="24" r="14" fill="url(#'+markerId+')" stroke="#ecfff0" stroke-width="1.2"/>'+
+          '<ellipse cx="24" cy="24" rx="6" ry="14" fill="none" stroke="#276652" stroke-width="1.4"/>'+
+          '<path d="M10 24 H38 M13 17 H35 M13 31 H35" fill="none" stroke="#276652" stroke-width="1.4"/>'+
+          '<path d="M24 3 L27 9 L24 12 L21 9 Z" fill="#eaffef"/></svg>';
       }else{
         marker='<svg class="progress-marker" style="left:'+width+'%" viewBox="0 0 48 42" role="img" aria-label="Gold nugget at current progress">'+
           '<defs><linearGradient id="'+markerId+'" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0a8"/><stop offset=".42" stop-color="#f3c65e"/><stop offset="1" stop-color="#a9661b"/></linearGradient></defs>'+
@@ -342,10 +363,10 @@
           '<path d="M9 12 L20 17 L33 7 M20 17 L22 39 M20 17 L43 18 M9 12 L5 26" fill="none" stroke="#fff1bd" stroke-width="1.6" opacity=".8"/>'+
           '<path d="M17 8 L23 12 L19 17 L10 15 Z" fill="#fff4c8" opacity=".65"/></svg>';
       }
-      const action=isCrypto?'THE CRYPTO QUEST CONTINUES ↗':kind==='gold'?'THE HUNT CONTINUES ↗':'THE HUNT CONTINUES ↗';
+      const action=isCrypto?'THE CRYPTO QUEST CONTINUES ↗':kind==='gold'?'THE HUNT CONTINUES ↗':isGeneral?'THE GENERAL CAMPAIGN CONTINUES ↗':'THE CAMPAIGN CONTINUES ↗';
       const caption=nextMilestone?(isCrypto?'NEXT QUEST · '+nextMilestone+'% MILESTONE':kind==='gold'?'NEXT STRIKE · '+nextMilestone+'% MILESTONE':'NEXT MILESTONE · '+nextMilestone+'%'):(isCrypto?'ALL QUEST MILESTONES CLEARED':kind==='gold'?'GOLD RUSH COMPLETE · TARGET CLEARED':'TARGET CLEARED');
-      const stage=isCrypto?'QUEST MILESTONE':'MILESTONE 01';
-      return '<div class="campaign-hero '+(isCrypto?'crypto':'nugget')+'" role="button" tabindex="0" onclick="showView(&quot;challenges&quot;)" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)showView(&quot;challenges&quot;)" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign">'+
+      const stage=isCrypto?'QUEST MILESTONE':isGeneral?'ALL MARKETS':'MILESTONE 01';
+      return '<div class="campaign-hero '+(isCrypto?'crypto':kind==='gold'?'nugget':'general')+'" role="button" tabindex="0" onclick="showView(&quot;challenges&quot;)" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)showView(&quot;challenges&quot;)" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign">'+
         '<div class="top"><span class="tag">'+label+'</span><span class="micro stage">'+stage+'</span></div>'+
         '<div class="headline">'+headline+'</div>'+
         '<div class="sub">'+caption+'</div>'+
@@ -357,6 +378,7 @@
     function campaignLaunchBanner(c){
       const kind=campaignKind(c);
       const isCrypto=kind==='crypto';
+      const isGeneral=kind==='general';
       const timestamp=Date.parse(c.starts_at||'');
       if(!Number.isFinite(timestamp)) return '';
       const title=campaignDisplayName(c);
@@ -366,11 +388,12 @@
         timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',
         hour:'2-digit',minute:'2-digit',hour12:true
       })+' IST';
-      const cls=isCrypto?'crypto':'nugget';
-      const headline=isCrypto?'THE CRYPTO<br>QUEST':'GOLD RUSH';
-      const subline=isCrypto?'THE QUEST BEGINS IN':'THE GOLD HUNT BEGINS IN';
+      const cls=isCrypto?'crypto':isGeneral?'general':'nugget';
+      const headline=isCrypto?'THE CRYPTO<br>QUEST':isGeneral?'GENERAL<br>CHALLENGE':'GOLD RUSH';
+      const subline=isCrypto?'THE QUEST BEGINS IN':isGeneral?'ALL MARKETS GO LIVE IN':'THE GOLD HUNT BEGINS IN';
       const quest=isCrypto
         ?['GEAR UP','FIRST QUEST','BUILD MOMENTUM']
+        :isGeneral?['ALL MARKETS','TRADES COUNT','ONE GOAL']
         :['PICKAXE READY','FIRST STRIKE','GOLD VEIN'];
       const art=isCrypto
         ?'<svg viewBox="0 0 150 112" role="img" aria-label="A glowing crypto token on a connected blockchain trail">'+
@@ -383,6 +406,17 @@
           '<circle cx="17" cy="82" r="5" fill="#a2fff0" stroke="#e5fff8" stroke-width="1.5"/>'+
           '<circle cx="133" cy="27" r="5" fill="#a2fff0" stroke="#e5fff8" stroke-width="1.5"/>'+
           '<path d="M22 21 L25 12 L28 21 L37 24 L28 27 L25 36 L22 27 L13 24 Z" fill="#baffef" opacity=".8"/>'+
+          '</svg>'
+        :isGeneral
+        ?'<svg viewBox="0 0 150 112" role="img" aria-label="A globe and connected markers representing all markets">'+
+          '<path d="M12 84 C36 60 47 95 73 67 S111 35 139 20" fill="none" stroke="#b9e8c9" stroke-width="3" stroke-dasharray="4 6" opacity=".55"/>'+
+          '<circle cx="74" cy="53" r="34" fill="#173d34" stroke="#b9e8c9" stroke-width="2"/>'+
+          '<ellipse cx="74" cy="53" rx="14" ry="34" fill="none" stroke="#d8f8df" stroke-width="1.6"/>'+
+          '<path d="M40 53 H108 M46 37 H102 M46 69 H102" fill="none" stroke="#d8f8df" stroke-width="1.5" opacity=".8"/>'+
+          '<circle cx="74" cy="19" r="5" fill="#e7fff0" stroke="#7cb99a" stroke-width="1.5"/>'+
+          '<circle cx="139" cy="20" r="5" fill="#e7fff0" stroke="#7cb99a" stroke-width="1.5"/>'+
+          '<circle cx="12" cy="84" r="5" fill="#e7fff0" stroke="#7cb99a" stroke-width="1.5"/>'+
+          '<path d="M20 26 L23 16 L26 26 L36 29 L26 32 L23 42 L20 32 L10 29 Z" fill="#d7f9df" opacity=".8"/>'+
           '</svg>'
         :'<svg viewBox="0 0 150 112" role="img" aria-label="A shining gold nugget on a treasure trail leading to a locked chest">'+
           '<path d="M8 86 C36 90 45 49 75 57 S111 83 141 28" fill="none" stroke="#f4ce76" stroke-width="3" stroke-dasharray="4 6" opacity=".68"/>'+
@@ -399,7 +433,7 @@
           '<path d="M30 14 L32 8 L34 14 L40 16 L34 18 L32 24 L30 18 L24 16 Z" fill="#ffe8a2" opacity=".75"/>'+
           '</svg>';
       return '<div class="campaign-hero launch '+cls+'" role="group" aria-label="'+escapeHtml(title)+' upcoming campaign">'+
-        '<div class="top"><span class="tag">UP NEXT · '+escapeHtml(title.toUpperCase())+'</span><span class="micro stage">QUEST LOCKED</span></div>'+
+        '<div class="top"><span class="tag">UP NEXT · '+escapeHtml(title.toUpperCase())+'</span><span class="micro stage">'+(isGeneral?'ALL MARKETS':'QUEST LOCKED')+'</span></div>'+
         '<div class="launch-main"><div><div class="headline">'+headline+'</div><div class="sub">'+subline+'</div></div><div class="launch-art" aria-hidden="true">'+art+'</div></div>'+
         '<div class="countdown" data-countdown-target="'+timestamp+'">'+
           '<div class="countdown-unit"><b data-countdown-days>00</b><span>DAYS</span></div>'+
