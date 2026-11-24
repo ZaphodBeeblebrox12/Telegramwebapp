@@ -72,6 +72,19 @@
     .campaign-hero.crypto .goal{color:#a9c9d1}
     .campaign-hero.crypto .progress-marker{transform:translate(-50%,-50%)}
     @media(max-width:380px){.campaign-hero{padding-left:14px;padding-right:14px}.campaign-hero .headline{font-size:clamp(23px,8vw,28px)}.campaign-hero .bottomline{left:auto;right:auto}.campaign-hero .balance{font-size:16px}.campaign-hero .progress-caption{font-size:6.5px;gap:3px}.campaign-hero .progress-marker{width:28px;height:28px}}
+    .campaign-hero.launch{padding-bottom:14px}
+    .campaign-hero.launch .headline{font-size:clamp(22px,7.4vw,28px);line-height:.98;margin-top:13px}
+    .campaign-hero.launch .sub{margin-top:6px}
+    .campaign-hero.launch .countdown{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:12px}
+    .campaign-hero.launch .countdown-unit{min-width:0;padding:8px 4px 7px;text-align:center;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.065);border-radius:3px}
+    .campaign-hero.launch .countdown-unit b{display:block;font:900 23px/1 "DM Mono",monospace;font-variant-numeric:tabular-nums}
+    .campaign-hero.launch .countdown-unit span{display:block;margin-top:5px;font:7px "DM Mono",monospace;letter-spacing:.13em;opacity:.8}
+    .campaign-hero.launch .countdown-ready{grid-column:1/-1;padding:12px 8px;text-align:center;border:1px solid currentColor;background:rgba(255,255,255,.08);font:900 14px "DM Mono",monospace;letter-spacing:.13em}
+    .campaign-hero.launch .launch-date{display:flex;justify-content:space-between;gap:8px;margin-top:10px;padding-top:9px;border-top:1px solid rgba(255,255,255,.16);font:8px "DM Mono",monospace;letter-spacing:.06em;text-transform:uppercase}
+    .campaign-hero.launch .launch-date strong{font-weight:700}
+    .campaign-hero.crypto.launch .countdown-unit b{color:#9bffe9}
+    .campaign-hero.nugget.launch .countdown-unit b{color:#ffe1a0}
+    .campaign-hero.launch .launch-date{opacity:.82}
     .tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .tool-tile{border:1px solid var(--line);background:var(--white);min-height:128px;padding:14px;text-align:left;position:relative;overflow:hidden;transition:transform .18s,border-color .18s}
     .tool-tile:active{transform:scale(.985)}.tool-tile:hover{border-color:#b6a99a}
@@ -279,7 +292,7 @@
           '<path d="M9 12 L20 17 L33 7 M20 17 L22 39 M20 17 L43 18 M9 12 L5 26" fill="none" stroke="#fff1bd" stroke-width="1.6" opacity=".8"/>'+
           '<path d="M17 8 L23 12 L19 17 L10 15 Z" fill="#fff4c8" opacity=".65"/></svg>';
       }
-      const action=isCrypto?'KEEP BUILDING ↗':kind==='gold'?'KEEP DIGGING ↗':'KEEP GOING ↗';
+      const action=isCrypto?'THE BLOCK HUNT CONTINUES ↗':kind==='gold'?'THE HUNT CONTINUES ↗':'THE HUNT CONTINUES ↗';
       const caption=nextMilestone?(isCrypto?'NEXT BLOCK · '+nextMilestone+'% MILESTONE':kind==='gold'?'NEXT STRIKE · '+nextMilestone+'% MILESTONE':'NEXT MILESTONE · '+nextMilestone+'%'):(isCrypto?'ALL BLOCK MILESTONES CLEARED':kind==='gold'?'GOLD RUSH COMPLETE · TARGET CLEARED':'TARGET CLEARED');
       const stage=isCrypto?'BLOCK MILESTONE':'MILESTONE 01';
       return '<div class="campaign-hero '+(isCrypto?'crypto':'nugget')+'" role="button" tabindex="0" onclick="showView(&quot;challenges&quot;)" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)showView(&quot;challenges&quot;)" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign">'+
@@ -291,16 +304,79 @@
         '<div class="bottomline"><div><div class="micro">'+(isCrypto?'CURRENT BALANCE':'CURRENT BALANCE')+'</div><div class="balance">'+escapeHtml(balance)+'</div></div><div style="text-align:right"><div class="profit">'+escapeHtml(pnl)+' REALISED</div><div class="goal">'+action+'</div></div></div>'+
       '</div>';
     }
+    function campaignLaunchBanner(c){
+      const kind=campaignKind(c);
+      const isCrypto=kind==='crypto';
+      const timestamp=Date.parse(c.starts_at||'');
+      if(!Number.isFinite(timestamp)) return '';
+      const title=campaignDisplayName(c);
+      const market=(c.instrument||c.asset_class||'MARKET').toUpperCase();
+      const goal=campaignMoney(c.target_balance,c.currency||'USD');
+      const launchLabel=new Date(timestamp).toLocaleString('en-IN',{
+        timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',
+        hour:'2-digit',minute:'2-digit',hour12:true
+      })+' IST';
+      const cls=isCrypto?'crypto':'nugget';
+      return '<div class="campaign-hero launch '+cls+'" role="group" aria-label="'+escapeHtml(title)+' upcoming campaign">'+
+        '<div class="top"><span class="tag">UP NEXT · '+escapeHtml(title.toUpperCase())+'</span><span class="micro stage">LAUNCH SCHEDULED</span></div>'+
+        '<div class="headline">THE COUNTDOWN<br>IS ON</div>'+
+        '<div class="sub">'+escapeHtml(market)+' · GET READY</div>'+
+        '<div class="countdown" data-countdown-target="'+timestamp+'">'+
+          '<div class="countdown-unit"><b data-countdown-days>00</b><span>DAYS</span></div>'+
+          '<div class="countdown-unit"><b data-countdown-hours>00</b><span>HOURS</span></div>'+
+          '<div class="countdown-unit"><b data-countdown-minutes>00</b><span>MINUTES</span></div>'+
+          '<div class="countdown-unit"><b data-countdown-seconds>00</b><span>SECONDS</span></div>'+
+        '</div>'+
+        '<div class="launch-date"><span>LAUNCH · <strong>'+escapeHtml(launchLabel)+'</strong></span><span>TARGET · <strong>'+escapeHtml(goal)+'</strong></span></div>'+
+      '</div>';
+    }
+    let campaignLaunchRefreshAttempted=false;
+    function updateCampaignCountdowns(){
+      let launchReady=false;
+      document.querySelectorAll('[data-countdown-target]').forEach(el=>{
+        const target=Number(el.getAttribute('data-countdown-target'));
+        if(!Number.isFinite(target)) return;
+        const total=Math.ceil((target-Date.now())/1000);
+        if(total<=0){
+          el.innerHTML='<div class="countdown-ready">LAUNCH WINDOW OPEN</div>';
+          launchReady=true;
+          return;
+        }
+        const days=Math.floor(total/86400);
+        const hours=Math.floor((total%86400)/3600);
+        const minutes=Math.floor((total%3600)/60);
+        const seconds=total%60;
+        const values={
+          '[data-countdown-days]':String(days).padStart(2,'0'),
+          '[data-countdown-hours]':String(hours).padStart(2,'0'),
+          '[data-countdown-minutes]':String(minutes).padStart(2,'0'),
+          '[data-countdown-seconds]':String(seconds).padStart(2,'0')
+        };
+        Object.entries(values).forEach(([selector,value])=>{
+          const node=el.querySelector(selector);
+          if(node) node.textContent=value;
+        });
+      });
+      if(launchReady&&!campaignLaunchRefreshAttempted){
+        campaignLaunchRefreshAttempted=true;
+        window.setTimeout(()=>loadChallenges(),5000);
+      }
+    }
+
     function campaignCard(c,label){
       const progress=Number(c.progress_pct||0);
       const progressWidth=Math.min(100,Math.max(0,progress));
       const progressText=fmt(progress)+'%';
       const currency=c.currency||'USD';
       const targetState=progress>=100?'Target reached':campaignMoney(c.remaining_to_target,currency)+' remaining';
+      const launchNote=c.status==='SCHEDULED'&&c.starts_at
+        ?'Launch scheduled for '+new Date(c.starts_at).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',dateStyle:'medium',timeStyle:'short'})+' IST'
+        :'';
       return '<div class="panel">'+
         '<div class="eyebrow">'+escapeHtml(label)+' · '+escapeHtml(c.instrument||c.asset_class||'Campaign')+'</div>'+
         '<h3>'+escapeHtml(campaignDisplayName(c))+'</h3>'+
         '<p class="sub">'+escapeHtml(c.description||'Campaign progress from the realised ledger.')+'</p>'+
+        (launchNote?'<p class="note">'+escapeHtml(launchNote)+'</p>':'')+
         '<div class="campaign-balance"><span>Current balance</span><strong>'+campaignMoney(c.current_balance,currency)+'</strong></div>'+
         '<div class="campaign-progress-meta"><span>Target progress</span><b>'+progressText+'</b></div>'+
         '<div class="campaign-progress"><i style="width:'+progressWidth+'%"></i></div>'+
@@ -321,15 +397,19 @@
         const data=await response.json();
         const campaigns=Array.isArray(data.challenges)?data.challenges:[];
         const active=campaigns.filter(c=>c.active);
+        const scheduled=campaigns.filter(c=>(c.status==='SCHEDULED'||c.scheduled)&&c.starts_at);
         const archived=campaigns.filter(c=>!c.active&&c.archived);
         const banners=document.getElementById('activeChallenges');
         const content=document.getElementById('challengeContent');
-        banners.innerHTML=active.map(campaignBanner).join('');
-        banners.style.display=active.length?'grid':'none';
-        if(active.length){
+        banners.innerHTML=active.map(campaignBanner).join('')+scheduled.map(campaignLaunchBanner).join('');
+        banners.style.display=(active.length||scheduled.length)?'grid':'none';
+        if(active.length||scheduled.length){
           content.innerHTML=active.map(c=>campaignCard(c,'ACTIVE CAMPAIGN')).join('');
+          if(scheduled.length){
+            content.innerHTML+='<div class="section-head"><h2>Coming up</h2></div>'+scheduled.map(c=>campaignCard(c,'UPCOMING CAMPAIGN')).join('');
+          }
         }else{
-          content.innerHTML='<div class="empty-state"><div class="symbol">∴</div><h3>No active campaign</h3><p>There is no live challenge at the moment. When a campaign opens, you will find its details here.</p></div>';
+          content.innerHTML='<div class="empty-state"><div class="symbol">∴</div><h3>No active campaign</h3><p>There is no live or upcoming campaign at the moment. New launches will appear here when announced.</p></div>';
         }
         if(archived.length){
           content.innerHTML+='<div class="section-head"><h2>Past campaigns</h2></div>'+archived.map(c=>campaignCard(c,'COMPLETED')).join('');
@@ -347,6 +427,8 @@
     function safeUrl(v){try{const u=new URL(v,location.href);return ['https:'].includes(u.protocol)?u.href:'#'}catch(e){return '#'}}
     document.getElementById('todayLabel').textContent=new Intl.DateTimeFormat(undefined,{month:'short',day:'2-digit'}).format(new Date()).toUpperCase();
     loadChallenges();
+    updateCampaignCountdowns();
+    window.setInterval(updateCampaignCountdowns,1000);
   </script>
 </body>
 </html>
