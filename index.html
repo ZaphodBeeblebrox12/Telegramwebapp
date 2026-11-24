@@ -39,6 +39,7 @@
     .campaign-hero .track{height:10px;border-radius:10px;position:relative;overflow:visible}
     .campaign-hero .track i{display:block;height:100%;border-radius:10px;transition:width .8s cubic-bezier(.2,.7,.2,1)}
     .campaign-hero .progress-marker{position:absolute;top:50%;width:30px;height:30px;transform:translate(-50%,-50%) rotate(-8deg);z-index:3;filter:drop-shadow(0 3px 4px rgba(0,0,0,.55));pointer-events:none}
+    .campaign-hero .progress-marker.general-globe{width:38px;height:38px;transform:translate(-50%,-50%);filter:drop-shadow(0 3px 5px rgba(0,0,0,.58))}
     .campaign-hero .progress-caption{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:start;gap:5px;margin-top:20px;font:7px "DM Mono",monospace;letter-spacing:.045em;text-transform:uppercase;line-height:1.3;white-space:normal}
     .campaign-hero .progress-caption span:first-child{text-align:left}.campaign-hero .progress-caption span:last-child{text-align:right}
     .campaign-hero .bottomline{position:relative;left:auto;right:auto;bottom:auto;display:flex;justify-content:space-between;align-items:end;gap:10px;margin-top:13px;padding-top:9px;border-top:1px solid rgba(255,255,255,.16)}
@@ -59,7 +60,7 @@
     .campaign-hero.nugget .balance{color:#fff2cf}
     .campaign-hero.nugget .goal{color:#b8cbb8}
     .campaign-hero.general{background:radial-gradient(circle at 82% 18%,rgba(153,211,183,.17),transparent 31%),linear-gradient(125deg,#10241f,#1a3b34 55%,#102a29);color:#f0fff8;border:1px solid #8ab79f}
-    .campaign-hero.general:before{content:"ALL MARKETS · ONE CAMPAIGN";position:absolute;right:-47px;top:37px;transform:rotate(90deg);font:900 8px "DM Mono",monospace;letter-spacing:.16em;color:#c0ead044;z-index:-1}
+    .campaign-hero.general:before{content:"CROSS-MARKET · ONE CAMPAIGN";position:absolute;right:-47px;top:37px;transform:rotate(90deg);font:900 8px "DM Mono",monospace;letter-spacing:.16em;color:#c0ead044;z-index:-1}
     .campaign-hero.general .tag{color:#b9e8c9}
     .campaign-hero.general .stage{color:#b9d6c8}
     .campaign-hero.general .headline{color:#d7f4df;text-shadow:0 0 20px rgba(141,218,176,.12)}
@@ -83,7 +84,7 @@
     .campaign-hero.crypto .balance{color:#e7fffc}
     .campaign-hero.crypto .goal{color:#a9c9d1}
     .campaign-hero.crypto .progress-marker{transform:translate(-50%,-50%)}
-    @media(max-width:380px){.campaign-hero{padding-left:14px;padding-right:14px}.campaign-hero .headline{font-size:clamp(23px,8vw,28px)}.campaign-hero .bottomline{left:auto;right:auto}.campaign-hero .balance{font-size:16px}.campaign-hero .progress-caption{font-size:6.5px;gap:3px}.campaign-hero .progress-marker{width:28px;height:28px}}
+    @media(max-width:380px){.campaign-hero{padding-left:14px;padding-right:14px}.campaign-hero .headline{font-size:clamp(23px,8vw,28px)}.campaign-hero .bottomline{left:auto;right:auto}.campaign-hero .balance{font-size:16px}.campaign-hero .progress-caption{font-size:6.5px;gap:3px}.campaign-hero .progress-marker{width:28px;height:28px}.campaign-hero .progress-marker.general-globe{width:34px;height:34px}}
     .campaign-hero.launch{padding-bottom:14px}
     .campaign-hero.launch .headline{font-size:clamp(22px,7.4vw,28px);line-height:.98;margin-top:13px}
     .campaign-hero.launch .sub{margin-top:6px}
@@ -349,13 +350,25 @@
           '<circle cx="24" cy="24" r="15" fill="url(#'+markerId+')" stroke="#d4fff5" stroke-width="1.4"/>'+
           '<text x="24" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="'+(symbol==='C'?19:21)+'" font-weight="900" fill="#073045">'+symbol+'</text></svg>';
       }else if(isGeneral){
-        marker='<svg class="progress-marker" style="left:'+width+'%" viewBox="0 0 48 48" role="img" aria-label="All-market marker at current progress">'+
-          '<defs><linearGradient id="'+markerId+'" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8fff0"/><stop offset=".52" stop-color="#a5dfb6"/><stop offset="1" stop-color="#4e927d"/></linearGradient></defs>'+
-          '<circle cx="24" cy="24" r="21" fill="#0d2824" stroke="#c4efd0" stroke-width="1.6"/>'+
-          '<circle cx="24" cy="24" r="14" fill="url(#'+markerId+')" stroke="#ecfff0" stroke-width="1.2"/>'+
-          '<ellipse cx="24" cy="24" rx="6" ry="14" fill="none" stroke="#276652" stroke-width="1.4"/>'+
-          '<path d="M10 24 H38 M13 17 H35 M13 31 H35" fill="none" stroke="#276652" stroke-width="1.4"/>'+
-          '<path d="M24 3 L27 9 L24 12 L21 9 Z" fill="#eaffef"/></svg>';
+        marker='<svg class="progress-marker general-globe" style="left:'+width+'%" viewBox="0 0 60 60" role="img" aria-label="Globe marking current multi-market campaign progress">'+
+          '<defs>'+
+            '<radialGradient id="'+markerId+'-ocean" cx="32%" cy="24%" r="76%"><stop stop-color="#e2fff1"/><stop offset=".3" stop-color="#82d8b5"/><stop offset=".72" stop-color="#258b78"/><stop offset="1" stop-color="#105044"/></radialGradient>'+
+            '<linearGradient id="'+markerId+'-rim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3fff4"/><stop offset=".42" stop-color="#a8e8c5"/><stop offset="1" stop-color="#477f6d"/></linearGradient>'+
+            '<clipPath id="'+markerId+'-clip"><circle cx="30" cy="30" r="21"/></clipPath>'+
+          '</defs>'+
+          '<ellipse cx="30" cy="30" rx="28" ry="11" transform="rotate(-28 30 30)" fill="none" stroke="#d9ffeb" stroke-width="1.15" opacity=".78"/>'+
+          '<circle cx="30" cy="30" r="26" fill="#09231e" stroke="url(#'+markerId+'-rim)" stroke-width="1.8"/>'+
+          '<circle cx="30" cy="30" r="21.5" fill="url(#'+markerId+'-ocean)" stroke="#e5fff0" stroke-width="1"/>'+
+          '<g clip-path="url(#'+markerId+'-clip)">'+
+            '<path d="M12 16 L18 12 L24 14 L26 19 L23 22 L25 26 L20 30 L16 27 L13 22 Z M23 31 L28 33 L30 39 L27 47 L24 44 L22 37 Z" fill="#d8f4b5" stroke="#f0ffe0" stroke-width=".65"/>'+
+            '<path d="M29 16 L34 13 L39 15 L41 19 L46 19 L50 24 L46 27 L42 25 L39 29 L35 27 L33 23 L28 22 Z M35 29 L40 30 L43 35 L41 41 L37 44 L34 39 L32 34 Z M44 39 L49 38 L52 42 L49 46 L44 44 Z" fill="#c8edaa" stroke="#efffdb" stroke-width=".65"/>'+
+            '<path d="M8 30 H52 M11 22 Q30 29 49 22 M11 38 Q30 31 49 38" fill="none" stroke="#e7fff1" stroke-width=".8" opacity=".43"/>'+
+            '<ellipse cx="30" cy="30" rx="10" ry="21" fill="none" stroke="#e7fff1" stroke-width=".9" opacity=".56"/>'+
+            '<ellipse cx="30" cy="30" rx="18" ry="21" fill="none" stroke="#e7fff1" stroke-width=".65" opacity=".28"/>'+
+          '</g>'+
+          '<path d="M17 14 Q25 8 35 10" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".72"/>'+
+          '<circle cx="30" cy="30" r="21.5" fill="none" stroke="#e4fff0" stroke-width=".85"/>'+
+          '</svg>';
       }else{
         marker='<svg class="progress-marker" style="left:'+width+'%" viewBox="0 0 48 42" role="img" aria-label="Gold nugget at current progress">'+
           '<defs><linearGradient id="'+markerId+'" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0a8"/><stop offset=".42" stop-color="#f3c65e"/><stop offset="1" stop-color="#a9661b"/></linearGradient></defs>'+
@@ -365,7 +378,7 @@
       }
       const action=isCrypto?'THE CRYPTO QUEST CONTINUES ↗':kind==='gold'?'THE HUNT CONTINUES ↗':isGeneral?'THE GENERAL CAMPAIGN CONTINUES ↗':'THE CAMPAIGN CONTINUES ↗';
       const caption=nextMilestone?(isCrypto?'NEXT QUEST · '+nextMilestone+'% MILESTONE':kind==='gold'?'NEXT STRIKE · '+nextMilestone+'% MILESTONE':'NEXT MILESTONE · '+nextMilestone+'%'):(isCrypto?'ALL QUEST MILESTONES CLEARED':kind==='gold'?'GOLD RUSH COMPLETE · TARGET CLEARED':'TARGET CLEARED');
-      const stage=isCrypto?'QUEST MILESTONE':isGeneral?'ALL MARKETS':'MILESTONE 01';
+      const stage=isCrypto?'QUEST MILESTONE':isGeneral?'CROSS-MARKET':'MILESTONE 01';
       return '<div class="campaign-hero '+(isCrypto?'crypto':kind==='gold'?'nugget':'general')+'" role="button" tabindex="0" onclick="showView(&quot;challenges&quot;)" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)showView(&quot;challenges&quot;)" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign">'+
         '<div class="top"><span class="tag">'+label+'</span><span class="micro stage">'+stage+'</span></div>'+
         '<div class="headline">'+headline+'</div>'+
@@ -390,10 +403,10 @@
       })+' IST';
       const cls=isCrypto?'crypto':isGeneral?'general':'nugget';
       const headline=isCrypto?'THE CRYPTO<br>QUEST':isGeneral?'GENERAL<br>CHALLENGE':'GOLD RUSH';
-      const subline=isCrypto?'THE QUEST BEGINS IN':isGeneral?'ALL MARKETS GO LIVE IN':'THE GOLD HUNT BEGINS IN';
+      const subline=isCrypto?'THE QUEST BEGINS IN':isGeneral?'MULTIPLE MARKETS GO LIVE IN':'THE GOLD HUNT BEGINS IN';
       const quest=isCrypto
         ?['GEAR UP','FIRST QUEST','BUILD MOMENTUM']
-        :isGeneral?['ALL MARKETS','TRADES COUNT','ONE GOAL']
+        :isGeneral?['CROSS-MARKET','TRADES COUNT','ONE GOAL']
         :['PICKAXE READY','FIRST STRIKE','GOLD VEIN'];
       const art=isCrypto
         ?'<svg viewBox="0 0 150 112" role="img" aria-label="A glowing crypto token on a connected blockchain trail">'+
@@ -433,7 +446,7 @@
           '<path d="M30 14 L32 8 L34 14 L40 16 L34 18 L32 24 L30 18 L24 16 Z" fill="#ffe8a2" opacity=".75"/>'+
           '</svg>';
       return '<div class="campaign-hero launch '+cls+'" role="group" aria-label="'+escapeHtml(title)+' upcoming campaign">'+
-        '<div class="top"><span class="tag">UP NEXT · '+escapeHtml(title.toUpperCase())+'</span><span class="micro stage">'+(isGeneral?'ALL MARKETS':'QUEST LOCKED')+'</span></div>'+
+        '<div class="top"><span class="tag">UP NEXT · '+escapeHtml(title.toUpperCase())+'</span><span class="micro stage">'+(isGeneral?'MULTI-MARKET':'QUEST LOCKED')+'</span></div>'+
         '<div class="launch-main"><div><div class="headline">'+headline+'</div><div class="sub">'+subline+'</div></div><div class="launch-art" aria-hidden="true">'+art+'</div></div>'+
         '<div class="countdown" data-countdown-target="'+timestamp+'">'+
           '<div class="countdown-unit"><b data-countdown-days>00</b><span>DAYS</span></div>'+
