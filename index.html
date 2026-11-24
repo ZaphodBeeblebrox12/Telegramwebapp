@@ -86,30 +86,31 @@
     .campaign-hero.nugget.launch .countdown-unit b{color:#ffe1a0}
     .campaign-hero.launch .launch-date{opacity:.82}
 
-    .campaign-hero.launch{padding:14px 15px 12px}
-    .campaign-hero.launch .launch-main{display:grid;grid-template-columns:minmax(0,1fr) 94px;align-items:center;gap:4px;margin-top:8px}
-    .campaign-hero.launch .headline{font-size:clamp(25px,7.5vw,31px);line-height:.93;letter-spacing:.02em;margin-top:0;white-space:normal;max-width:230px}
-    .campaign-hero.launch .sub{font-size:8px;line-height:1.4;margin-top:7px}
-    .campaign-hero.launch .launch-art{height:88px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 7px 9px rgba(0,0,0,.32));pointer-events:none}
+    .campaign-hero.launch{padding:10px 12px 9px}
+    .campaign-hero.launch .launch-main{display:grid;grid-template-columns:minmax(0,1fr) 76px;align-items:center;gap:3px;margin-top:4px}
+    .campaign-hero.launch .headline{font-size:clamp(23px,7.2vw,28px);line-height:.93;letter-spacing:.02em;margin-top:0;white-space:normal;max-width:230px}
+    .campaign-hero.launch .sub{font-size:7px;line-height:1.35;margin-top:5px}
+    .campaign-hero.launch .launch-art{height:58px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 6px 8px rgba(0,0,0,.32));pointer-events:none}
     .campaign-hero.launch .launch-art svg{width:100%;height:100%;overflow:visible}
-    .campaign-hero.launch .countdown{margin-top:7px}
-    .campaign-hero.launch .countdown-unit{border-radius:2px;padding:8px 3px 7px;background:rgba(0,0,0,.2)}
-    .campaign-hero.launch .countdown-unit b{font-size:22px}
-    .campaign-hero.launch .launch-quest{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:10px;padding-top:8px;border-top:1px dashed rgba(255,255,255,.25)}
-    .campaign-hero.launch .launch-quest-step{min-width:0;text-align:center;font:7px/1.35 "DM Mono",monospace;letter-spacing:.045em;text-transform:uppercase;opacity:.88}
-    .campaign-hero.launch .launch-quest-step b{display:block;width:16px;height:16px;margin:0 auto 4px;border:1px solid currentColor;border-radius:50%;font:8px/14px "DM Mono",monospace}
+    .campaign-hero.launch .countdown{margin-top:5px;gap:5px}
+    .campaign-hero.launch .countdown-unit{border-radius:2px;padding:5px 2px 4px;background:rgba(0,0,0,.2)}
+    .campaign-hero.launch .countdown-unit b{font-size:18px}
+    .campaign-hero.launch .countdown-unit span{margin-top:3px;font-size:6px}
+    .campaign-hero.launch .launch-quest{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin-top:6px;padding-top:6px;border-top:1px dashed rgba(255,255,255,.25)}
+    .campaign-hero.launch .launch-quest-step{min-width:0;text-align:center;font:6px/1.25 "DM Mono",monospace;letter-spacing:.025em;text-transform:uppercase;opacity:.88}
+    .campaign-hero.launch .launch-quest-step b{display:block;width:13px;height:13px;margin:0 auto 2px;border:1px solid currentColor;border-radius:50%;font:7px/11px "DM Mono",monospace}
     .campaign-hero.nugget.launch .launch-quest-step b{color:#f5d27b;background:rgba(245,210,123,.08)}
     .campaign-hero.crypto.launch .launch-quest-step b{color:#81f3d7;background:rgba(129,243,215,.08)}
-    .campaign-hero.launch .launch-date{margin-top:8px;padding-top:8px;font-size:7px}
+    .campaign-hero.launch .launch-date{margin-top:6px;padding-top:5px;font-size:6.5px}
     .campaign-hero.launch .launch-date span{min-width:0}
     .campaign-hero.launch .launch-date strong{overflow-wrap:anywhere}
     @media(max-width:380px){
-      .campaign-hero.launch .launch-main{grid-template-columns:minmax(0,1fr) 76px}
-      .campaign-hero.launch .launch-art{height:76px}
-      .campaign-hero.launch .headline{font-size:clamp(23px,7.3vw,27px)}
-      .campaign-hero.launch .countdown-unit b{font-size:20px}
-      .campaign-hero.launch .launch-quest-step{font-size:6px}
-      .campaign-hero.launch .launch-date{font-size:6.5px}
+      .campaign-hero.launch .launch-main{grid-template-columns:minmax(0,1fr) 66px}
+      .campaign-hero.launch .launch-art{height:54px}
+      .campaign-hero.launch .headline{font-size:clamp(22px,7vw,25px)}
+      .campaign-hero.launch .countdown-unit b{font-size:17px}
+      .campaign-hero.launch .launch-quest-step{font-size:5.7px}
+      .campaign-hero.launch .launch-date{font-size:6px}
     }
 
     .tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -461,12 +462,15 @@
         const archived=campaigns.filter(c=>!c.active&&c.archived);
         const banners=document.getElementById('activeChallenges');
         const content=document.getElementById('challengeContent');
-        banners.innerHTML=active.map(campaignBanner).join('')+scheduled.map(campaignLaunchBanner).join('');
+        banners.innerHTML=scheduled.map(campaignLaunchBanner).join('')+active.map(campaignBanner).join('');
         banners.style.display=(active.length||scheduled.length)?'grid':'none';
         if(active.length||scheduled.length){
-          content.innerHTML=active.map(c=>campaignCard(c,'ACTIVE CAMPAIGN')).join('');
+          content.innerHTML='';
           if(scheduled.length){
             content.innerHTML+='<div class="section-head"><h2>Coming up</h2></div>'+scheduled.map(c=>campaignLaunchBanner(c)+campaignCard(c,'UPCOMING CAMPAIGN')).join('');
+          }
+          if(active.length){
+            content.innerHTML+='<div class="section-head"><h2>Live now</h2></div>'+active.map(c=>campaignCard(c,'ACTIVE CAMPAIGN')).join('');
           }
         }else{
           content.innerHTML='<div class="empty-state"><div class="symbol">∴</div><h3>No active campaign</h3><p>There is no live or upcoming campaign at the moment. New launches will appear here when announced.</p></div>';
