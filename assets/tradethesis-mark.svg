@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="TradeThesis">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f0c56c"/>
+      <stop offset="1" stop-color="#bd8d36"/>
+    </linearGradient>
+  </defs>
+  <circle cx="64" cy="64" r="63.2" fill="#0d3827" stroke="#f4f0e8" stroke-width="1.4"/>
+  <path d="M27 26 H101 C96.5 29.5 94 34 93 41 L89.5 34.8 C86.5 31.6 82.7 30.5 77 30.5 H66 V108 H62 V30.5 H51 C45.3 30.5 41.5 31.6 38.5 34.8 L35 41 C34 34 31.5 29.5 27 26 Z" fill="#f5f0df"/>
+  <rect x="57" y="48" width="14" height="39" rx=".6" fill="url(#gold)"/>
+</svg>
