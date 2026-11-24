@@ -279,7 +279,7 @@
       const action=isCrypto?'KEEP BUILDING ↗':kind==='gold'?'KEEP DIGGING ↗':'KEEP GOING ↗';
       const caption=isCrypto?'BUILD THE STACK · CURRENT PROGRESS':kind==='gold'?'EVERY STEP COUNTS · CURRENT PROGRESS':'EVERY STEP COUNTS · CURRENT PROGRESS';
       const stage=isCrypto?'BLOCK MILESTONE':'MILESTONE 01';
-      return '<div class="campaign-hero '+(isCrypto?'crypto':'nugget')+'" role="button" tabindex="0" onclick="showView(\\'challenges\\')" onkeydown="if(event.key===\\'Enter\\'||event.key===\\' \\')showView(\\'challenges\\')" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign">'+
+      return '<div class="campaign-hero '+(isCrypto?'crypto':'nugget')+'" role="button" tabindex="0" onclick="showView(&quot;challenges&quot;)" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)showView(&quot;challenges&quot;)" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign">'+
         '<div class="top"><span class="tag">'+label+'</span><span class="micro stage">'+stage+'</span></div>'+
         '<div class="headline">'+headline+'</div>'+
         '<div class="sub">'+caption+'</div>'+
