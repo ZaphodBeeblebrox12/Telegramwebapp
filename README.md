@@ -79,3 +79,23 @@ Never put Telegram bot tokens, GitHub tokens, API keys, private user data, or br
 ## Calculation notes
 
 All calculators are planning aids, not broker-grade pricing engines. Position sizing assumes a user-supplied per-price-unit value and does not infer contract multipliers. Margin is a simple notional/leverage estimate. Pip value assumes quote currency equals account currency.
+
+
+## Individual challenge pages
+
+The challenge catalogue links each campaign by its unique `id`, not by asset class or display name. During the GitHub Pages workflow, `scripts/generate_challenge_pages.py` reads `data/challenges.json` and generates one static route per record:
+
+- `/challenges/1/`
+- `/challenges/2/`
+- `/challenges/3/`
+
+The shared page layout lives in `challenge-template.html`. Each detail page loads the challenge data and selects exactly one record by ID, so campaigns for the same asset (for example, multiple Gold challenges) keep separate balances and trade histories. New challenge IDs are generated automatically on the next Pages deployment.
+
+To preview the generated routes locally, run:
+
+```bash
+python3 scripts/generate_challenge_pages.py
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000/challenges/1/`. Generated challenge folders are build output; edit the shared template and source JSON instead.

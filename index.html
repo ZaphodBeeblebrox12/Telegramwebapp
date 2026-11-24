@@ -216,6 +216,13 @@
     .footer{font:9px "DM Mono",monospace;color:#99988d;text-align:center;padding:25px 0 8px;letter-spacing:.08em}
     @media(min-width:440px){.app{padding-left:24px;padding-right:24px}.intro{padding-top:34px}.intro h1{font-size:40px}.tool-tile{min-height:140px;padding:17px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+  
+    .campaign-card-link{display:block;color:inherit;text-decoration:none}
+    .campaign-card-link:focus-visible{outline:2px solid var(--terra);outline-offset:4px}
+    .campaign-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+    .campaign-id{font:10px "DM Mono",monospace;color:var(--muted);white-space:nowrap;border:1px solid var(--line);padding:4px 7px}
+    .campaign-card-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;padding-top:11px;border-top:1px solid var(--line);font:9px "DM Mono",monospace;color:var(--muted)}
+    .campaign-card-footer strong{color:var(--terra);white-space:nowrap;font-size:10px}
   </style>
 </head>
 <body>
@@ -312,6 +319,8 @@
       window.scrollTo({top:0,behavior:'instant'});
     }
     if (tg && tg.BackButton) tg.BackButton.onClick(()=>showView(currentView==='tool'?'tools':'home'));
+    const requestedView=new URLSearchParams(window.location.search).get('view');
+    if(['home','challenges','tools','learn','about'].includes(requestedView)) showView(requestedView);
     function openTool(type) { renderTool(type); showView('tool'); }
 
     const toolTemplates = {
@@ -360,11 +369,18 @@
       return 'general';
     }
     function campaignDisplayName(c){
+      const name=String(c&&c.name||'').trim();
+      if(name) return name;
       const kind=campaignKind(c);
-      if(kind==='gold') return 'Gold Rush';
-      if(kind==='crypto') return 'Crypto Rush';
+      if(kind==='gold') return 'Gold Challenge';
+      if(kind==='crypto') return 'Crypto Challenge';
       if(kind==='general') return 'Global Multi-Market Challenge';
-      return c.name||'Trading Challenge';
+      return 'Trading Challenge';
+    }
+    function challengeUrl(c){
+      const id=String(c&&c.id!==undefined&&c.id!==null?c.id:'').trim();
+      if(!/^[A-Za-z0-9_-]+$/.test(id)) return './?view=challenges';
+      return './challenges/'+encodeURIComponent(id)+'/';
     }
     function globalPocketMarketChips(){
       return '<div class="global-pocket-markets" aria-label="Eligible markets">'+
@@ -406,7 +422,7 @@
       const progressValue=Number(c.progress_pct||0);
       const progress=Math.min(100,Math.max(0,progressValue));
       const progressText=fmt(progressValue)+'%';
-      return '<div class="campaign-hero general global-pocket" role="button" tabindex="0" onclick="showView(&quot;challenges&quot;)" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)showView(&quot;challenges&quot;)" aria-label="Open Global Multi-Market Challenge">'+
+      return '<div class="campaign-hero general global-pocket" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c)+'&quot;" aria-label="Open '+escapeHtml(campaignDisplayName(c))+'">'+
         '<div class="global-pocket-top"><span class="tag">TRADETHESIS / GLOBAL</span><span class="global-pocket-status">● LIVE CAMPAIGN</span></div>'+
         '<div class="global-pocket-heading"><div><div class="global-pocket-kicker">ONE CAMPAIGN · MULTIPLE MARKETS</div><h2>Global Multi-Market Challenge</h2>'+
         '<p>Trade across metals, forex, crypto, energy, global stocks and indices. Every qualifying trade moves one shared campaign target.</p></div>'+
@@ -433,7 +449,7 @@
       const rawTitle=String(c.name||'').trim();
       const nextTitle=/^general (challenge|campaign)$/i.test(rawTitle)||!rawTitle
         ?'Next Global Challenge':rawTitle;
-      return '<div class="campaign-hero general global-pocket global-pocket-upcoming" role="group" aria-label="Upcoming Global Multi-Market Challenge">'+
+      return '<div class="campaign-hero general global-pocket global-pocket-upcoming" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c)+'&quot;" aria-label="Open '+escapeHtml(campaignDisplayName(c))+'">'+
         '<div class="global-pocket-top"><span class="tag">TRADETHESIS / GLOBAL</span><span class="global-pocket-status upcoming">UPCOMING CHALLENGE</span></div>'+
         '<div class="global-pocket-heading upcoming-heading"><div><div class="global-pocket-kicker">YOUR NEXT MULTI-MARKET ROUND</div><h2>Global Multi-Market Challenge</h2>'+
         '<p>One shared target across metals, forex, crypto, energy, global stocks and indices.</p></div>'+
@@ -463,7 +479,7 @@
       const balance=campaignMoney(c.current_balance,currency);
       const realised=Number(c.realised_pnl||0);
       const pnl=(realised>=0?'+':'−')+campaignMoney(Math.abs(realised),currency);
-      const label=isCrypto?'LIVE CRYPTO RUSH':kind==='gold'?'LIVE GOLD RUSH':isGeneral?'LIVE GENERAL CAMPAIGN':'LIVE CAMPAIGN';
+      const label=(isCrypto?'LIVE CRYPTO RUSH':kind==='gold'?'LIVE GOLD RUSH':isGeneral?'LIVE GENERAL CAMPAIGN':'LIVE CAMPAIGN')+' · #'+String(c.id||'');
       const headline=isCrypto?'CRYPTO RUSH':kind==='gold'?'GOLD RUSH':isGeneral?'GENERAL CHALLENGE':'MARKET RUSH';
       const markerId='campaign-marker-'+String(c.id||'live').replace(/[^a-z0-9_-]/gi,'');
       let marker='';
@@ -502,10 +518,10 @@
           '<path d="M9 12 L20 17 L33 7 M20 17 L22 39 M20 17 L43 18 M9 12 L5 26" fill="none" stroke="#fff1bd" stroke-width="1.6" opacity=".8"/>'+
           '<path d="M17 8 L23 12 L19 17 L10 15 Z" fill="#fff4c8" opacity=".65"/></svg>';
       }
-      const action=isCrypto?'THE CRYPTO QUEST CONTINUES ↗':kind==='gold'?'THE HUNT CONTINUES ↗':isGeneral?'THE GENERAL CAMPAIGN CONTINUES ↗':'THE CAMPAIGN CONTINUES ↗';
+      const action='OPEN '+campaignDisplayName(c).toUpperCase()+' #'+String(c.id||'')+' ↗';
       const caption=nextMilestone?(isCrypto?'NEXT QUEST · '+nextMilestone+'% MILESTONE':kind==='gold'?'NEXT STRIKE · '+nextMilestone+'% MILESTONE':'NEXT MILESTONE · '+nextMilestone+'%'):(isCrypto?'ALL QUEST MILESTONES CLEARED':kind==='gold'?'GOLD RUSH COMPLETE · TARGET CLEARED':'TARGET CLEARED');
       const stage=isCrypto?'QUEST MILESTONE':isGeneral?'CROSS-MARKET':'MILESTONE 01';
-      return '<div class="campaign-hero '+(isCrypto?'crypto':kind==='gold'?'nugget':'general')+'" role="button" tabindex="0" onclick="showView(&quot;challenges&quot;)" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)showView(&quot;challenges&quot;)" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign">'+
+      return '<div class="campaign-hero '+(isCrypto?'crypto':kind==='gold'?'nugget':'general')+'" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c)+'&quot;" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign #'+escapeHtml(c.id)+'">'+
         '<div class="top"><span class="tag">'+label+'</span><span class="micro stage">'+stage+'</span></div>'+
         '<div class="headline">'+headline+'</div>'+
         '<div class="sub">'+caption+'</div>'+
@@ -572,7 +588,7 @@
           '<path d="M113 20 L116 10 L119 20 L129 23 L119 26 L116 36 L113 26 L103 23 Z" fill="#ffe8a2" opacity=".9"/>'+
           '<path d="M30 14 L32 8 L34 14 L40 16 L34 18 L32 24 L30 18 L24 16 Z" fill="#ffe8a2" opacity=".75"/>'+
           '</svg>';
-      return '<div class="campaign-hero launch '+cls+'" role="group" aria-label="'+escapeHtml(title)+' upcoming campaign">'+
+      return '<div class="campaign-hero launch '+cls+'" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c)+'&quot;" aria-label="Open '+escapeHtml(title)+' challenge #'+escapeHtml(c.id)+'">'+
         '<div class="top"><span class="tag">UP NEXT · '+escapeHtml(title.toUpperCase())+'</span><span class="micro stage">'+(isGeneral?'MULTI-MARKET':'QUEST LOCKED')+'</span></div>'+
         '<div class="launch-main"><div><div class="headline">'+headline+'</div><div class="sub">'+subline+'</div></div><div class="launch-art" aria-hidden="true">'+art+'</div></div>'+
         '<div class="countdown" data-countdown-target="'+timestamp+'">'+
@@ -665,23 +681,25 @@
       const launchNote=c.status==='SCHEDULED'&&c.starts_at
         ?'Launch scheduled for '+new Date(c.starts_at).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',dateStyle:'medium',timeStyle:'short'})+' IST'
         :'';
-      return '<div class="panel">'+
-        '<div class="eyebrow">'+escapeHtml(label)+' · '+escapeHtml(c.instrument||c.asset_class||'Campaign')+'</div>'+
-        '<h3>'+escapeHtml(campaignDisplayName(c))+'</h3>'+
-        '<p class="sub">'+escapeHtml(c.brief||c.description||'Campaign progress from the realised ledger.')+'</p>'+
-        (launchNote?'<p class="note">'+escapeHtml(launchNote)+'</p>':'')+
-        '<div class="campaign-balance"><span>Current balance</span><strong>'+campaignMoney(c.current_balance,currency)+'</strong></div>'+
-        '<div class="campaign-progress-meta"><span>Target progress</span><b>'+progressText+'</b></div>'+
-        '<div class="campaign-progress"><i style="width:'+progressWidth+'%"></i></div>'+
-        '<div class="campaign-progress-meta"><span>'+escapeHtml(targetState)+'</span><span>Target '+campaignMoney(c.target_balance,currency)+'</span></div>'+
-        '<div class="campaign-metrics">'+
-          '<div class="campaign-metric"><span>Starting</span><strong>'+campaignMoney(c.starting_balance,currency)+'</strong></div>'+
-          '<div class="campaign-metric"><span>Realised P&amp;L</span><strong>'+campaignMoney(c.realised_pnl,currency)+'</strong></div>'+
-          '<div class="campaign-metric"><span>Trades</span><strong>'+fmt(c.total_trades||0)+'</strong></div>'+
-        '</div>'+
-        '<div class="campaign-trade-counts">WINS '+fmt(c.wins||0)+' · LOSSES '+fmt(c.losses||0)+' · OPEN '+fmt(c.open_trades||0)+'</div>'+
-        campaignTradeHistory(c,currency)+
-        '<div class="campaign-foot">Balance is starting balance plus realised FIFO ledger P&amp;L. No position-size normalisation or FX conversion.</div>'+
+      const name=campaignDisplayName(c);
+      const id=escapeHtml(String(c.id===undefined?'—':c.id));
+      return '<div class="panel challenge-summary">'+
+        '<a class="campaign-card-link" href="'+challengeUrl(c)+'" aria-label="Open '+escapeHtml(name)+' challenge #'+id+'">'+
+          '<div class="campaign-card-top"><span class="eyebrow">'+escapeHtml(label)+' · '+escapeHtml(c.instrument||c.asset_class||'Campaign')+'</span><span class="campaign-id">ID · '+id+'</span></div>'+
+          '<h3>'+escapeHtml(name)+'</h3>'+
+          '<p class="sub">'+escapeHtml(c.brief||c.description||'Campaign progress from the realised ledger.')+'</p>'+
+          (launchNote?'<p class="note">'+escapeHtml(launchNote)+'</p>':'')+
+          '<div class="campaign-balance"><span>Current balance</span><strong>'+escapeHtml(campaignMoney(c.current_balance,currency))+'</strong></div>'+
+          '<div class="campaign-progress-meta"><span>Target progress</span><b>'+escapeHtml(progressText)+'</b></div>'+
+          '<div class="campaign-progress"><i style="width:'+progressWidth+'%"></i></div>'+
+          '<div class="campaign-progress-meta"><span>'+escapeHtml(targetState)+'</span><span>Target '+escapeHtml(campaignMoney(c.target_balance,currency))+'</span></div>'+
+          '<div class="campaign-metrics">'+
+            '<div class="campaign-metric"><span>Starting</span><strong>'+escapeHtml(campaignMoney(c.starting_balance,currency))+'</strong></div>'+
+            '<div class="campaign-metric"><span>Realised P&amp;L</span><strong>'+escapeHtml(campaignMoney(c.realised_pnl,currency))+'</strong></div>'+
+            '<div class="campaign-metric"><span>Trades</span><strong>'+escapeHtml(fmt(c.total_trades||0))+'</strong></div>'+
+          '</div>'+
+          '<div class="campaign-card-footer"><span>WINS '+escapeHtml(fmt(c.wins||0))+' · LOSSES '+escapeHtml(fmt(c.losses||0))+' · OPEN '+escapeHtml(fmt(c.open_trades||0))+'</span><strong>VIEW CHALLENGE ↗</strong></div>'+
+        '</a>'+
       '</div>';
     }
     async function loadChallenges(){
