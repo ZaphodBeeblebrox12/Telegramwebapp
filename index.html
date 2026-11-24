@@ -132,6 +132,28 @@
     .note{font-size:10px;line-height:1.5;color:var(--muted);margin:10px 0 0}
     .empty-state{border:1px dashed #c9c1b4;padding:24px 18px;text-align:center;background:rgba(255,253,248,.45)}.empty-state .symbol{font:28px "Playfair Display",serif;color:var(--sage);margin-bottom:9px}.empty-state h3{font:600 19px "Playfair Display",serif;margin:0 0 6px}.empty-state p{font-size:11px;color:var(--muted);line-height:1.55;margin:0 auto;max-width:280px}
     .campaign-balance{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:14px 0 10px}.campaign-balance span,.campaign-progress-meta span{font:9px "DM Mono",monospace;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}.campaign-balance strong{font:600 25px "Playfair Display",serif}.campaign-progress-meta{display:flex;justify-content:space-between;align-items:center;margin:10px 0 7px}.campaign-progress-meta b{font:12px "DM Mono",monospace;color:var(--sage)}.campaign-progress{height:7px;background:#e5e0d6;overflow:hidden}.campaign-progress i{display:block;height:100%;background:var(--sage)}.campaign-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}.campaign-metric{background:#f3f0e8;padding:10px 9px;min-width:0}.campaign-metric span{display:block;font:8px "DM Mono",monospace;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px}.campaign-metric strong{display:block;font:600 13px "DM Sans",sans-serif;overflow-wrap:anywhere}.campaign-foot{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:9px;line-height:1.5;color:var(--muted)}.campaign-trade-counts{font:10px "DM Mono",monospace;color:var(--muted);margin-top:10px;line-height:1.6}
+    .campaign-history{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+    .campaign-history-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:5px}
+    .campaign-history-head strong{font:9px "DM Mono",monospace;letter-spacing:.11em;color:var(--ink)}
+    .campaign-history-head span{font:8px "DM Mono",monospace;color:var(--muted)}
+    .trade-history-row{padding:10px 0;border-bottom:1px solid #e9e4da}
+    .trade-history-row:last-child{border-bottom:0;padding-bottom:2px}
+    .trade-history-top,.trade-history-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .trade-history-top{margin-bottom:5px}
+    .trade-history-symbol{font:700 12px "DM Sans",sans-serif;min-width:0;overflow-wrap:anywhere}
+    .trade-history-side{font:8px "DM Mono",monospace;color:var(--muted);margin-left:5px}
+    .trade-history-date{font:9px "DM Mono",monospace;color:var(--muted);white-space:nowrap}
+    .trade-history-status{font:7px "DM Mono",monospace;letter-spacing:.06em;text-transform:uppercase;padding:3px 5px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+    .trade-history-status.open{color:#456d57;border-color:#b5c6b4;background:#eef3eb}
+    .trade-history-status.closed{color:#687064;border-color:#d4d4c8;background:#f1f0e9}
+    .trade-history-meta{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font:8px "DM Mono",monospace;color:var(--muted);line-height:1.5}
+    .trade-history-meta .lev{padding:2px 5px;background:#e4ebe9;color:#315c59;font-weight:700}
+    .trade-history-bottom{margin-top:5px}
+    .trade-history-bottom span{font:8px "DM Mono",monospace;color:var(--muted)}
+    .trade-history-pnl{font:700 10px "DM Mono",monospace;white-space:nowrap}
+    .trade-history-pnl.positive{color:#39734d}
+    .trade-history-pnl.negative{color:#aa5142}
+    .trade-history-pnl.flat{color:var(--muted)}
     .link-list{display:flex;flex-direction:column}.link-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);background:none;border-left:0;border-right:0;border-top:0;text-align:left;width:100%}.link-row:last-child{border-bottom:0}.link-row strong{font:600 15px "Playfair Display",serif;display:block}.link-row span{font-size:10px;color:var(--muted);display:block;margin-top:4px}.link-row b{color:var(--terra);font-size:17px;font-weight:400}
     .quote{margin:16px 0;padding:18px 17px;border-left:2px solid var(--terra);background:#eee8dc;font:italic 17px/1.4 "Playfair Display",serif}.quote small{display:block;font:9px "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:10px}
     .bottom-nav{position:fixed;z-index:5;bottom:0;left:50%;transform:translateX(-50%);width:min(560px,100%);padding:10px 13px calc(10px + env(safe-area-inset-bottom));background:rgba(244,240,232,.96);backdrop-filter:blur(15px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr)}
@@ -424,6 +446,42 @@
       }
     }
 
+    function campaignTradePrice(value){
+      if(value===null||value===undefined||!Number.isFinite(Number(value))) return '—';
+      return Number(value).toLocaleString('en-IN',{maximumFractionDigits:5});
+    }
+    function campaignTradeHistory(c,currency){
+      const trades=Array.isArray(c.trade_history)?c.trade_history:[];
+      if(!trades.length) return '';
+      const rows=trades.map(trade=>{
+        const timestamp=Date.parse(trade.opened_at||'');
+        const date=Number.isFinite(timestamp)
+          ?new Date(timestamp).toLocaleDateString('en-IN',{day:'2-digit',month:'short',timeZone:'Asia/Kolkata'})
+          :'—';
+        const status=String(trade.status||'OPEN').toUpperCase();
+        const statusClass=status==='OPEN'?'open':status==='CLOSED'?'closed':'';
+        const side=String(trade.side||'—').toUpperCase();
+        const leverage=Number(trade.leverage_multiplier)>0
+          ?fmt(trade.leverage_multiplier)+':1'
+          :'—';
+        const pnl=Number(trade.realised_pnl||0);
+        const pnlClass=pnl>0?'positive':pnl<0?'negative':'flat';
+        const pnlText=(pnl>0?'+':pnl<0?'−':'')+campaignMoney(Math.abs(pnl),currency);
+        const entry=campaignTradePrice(trade.entry_price);
+        const exit=campaignTradePrice(trade.exit_price);
+        return '<div class="trade-history-row">'+
+          '<div class="trade-history-top"><div><strong class="trade-history-symbol">'+escapeHtml(trade.symbol||'—')+'</strong><span class="trade-history-side">'+escapeHtml(side)+'</span></div>'+
+          '<span class="trade-history-date">'+escapeHtml(date)+'</span></div>'+
+          '<div class="trade-history-meta"><span>ENTRY '+escapeHtml(entry)+'</span><span>→ EXIT '+escapeHtml(exit)+'</span><span class="lev">'+escapeHtml(leverage)+'</span></div>'+
+          '<div class="trade-history-bottom"><span class="trade-history-status '+statusClass+'">'+escapeHtml(status)+'</span><b class="trade-history-pnl '+pnlClass+'">'+escapeHtml(pnlText)+' REALISED</b></div>'+
+        '</div>';
+      }).join('');
+      return '<div class="campaign-history" aria-label="Campaign trade history">'+
+        '<div class="campaign-history-head"><strong>TRADE HISTORY</strong><span>'+fmt(trades.length)+' '+(trades.length===1?'TRADE':'TRADES')+'</span></div>'+
+        rows+
+      '</div>';
+    }
+
     function campaignCard(c,label){
       const progress=Number(c.progress_pct||0);
       const progressWidth=Math.min(100,Math.max(0,progress));
@@ -448,6 +506,7 @@
           '<div class="campaign-metric"><span>Trades</span><strong>'+fmt(c.total_trades||0)+'</strong></div>'+
         '</div>'+
         '<div class="campaign-trade-counts">WINS '+fmt(c.wins||0)+' · LOSSES '+fmt(c.losses||0)+' · OPEN '+fmt(c.open_trades||0)+'</div>'+
+        campaignTradeHistory(c,currency)+
         '<div class="campaign-foot">Balance is starting balance plus realised FIFO ledger P&amp;L. No position-size normalisation or FX conversion.</div>'+
       '</div>';
     }
