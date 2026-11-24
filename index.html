@@ -363,6 +363,7 @@
       const kind=campaignKind(c);
       if(kind==='gold') return 'Gold Rush';
       if(kind==='crypto') return 'Crypto Rush';
+      if(kind==='general') return 'Global Multi-Market Challenge';
       return c.name||'Trading Challenge';
     }
     function globalPocketMarketChips(){
@@ -385,9 +386,12 @@
         :'Launch date to be announced';
       const brief=String(next.brief||'').trim()||
         'The challenge focus and featured instruments will be announced before launch.';
+      const rawTitle=String(next.name||'').trim();
+      const nextTitle=/^general (challenge|campaign)$/i.test(rawTitle)||!rawTitle
+        ?'Next Global Challenge':rawTitle;
       return '<div class="global-pocket-next">'+
         '<div class="global-pocket-next-head"><span>NEXT CHALLENGE</span><span>LAUNCH · '+escapeHtml(launchLabel)+'</span></div>'+
-        '<h3>'+escapeHtml(next.name||'Next Global Challenge')+'</h3>'+
+        '<h3>'+escapeHtml(nextTitle)+'</h3>'+
         '<p>'+escapeHtml(brief)+'</p>'+
         '<div class="global-pocket-next-target"><span>STARTING BALANCE · '+escapeHtml(campaignMoney(next.starting_balance,next.currency||currency))+'</span>'+
         '<span>TARGET · '+escapeHtml(campaignMoney(next.target_balance,next.currency||currency))+'</span></div>'+
@@ -426,6 +430,9 @@
       })+' IST';
       const brief=String(c.brief||'').trim()||
         'The challenge focus and featured instruments will be announced before launch.';
+      const rawTitle=String(c.name||'').trim();
+      const nextTitle=/^general (challenge|campaign)$/i.test(rawTitle)||!rawTitle
+        ?'Next Global Challenge':rawTitle;
       return '<div class="campaign-hero general global-pocket global-pocket-upcoming" role="group" aria-label="Upcoming Global Multi-Market Challenge">'+
         '<div class="global-pocket-top"><span class="tag">TRADETHESIS / GLOBAL</span><span class="global-pocket-status upcoming">UPCOMING CHALLENGE</span></div>'+
         '<div class="global-pocket-heading upcoming-heading"><div><div class="global-pocket-kicker">YOUR NEXT MULTI-MARKET ROUND</div><h2>Global Multi-Market Challenge</h2>'+
@@ -433,7 +440,7 @@
         '<div class="global-pocket-balance"><span>TARGET</span><strong>'+escapeHtml(campaignMoney(c.target_balance,currency))+'</strong></div></div>'+
         globalPocketMarketChips()+
         '<div class="global-pocket-next upcoming-brief"><div class="global-pocket-next-head"><span>CHALLENGE BRIEF</span><span>LAUNCH · '+escapeHtml(launchLabel)+'</span></div>'+
-        '<h3>'+escapeHtml(c.name||'Global Challenge')+'</h3><p>'+escapeHtml(brief)+'</p></div>'+
+        '<h3>'+escapeHtml(nextTitle)+'</h3><p>'+escapeHtml(brief)+'</p></div>'+
         '<div class="global-pocket-countdown" data-countdown-target="'+timestamp+'">'+
           '<div><b data-countdown-days>00</b><span>DAYS</span></div><div><b data-countdown-hours>00</b><span>HOURS</span></div>'+
           '<div><b data-countdown-minutes>00</b><span>MINUTES</span></div><div><b data-countdown-seconds>00</b><span>SECONDS</span></div>'+
