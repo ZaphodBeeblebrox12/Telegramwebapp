@@ -317,7 +317,13 @@
       ''
     ).trim();
     const challengeStart = /^challenge_([A-Za-z0-9_-]+)$/.exec(telegramStartParam);
-    if (challengeStart) {
+    const requestedView = new URLSearchParams(window.location.search).get('view');
+    const validViews = ['home','challenges','tools','learn','about'];
+
+    // Honour a challenge deep link only on the initial app launch. Once a user
+    // navigates to a section, its explicit ?view= value must take precedence
+    // over Telegram's persistent start_param.
+    if (challengeStart && !validViews.includes(requestedView)) {
       const challengeUrl = new URL(
         'challenges/' + encodeURIComponent(challengeStart[1]) + '/?from=challenges',
         document.baseURI
@@ -336,8 +342,7 @@
       window.scrollTo({top:0,behavior:'instant'});
     }
     if (tg && tg.BackButton) tg.BackButton.onClick(()=>showView(currentView==='tool'?'tools':'home'));
-    const requestedView=new URLSearchParams(window.location.search).get('view');
-    if(['home','challenges','tools','learn','about'].includes(requestedView)) showView(requestedView);
+    if(validViews.includes(requestedView)) showView(requestedView);
     function openTool(type) { renderTool(type); showView('tool'); }
 
     const toolTemplates = {
