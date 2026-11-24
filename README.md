@@ -99,3 +99,14 @@ python3 -m http.server 8000
 ```
 
 Then open `http://localhost:8000/challenges/1/`. Generated challenge folders are build output; edit the shared template and source JSON instead.
+
+
+### Challenge navigation origin
+
+Challenge URLs retain the page from which the user opened them:
+
+- `/challenges/1/?from=home` returns to Home.
+- `/challenges/1/?from=challenges` returns to the Challenges catalogue.
+- A direct/shared challenge URL without `from` defaults to the Challenges catalogue.
+
+The visible back link and Telegram Mini App BackButton use the same return destination.

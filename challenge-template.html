@@ -78,9 +78,14 @@
     const CHALLENGE_ID = __CHALLENGE_ID_JSON__;
     const tg = window.Telegram && window.Telegram.WebApp;
     const appRoot = new URL('../../', window.location.href);
-    const catalogueUrl = new URL('?view=challenges', appRoot);
+    const params = new URLSearchParams(window.location.search);
+    const returnView = params.get('from') === 'home' ? 'home' : 'challenges';
+    const returnUrl = new URL(returnView === 'home' ? '?view=home' : '?view=challenges', appRoot);
+    const returnLabel = returnView === 'home' ? '← HOME' : '← ALL CHALLENGES';
     const dataUrl = new URL('data/challenges.json', appRoot);
-    document.getElementById('backLink').href = catalogueUrl.href;
+    const backLink = document.getElementById('backLink');
+    backLink.href = returnUrl.href;
+    backLink.textContent = returnLabel;
 
     if (tg) {
       tg.ready();
@@ -88,7 +93,7 @@
       try { tg.setHeaderColor('#f4f0e8'); tg.setBackgroundColor('#f4f0e8'); } catch (e) {}
       if (tg.BackButton) {
         tg.BackButton.show();
-        tg.BackButton.onClick(() => { window.location.href = catalogueUrl.href; });
+        tg.BackButton.onClick(() => { window.location.href = returnUrl.href; });
       }
     }
 

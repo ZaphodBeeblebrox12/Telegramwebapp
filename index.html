@@ -377,10 +377,11 @@
       if(kind==='general') return 'Global Multi-Market Challenge';
       return 'Trading Challenge';
     }
-    function challengeUrl(c){
+    function challengeUrl(c,source){
       const id=String(c&&c.id!==undefined&&c.id!==null?c.id:'').trim();
-      if(!/^[A-Za-z0-9_-]+$/.test(id)) return './?view=challenges';
-      return './challenges/'+encodeURIComponent(id)+'/';
+      const origin=source==='home'?'home':'challenges';
+      if(!/^[A-Za-z0-9_-]+$/.test(id)) return './?view='+origin;
+      return './challenges/'+encodeURIComponent(id)+'/?from='+origin;
     }
     function globalPocketMarketChips(){
       return '<div class="global-pocket-markets" aria-label="Eligible markets">'+
@@ -388,7 +389,7 @@
         '<span>ENERGY</span><span>GLOBAL STOCKS</span><span>GLOBAL INDICES</span><span>OPTIONS</span>'+
       '</div>';
     }
-    function globalNextChallengeBrief(next,currency){
+    function globalNextChallengeBrief(next,currency,source){
       if(!next){
         return '<div class="global-pocket-next">'+
           '<div class="global-pocket-next-head"><span>NEXT CHALLENGE</span><span>COMING UP</span></div>'+
@@ -405,7 +406,7 @@
       const rawTitle=String(next.name||'').trim();
       const nextTitle=/^general (challenge|campaign)$/i.test(rawTitle)||!rawTitle
         ?'Next Global Challenge':rawTitle;
-      return '<div class="global-pocket-next" role="link" tabindex="0" onclick="event.stopPropagation();window.location.href=&quot;'+challengeUrl(next)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;){event.stopPropagation();window.location.href=&quot;'+challengeUrl(next)+'&quot;}" aria-label="Open '+escapeHtml(nextTitle)+' challenge">'+
+      return '<div class="global-pocket-next" role="link" tabindex="0" onclick="event.stopPropagation();window.location.href=&quot;'+challengeUrl(next,source)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;){event.stopPropagation();window.location.href=&quot;'+challengeUrl(next,source)+'&quot;}" aria-label="Open '+escapeHtml(nextTitle)+' challenge">'+
         '<div class="global-pocket-next-head"><span>NEXT CHALLENGE</span><span>LAUNCH · '+escapeHtml(launchLabel)+'</span></div>'+
         '<h3>'+escapeHtml(nextTitle)+'</h3>'+
         '<p>'+escapeHtml(brief)+'</p>'+
@@ -413,7 +414,7 @@
         '<span>TARGET · '+escapeHtml(campaignMoney(next.target_balance,next.currency||currency))+'</span></div>'+
       '</div>';
     }
-    function campaignGlobalLiveBanner(c){
+    function campaignGlobalLiveBanner(c,source){
       const currency=c.currency||'USD';
       const balance=campaignMoney(c.current_balance,currency);
       const target=campaignMoney(c.target_balance,currency);
@@ -422,7 +423,7 @@
       const progressValue=Number(c.progress_pct||0);
       const progress=Math.min(100,Math.max(0,progressValue));
       const progressText=fmt(progressValue)+'%';
-      return '<div class="campaign-hero general global-pocket" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c)+'&quot;" aria-label="Open '+escapeHtml(campaignDisplayName(c))+'">'+
+      return '<div class="campaign-hero general global-pocket" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" aria-label="Open '+escapeHtml(campaignDisplayName(c))+'">'+
         '<div class="global-pocket-top"><span class="tag">TRADETHESIS / GLOBAL · #'+escapeHtml(c.id)+'</span><span class="global-pocket-status">● LIVE CAMPAIGN</span></div>'+
         '<div class="global-pocket-heading"><div><div class="global-pocket-kicker">ONE CAMPAIGN · MULTIPLE MARKETS</div><h2>Global Multi-Market Challenge</h2>'+
         '<p>Trade across metals, forex, crypto, energy, global stocks and indices. Every qualifying trade moves one shared campaign target.</p></div>'+
@@ -433,10 +434,10 @@
         '<div><strong>'+escapeHtml(pnl)+'</strong><span>REALISED P&amp;L</span></div></div>'+
         '<div class="global-pocket-progress"><div class="global-pocket-track"><i style="width:'+progress+'%"></i></div>'+
         '<div class="global-pocket-progress-meta"><span>START · '+escapeHtml(campaignMoney(c.starting_balance,currency))+'</span><b>'+progressText+' COMPLETE</b></div></div>'+
-        globalNextChallengeBrief(c.next_challenge,currency)+
+        globalNextChallengeBrief(c.next_challenge,currency,source)+
       '</div>';
     }
-    function campaignGlobalUpcomingBanner(c){
+    function campaignGlobalUpcomingBanner(c,source){
       const timestamp=Date.parse(c.starts_at||'');
       if(!Number.isFinite(timestamp)) return '';
       const currency=c.currency||'USD';
@@ -449,7 +450,7 @@
       const rawTitle=String(c.name||'').trim();
       const nextTitle=/^general (challenge|campaign)$/i.test(rawTitle)||!rawTitle
         ?'Next Global Challenge':rawTitle;
-      return '<div class="campaign-hero general global-pocket global-pocket-upcoming" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c)+'&quot;" aria-label="Open '+escapeHtml(campaignDisplayName(c))+'">'+
+      return '<div class="campaign-hero general global-pocket global-pocket-upcoming" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" aria-label="Open '+escapeHtml(campaignDisplayName(c))+'">'+
         '<div class="global-pocket-top"><span class="tag">TRADETHESIS / GLOBAL</span><span class="global-pocket-status upcoming">UPCOMING CHALLENGE</span></div>'+
         '<div class="global-pocket-heading upcoming-heading"><div><div class="global-pocket-kicker">YOUR NEXT MULTI-MARKET ROUND</div><h2>Global Multi-Market Challenge</h2>'+
         '<p>One shared target across metals, forex, crypto, energy, global stocks and indices.</p></div>'+
@@ -464,9 +465,9 @@
       '</div>';
     }
 
-    function campaignBanner(c){
+    function campaignBanner(c,source){
       const kind=campaignKind(c);
-      if(kind==='general') return campaignGlobalLiveBanner(c);
+      if(kind==='general') return campaignGlobalLiveBanner(c,source);
       const isCrypto=kind==='crypto';
       const isGeneral=kind==='general';
       const width=Math.min(100,Math.max(0,Number(c.progress_pct||0)));
@@ -521,7 +522,7 @@
       const action='OPEN '+campaignDisplayName(c).toUpperCase()+' #'+String(c.id||'')+' ↗';
       const caption=nextMilestone?(isCrypto?'NEXT QUEST · '+nextMilestone+'% MILESTONE':kind==='gold'?'NEXT STRIKE · '+nextMilestone+'% MILESTONE':'NEXT MILESTONE · '+nextMilestone+'%'):(isCrypto?'ALL QUEST MILESTONES CLEARED':kind==='gold'?'GOLD RUSH COMPLETE · TARGET CLEARED':'TARGET CLEARED');
       const stage=isCrypto?'QUEST MILESTONE':isGeneral?'CROSS-MARKET':'MILESTONE 01';
-      return '<div class="campaign-hero '+(isCrypto?'crypto':kind==='gold'?'nugget':'general')+'" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c)+'&quot;" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign #'+escapeHtml(c.id)+'">'+
+      return '<div class="campaign-hero '+(isCrypto?'crypto':kind==='gold'?'nugget':'general')+'" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign #'+escapeHtml(c.id)+'">'+
         '<div class="top"><span class="tag">'+label+'</span><span class="micro stage">'+stage+'</span></div>'+
         '<div class="headline">'+headline+'</div>'+
         '<div class="sub">'+caption+'</div>'+
@@ -530,9 +531,9 @@
         '<div class="bottomline"><div><div class="micro">'+(isCrypto?'CURRENT BALANCE':'CURRENT BALANCE')+'</div><div class="balance">'+escapeHtml(balance)+'</div></div><div style="text-align:right"><div class="profit">'+escapeHtml(pnl)+' REALISED</div><div class="goal">'+action+'</div></div></div>'+
       '</div>';
     }
-    function campaignLaunchBanner(c){
+    function campaignLaunchBanner(c,source){
       const kind=campaignKind(c);
-      if(kind==='general') return campaignGlobalUpcomingBanner(c);
+      if(kind==='general') return campaignGlobalUpcomingBanner(c,source);
       const isCrypto=kind==='crypto';
       const isGeneral=kind==='general';
       const timestamp=Date.parse(c.starts_at||'');
@@ -588,7 +589,7 @@
           '<path d="M113 20 L116 10 L119 20 L129 23 L119 26 L116 36 L113 26 L103 23 Z" fill="#ffe8a2" opacity=".9"/>'+
           '<path d="M30 14 L32 8 L34 14 L40 16 L34 18 L32 24 L30 18 L24 16 Z" fill="#ffe8a2" opacity=".75"/>'+
           '</svg>';
-      return '<div class="campaign-hero launch '+cls+'" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c)+'&quot;" aria-label="Open '+escapeHtml(title)+' challenge #'+escapeHtml(c.id)+'">'+
+      return '<div class="campaign-hero launch '+cls+'" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" aria-label="Open '+escapeHtml(title)+' challenge #'+escapeHtml(c.id)+'">'+
         '<div class="top"><span class="tag">UP NEXT · '+escapeHtml(title.toUpperCase())+'</span><span class="micro stage">'+(isGeneral?'MULTI-MARKET':'QUEST LOCKED')+'</span></div>'+
         '<div class="launch-main"><div><div class="headline">'+headline+'</div><div class="sub">'+subline+'</div></div><div class="launch-art" aria-hidden="true">'+art+'</div></div>'+
         '<div class="countdown" data-countdown-target="'+timestamp+'">'+
@@ -684,7 +685,7 @@
       const name=campaignDisplayName(c);
       const id=escapeHtml(String(c.id===undefined?'—':c.id));
       return '<div class="panel challenge-summary">'+
-        '<a class="campaign-card-link" href="'+challengeUrl(c)+'" aria-label="Open '+escapeHtml(name)+' challenge #'+id+'">'+
+        '<a class="campaign-card-link" href="'+challengeUrl(c,'challenges')+'" aria-label="Open '+escapeHtml(name)+' challenge #'+id+'">'+
           '<div class="campaign-card-top"><span class="eyebrow">'+escapeHtml(label)+' · '+escapeHtml(c.instrument||c.asset_class||'Campaign')+'</span><span class="campaign-id">ID · '+id+'</span></div>'+
           '<h3>'+escapeHtml(name)+'</h3>'+
           '<p class="sub">'+escapeHtml(c.brief||c.description||'Campaign progress from the realised ledger.')+'</p>'+
@@ -719,12 +720,12 @@
         const bannerScheduled=scheduled.filter(c=>!(activeGlobal&&nextGlobal&&String(c.id)===String(nextGlobal.id)));
         const banners=document.getElementById('activeChallenges');
         const content=document.getElementById('challengeContent');
-        banners.innerHTML=bannerScheduled.map(campaignLaunchBanner).join('')+active.map(campaignBanner).join('');
+        banners.innerHTML=bannerScheduled.map(c=>campaignLaunchBanner(c,'home')).join('')+active.map(c=>campaignBanner(c,'home')).join('');
         banners.style.display=(active.length||scheduled.length)?'grid':'none';
         if(active.length||scheduled.length){
           content.innerHTML='';
           if(scheduled.length){
-            content.innerHTML+='<div class="section-head"><h2>Coming up</h2></div>'+scheduled.map(c=>campaignLaunchBanner(c)+campaignCard(c,'UPCOMING CAMPAIGN')).join('');
+            content.innerHTML+='<div class="section-head"><h2>Coming up</h2></div>'+scheduled.map(c=>campaignLaunchBanner(c,'challenges')+campaignCard(c,'UPCOMING CAMPAIGN')).join('');
           }
           if(active.length){
             content.innerHTML+='<div class="section-head"><h2>Live now</h2></div>'+active.map(c=>campaignCard(c,'ACTIVE CAMPAIGN')).join('');
