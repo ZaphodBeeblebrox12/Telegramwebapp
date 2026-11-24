@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T16:01:45.004682+00:00",
+  "generated_at": "2026-11-24T16:20:02.729292+00:00",
   "basis_note": "Current balance = starting balance + realised FIFO ledger P&L. No position-size normalisation or FX conversion is applied.",
   "challenges": [
     {
@@ -27,7 +27,8 @@
       "starts_at": "2026-11-27T20:00:00+05:30",
       "archived": false,
       "subtitle": "GOLD · Scheduled",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion."
+      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "trade_history": []
     },
     {
       "id": "2",
@@ -54,7 +55,8 @@
       "starts_at": "2026-11-27T20:00:00+05:30",
       "archived": false,
       "subtitle": "CRYPTO · Scheduled",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion."
+      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "trade_history": []
     },
     {
       "id": "1",
@@ -81,7 +83,19 @@
       "starts_at": null,
       "archived": false,
       "subtitle": "GOLD · Active",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion."
+      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "trade_history": [
+        {
+          "opened_at": "2026-11-24T12:13:54.376566+05:30",
+          "symbol": "XAUUSD",
+          "side": "SHORT",
+          "status": "CLOSED",
+          "leverage_multiplier": 50,
+          "entry_price": 4482.305,
+          "exit_price": 4474.108,
+          "realised_pnl": 819.7
+        }
+      ]
     }
   ]
 }
