@@ -223,6 +223,18 @@
     .campaign-id{font:10px "DM Mono",monospace;color:var(--muted);white-space:nowrap;border:1px solid var(--line);padding:4px 7px}
     .campaign-card-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;padding-top:11px;border-top:1px solid var(--line);font:9px "DM Mono",monospace;color:var(--muted)}
     .campaign-card-footer strong{color:var(--terra);white-space:nowrap;font-size:10px}
+    /* Browser-render mode: expose only the same campaign hero used by Home. */
+    body.campaign-render-mode{min-height:0!important;height:auto!important;overflow:hidden!important;background:transparent!important}
+    body.campaign-render-mode .app{width:100%;max-width:560px;min-height:0;height:auto;margin:0 auto;padding:0 24px!important}
+    body.campaign-render-mode .app>.topbar,
+    body.campaign-render-mode .app>.view:not(#homeView),
+    body.campaign-render-mode .bottom-nav,
+    body.campaign-render-mode #homeView>:not(#activeChallenges){display:none!important}
+    body.campaign-render-mode #homeView{display:block!important;min-height:0!important;margin:0!important;padding:0!important;animation:none!important}
+    body.campaign-render-mode #activeChallenges{display:grid!important;grid-template-columns:1fr;gap:0!important;width:100%;margin:0!important}
+    body.campaign-render-mode #activeChallenges .campaign-hero{width:100%;cursor:default;box-shadow:none;transition:none!important}
+    body.campaign-render-mode #activeChallenges .campaign-hero:active{transform:none;box-shadow:none}
+    body.campaign-render-mode #activeChallenges .campaign-hero *{animation:none!important;transition:none!important}
   </style>
 </head>
 <body>
@@ -306,6 +318,8 @@
 
   <script>
     const tg = window.Telegram && window.Telegram.WebApp;
+    const campaignRenderMode = new URLSearchParams(window.location.search).get('render') === 'campaign';
+    if (campaignRenderMode) document.body.classList.add('campaign-render-mode');
     if (tg) { tg.ready(); tg.expand(); try { tg.setHeaderColor('#f4f0e8'); tg.setBackgroundColor('#f4f0e8'); } catch(e) {} }
 
     // Named Telegram Mini Apps pass a campaign id with startapp=challenge_<id>.
@@ -323,7 +337,7 @@
     // Honour a challenge deep link only on the initial app launch. Once a user
     // navigates to a section, its explicit ?view= value must take precedence
     // over Telegram's persistent start_param.
-    if (challengeStart && !validViews.includes(requestedView)) {
+    if (!campaignRenderMode && challengeStart && !validViews.includes(requestedView)) {
       const challengeUrl = new URL(
         'challenges/' + encodeURIComponent(challengeStart[1]) + '/?from=challenges',
         document.baseURI
@@ -626,6 +640,11 @@
         '<div class="launch-date"><span>LAUNCH · <strong>'+escapeHtml(launchLabel)+'</strong></span><span>TARGET · <strong>'+escapeHtml(goal)+'</strong></span></div>'+
       '</div>';
     }
+    function campaignHeroMarkup(c,source){
+      const status=String(c&&c.status||'').toUpperCase();
+      const scheduled=(status==='SCHEDULED'||c&&c.scheduled===true)&&Boolean(c&&c.starts_at);
+      return scheduled?campaignLaunchBanner(c,source):campaignBanner(c,source);
+    }
     let campaignLaunchRefreshAttempted=false;
     function updateCampaignCountdowns(){
       let launchReady=false;
@@ -653,7 +672,7 @@
           if(node) node.textContent=value;
         });
       });
-      if(launchReady&&!campaignLaunchRefreshAttempted){
+      if(launchReady&&!campaignRenderMode&&!campaignLaunchRefreshAttempted){
         campaignLaunchRefreshAttempted=true;
         window.setTimeout(()=>loadChallenges(),5000);
       }
@@ -742,7 +761,7 @@
         const bannerScheduled=scheduled.filter(c=>!(activeGlobal&&nextGlobal&&String(c.id)===String(nextGlobal.id)));
         const banners=document.getElementById('activeChallenges');
         const content=document.getElementById('challengeContent');
-        banners.innerHTML=bannerScheduled.map(c=>campaignLaunchBanner(c,'home')).join('')+active.map(c=>campaignBanner(c,'home')).join('');
+        banners.innerHTML=bannerScheduled.map(c=>campaignHeroMarkup(c,'home')).join('')+active.map(c=>campaignHeroMarkup(c,'home')).join('');
         banners.style.display=(active.length||scheduled.length)?'grid':'none';
         if(active.length||scheduled.length){
           content.innerHTML='';
@@ -769,10 +788,29 @@
     }
         function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
     function safeUrl(v){try{const u=new URL(v,location.href);return ['https:'].includes(u.protocol)?u.href:'#'}catch(e){return '#'}}
+    window.renderCampaignCard = function(campaign){
+      if(!campaign || campaign.id===undefined || campaign.id===null){
+        throw new Error('A campaign with an ID is required.');
+      }
+      const markup=campaignHeroMarkup(campaign,'home');
+      if(!markup) throw new Error('The campaign card could not be rendered.');
+      const stack=document.getElementById('activeChallenges');
+      stack.innerHTML=markup;
+      stack.style.display='grid';
+      updateCampaignCountdowns();
+      return true;
+    };
+    window.__campaignRendererReady=true;
+
     document.getElementById('todayLabel').textContent=new Intl.DateTimeFormat(undefined,{month:'short',day:'2-digit'}).format(new Date()).toUpperCase();
-    loadChallenges();
-    updateCampaignCountdowns();
-    window.setInterval(updateCampaignCountdowns,1000);
+    if(campaignRenderMode){
+      // The bot supplies the campaign record directly; no published JSON fetch
+      // or separate card implementation is used in screenshot mode.
+    }else{
+      loadChallenges();
+      updateCampaignCountdowns();
+      window.setInterval(updateCampaignCountdowns,1000);
+    }
   </script>
 </body>
 </html>
