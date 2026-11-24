@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T11:30:44.187233+00:00",
+  "generated_at": "2026-11-24T15:00:58.858472+00:00",
   "basis_note": "Current balance = starting balance + realised FIFO ledger P&L. No position-size normalisation or FX conversion is applied.",
   "challenges": [
     {
@@ -23,6 +23,8 @@
       "breakeven": 0,
       "status": "ACTIVE",
       "active": true,
+      "scheduled": false,
+      "starts_at": null,
       "archived": false,
       "subtitle": "GOLD · Active",
       "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion."
