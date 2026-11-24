@@ -320,9 +320,9 @@
           '<path d="M9 12 L20 17 L33 7 M20 17 L22 39 M20 17 L43 18 M9 12 L5 26" fill="none" stroke="#fff1bd" stroke-width="1.6" opacity=".8"/>'+
           '<path d="M17 8 L23 12 L19 17 L10 15 Z" fill="#fff4c8" opacity=".65"/></svg>';
       }
-      const action=isCrypto?'THE BLOCK HUNT CONTINUES ↗':kind==='gold'?'THE HUNT CONTINUES ↗':'THE HUNT CONTINUES ↗';
-      const caption=nextMilestone?(isCrypto?'NEXT BLOCK · '+nextMilestone+'% MILESTONE':kind==='gold'?'NEXT STRIKE · '+nextMilestone+'% MILESTONE':'NEXT MILESTONE · '+nextMilestone+'%'):(isCrypto?'ALL BLOCK MILESTONES CLEARED':kind==='gold'?'GOLD RUSH COMPLETE · TARGET CLEARED':'TARGET CLEARED');
-      const stage=isCrypto?'BLOCK MILESTONE':'MILESTONE 01';
+      const action=isCrypto?'THE CRYPTO QUEST CONTINUES ↗':kind==='gold'?'THE HUNT CONTINUES ↗':'THE HUNT CONTINUES ↗';
+      const caption=nextMilestone?(isCrypto?'NEXT QUEST · '+nextMilestone+'% MILESTONE':kind==='gold'?'NEXT STRIKE · '+nextMilestone+'% MILESTONE':'NEXT MILESTONE · '+nextMilestone+'%'):(isCrypto?'ALL QUEST MILESTONES CLEARED':kind==='gold'?'GOLD RUSH COMPLETE · TARGET CLEARED':'TARGET CLEARED');
+      const stage=isCrypto?'QUEST MILESTONE':'MILESTONE 01';
       return '<div class="campaign-hero '+(isCrypto?'crypto':'nugget')+'" role="button" tabindex="0" onclick="showView(&quot;challenges&quot;)" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)showView(&quot;challenges&quot;)" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign">'+
         '<div class="top"><span class="tag">'+label+'</span><span class="micro stage">'+stage+'</span></div>'+
         '<div class="headline">'+headline+'</div>'+
@@ -345,10 +345,10 @@
         hour:'2-digit',minute:'2-digit',hour12:true
       })+' IST';
       const cls=isCrypto?'crypto':'nugget';
-      const headline=isCrypto?'BLOCK HUNT':'GOLD RUSH';
-      const subline=isCrypto?'THE NEXT BLOCK GOES LIVE IN':'THE GOLD HUNT BEGINS IN';
+      const headline=isCrypto?'THE CRYPTO<br>QUEST':'GOLD RUSH';
+      const subline=isCrypto?'THE QUEST BEGINS IN':'THE GOLD HUNT BEGINS IN';
       const quest=isCrypto
-        ?['WALLET READY','FIRST BLOCK','CHAIN BUILDS']
+        ?['GEAR UP','FIRST QUEST','BUILD MOMENTUM']
         :['PICKAXE READY','FIRST STRIKE','GOLD VEIN'];
       const art=isCrypto
         ?'<svg viewBox="0 0 150 112" role="img" aria-label="A glowing crypto token on a connected blockchain trail">'+
