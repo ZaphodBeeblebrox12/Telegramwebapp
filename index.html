@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f4f0e8">
+  <meta name="description" content="TradeThesis — practical tools and thoughtful trading education.">
+  <title>TradeThesis | Trading Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root{--paper:#f4f0e8;--paper2:#ebe5d9;--ink:#242923;--muted:#73766d;--line:#d9d2c5;--terra:#b95f43;--terra2:#e9c5b5;--sage:#748574;--sage2:#d9e0d4;--gold:#c49a53;--white:#fffdf8;--shadow:0 12px 30px rgba(44,40,32,.07);font-family:"DM Sans",sans-serif;color:var(--ink);background:var(--paper)}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--paper)}button,input,select{font:inherit}button{cursor:pointer}
+    .app{max-width:560px;margin:0 auto;min-height:100dvh;padding:0 18px calc(102px + env(safe-area-inset-bottom));position:relative}
+    .topbar{height:62px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+    .brand-mark{width:29px;height:29px;border:1px solid var(--terra);border-radius:50%;display:grid;place-items:center;color:var(--terra);font-family:"Playfair Display",serif;font-size:17px}
+    .status{font:10px "DM Mono",monospace;color:var(--muted);letter-spacing:.08em}
+    .view{display:none;animation:appear .22s ease}.view.active{display:block}@keyframes appear{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:none}}
+    .eyebrow{font:10px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.15em;color:var(--terra)}
+    h1,h2,h3,p{margin-top:0}.intro{padding:28px 0 22px}.intro h1{font:600 35px/1.07 "Playfair Display",serif;letter-spacing:-.7px;margin:9px 0 10px;max-width:390px}.intro p{color:var(--muted);font-size:13px;line-height:1.6;max-width:360px;margin:0}
+    .date-line{display:flex;align-items:center;justify-content:space-between;margin-top:18px;padding-top:13px;border-top:1px solid var(--line);font:10px "DM Mono",monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    .section-head{display:flex;align-items:end;justify-content:space-between;margin:23px 0 12px}.section-head h2{font:600 21px "Playfair Display",serif;margin:0}.section-head button{border:0;background:none;color:var(--terra);font-size:11px;font-weight:700;padding:3px 0}
+    .challenge-banner{display:none;background:var(--ink);color:var(--white);border-radius:4px;padding:17px 18px;margin:0 0 18px;position:relative;overflow:hidden}
+    .challenge-banner:after{content:"";position:absolute;width:115px;height:115px;border:1px solid rgba(255,255,255,.14);border-radius:50%;right:-17px;top:-48px;box-shadow:0 0 0 15px rgba(255,255,255,.035),0 0 0 31px rgba(255,255,255,.025)}
+    .challenge-banner .eyebrow{color:#e4a88e}.challenge-banner h3{font:600 22px "Playfair Display",serif;margin:7px 0}.challenge-banner p{font-size:11px;color:#c8c8bf;margin:0}.challenge-banner .arrow{position:absolute;right:17px;bottom:16px;color:#e4a88e}
+    .tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .tool-tile{border:1px solid var(--line);background:var(--white);min-height:128px;padding:14px;text-align:left;position:relative;overflow:hidden;transition:transform .18s,border-color .18s}
+    .tool-tile:active{transform:scale(.985)}.tool-tile:hover{border-color:#b6a99a}
+    .tool-tile .tile-icon{width:34px;height:34px;margin-bottom:16px;display:grid;place-items:center;border-radius:50%;font:17px "Playfair Display",serif}
+    .tool-tile h3{font:600 15px "Playfair Display",serif;margin:0 0 4px}.tool-tile p{font-size:10px;color:var(--muted);line-height:1.4;margin:0;max-width:145px}
+    .tile-icon.terracotta{background:#f2dfd5;color:var(--terra)}.tile-icon.sage{background:var(--sage2);color:#526754}.tile-icon.gold{background:#f1e7d2;color:#9b783d}.tile-icon.ink{background:#e3e4dd;color:var(--ink)}
+    .tile-number{position:absolute;right:12px;top:12px;font:9px "DM Mono",monospace;color:#aaa}
+    .editorial-strip{margin-top:15px;background:var(--sage2);padding:15px 16px;display:flex;align-items:center;gap:13px}
+    .editorial-strip .seal{width:38px;height:38px;border:1px solid #9ba995;border-radius:50%;display:grid;place-items:center;color:#526754;font:19px "Playfair Display",serif;flex:none}
+    .editorial-strip strong{display:block;font:600 13px "Playfair Display",serif;margin-bottom:3px}.editorial-strip span{font-size:10px;color:#5e6c5d;line-height:1.4;display:block}
+    .page-head{padding:26px 0 18px;border-bottom:1px solid var(--line);margin-bottom:18px}.page-head h1{font:600 31px "Playfair Display",serif;margin:7px 0 6px}.page-head p{font-size:12px;line-height:1.55;color:var(--muted);margin:0;max-width:400px}
+    .backrow{display:flex;align-items:center;gap:8px;margin:17px 0 0}.back{border:0;background:none;padding:0;color:var(--terra);font-size:12px;font-weight:700}
+    .panel{background:var(--white);border:1px solid var(--line);padding:16px;margin-bottom:12px}.panel h3{font:600 18px "Playfair Display",serif;margin:0 0 5px}.panel .sub{font-size:11px;color:var(--muted);line-height:1.5;margin:0 0 15px}
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field{display:flex;flex-direction:column;gap:6px;margin-bottom:11px}.field label{font:9px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}.field input,.field select{width:100%;height:42px;border:1px solid var(--line);border-radius:0;background:#fbf9f3;padding:0 11px;color:var(--ink);font:13px "DM Mono",monospace;outline:none}.field input:focus,.field select:focus{border-color:var(--terra)}
+    .primary{width:100%;height:44px;border:0;background:var(--terra);color:#fff9f2;font-size:12px;font-weight:700;letter-spacing:.03em}.primary:active{background:#9f4e37}
+    .result{display:none;background:var(--sage2);padding:15px;margin-top:13px}.result.show{display:block}.result .result-label{font:9px "DM Mono",monospace;color:#5f705d;text-transform:uppercase;letter-spacing:.1em}.result strong{font:600 27px "Playfair Display",serif;display:block;margin:4px 0}.result small{font-size:10px;color:#5f705d;line-height:1.5}
+    .note{font-size:10px;line-height:1.5;color:var(--muted);margin:10px 0 0}
+    .empty-state{border:1px dashed #c9c1b4;padding:24px 18px;text-align:center;background:rgba(255,253,248,.45)}.empty-state .symbol{font:28px "Playfair Display",serif;color:var(--sage);margin-bottom:9px}.empty-state h3{font:600 19px "Playfair Display",serif;margin:0 0 6px}.empty-state p{font-size:11px;color:var(--muted);line-height:1.55;margin:0 auto;max-width:280px}
+    .link-list{display:flex;flex-direction:column}.link-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);background:none;border-left:0;border-right:0;border-top:0;text-align:left;width:100%}.link-row:last-child{border-bottom:0}.link-row strong{font:600 15px "Playfair Display",serif;display:block}.link-row span{font-size:10px;color:var(--muted);display:block;margin-top:4px}.link-row b{color:var(--terra);font-size:17px;font-weight:400}
+    .quote{margin:16px 0;padding:18px 17px;border-left:2px solid var(--terra);background:#eee8dc;font:italic 17px/1.4 "Playfair Display",serif}.quote small{display:block;font:9px "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+    .bottom-nav{position:fixed;z-index:5;bottom:0;left:50%;transform:translateX(-50%);width:min(560px,100%);padding:10px 13px calc(10px + env(safe-area-inset-bottom));background:rgba(244,240,232,.96);backdrop-filter:blur(15px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr)}
+    .nav-item{border:0;background:none;color:#898a80;display:flex;flex-direction:column;align-items:center;gap:5px;padding:3px 0;font-size:9px;font-weight:600}.nav-item .nav-icon{font:18px "Playfair Display",serif;line-height:1}.nav-item.active{color:var(--terra)}
+    .footer{font:9px "DM Mono",monospace;color:#99988d;text-align:center;padding:25px 0 8px;letter-spacing:.08em}
+    @media(min-width:440px){.app{padding-left:24px;padding-right:24px}.intro{padding-top:34px}.intro h1{font-size:40px}.tool-tile{min-height:140px;padding:17px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">T</span><span>TradeThesis</span></div>
+      <div class="status">CONVICTION BEFORE EXECUTION</div>
+    </header>
+
+    <section class="view active" id="homeView" aria-label="Home">
+      <div class="intro">
+        <div class="eyebrow">Your trading companion</div>
+        <h1>Think clearly.<br>Trade deliberately.</h1>
+        <p>A small collection of practical tools and considered learning for more disciplined market decisions.</p>
+        <div class="date-line"><span>MARKET NOTES &amp; TOOLS</span><span id="todayLabel">TRADETHESIS DESK</span></div>
+      </div>
+      <div class="challenge-banner" id="activeChallenge" role="button" tabindex="0" onclick="showView('challenges')">
+        <div class="eyebrow">A live campaign</div><h3 id="challengeName">Trading Challenge</h3><p id="challengeMeta">Follow the campaign and track progress.</p><span class="arrow">↗</span>
+      </div>
+      <div class="section-head"><h2>Open your toolkit</h2><button onclick="showView('tools')">ALL TOOLS ↗</button></div>
+      <div class="tool-grid">
+        <button class="tool-tile" onclick="openTool('position')"><span class="tile-number">01</span><span class="tile-icon terracotta">↗</span><h3>Position size</h3><p>Translate risk into a planned position.</p></button>
+        <button class="tool-tile" onclick="openTool('rr')"><span class="tile-number">02</span><span class="tile-icon sage">⇄</span><h3>Risk / reward</h3><p>See the relationship before execution.</p></button>
+        <button class="tool-tile" onclick="openTool('margin')"><span class="tile-number">03</span><span class="tile-icon gold">◫</span><h3>Margin guide</h3><p>Estimate exposure and required margin.</p></button>
+        <button class="tool-tile" onclick="openTool('pip')"><span class="tile-number">04</span><span class="tile-icon ink">⌁</span><h3>Pip value</h3><p>Understand price movement in account terms.</p></button>
+      </div>
+      <div class="editorial-strip"><div class="seal">∴</div><div><strong>From observation to conviction.</strong><span>Notice the market. Compare the evidence. Apply a plan. Review the result.</span></div></div>
+      <div class="footer">TRADETHESIS · CONVICTION BEFORE EXECUTION</div>
+    </section>
+
+    <section class="view" id="challengesView" aria-label="Challenges">
+      <div class="page-head"><div class="eyebrow">Campaigns &amp; progress</div><h1>Challenges</h1><p>Focused trading campaigns, with a clear starting point and a record of the journey.</p></div>
+      <div id="challengeContent"></div>
+      <div class="footer">PROCESS OVER PROMISES</div>
+    </section>
+
+    <section class="view" id="toolsView" aria-label="Tools">
+      <div class="page-head"><div class="eyebrow">Practical instruments</div><h1>Tools</h1><p>Small calculators to help frame risk, exposure and trade planning. They support decisions; they do not make them.</p></div>
+      <div class="tool-grid">
+        <button class="tool-tile" onclick="openTool('position')"><span class="tile-icon terracotta">↗</span><h3>Position size</h3><p>Calculate units from risk and stop distance.</p></button>
+        <button class="tool-tile" onclick="openTool('rr')"><span class="tile-icon sage">⇄</span><h3>Risk / reward</h3><p>Compare potential reward with planned risk.</p></button>
+        <button class="tool-tile" onclick="openTool('margin')"><span class="tile-icon gold">◫</span><h3>Margin guide</h3><p>Estimate notional exposure and margin.</p></button>
+        <button class="tool-tile" onclick="openTool('pip')"><span class="tile-icon ink">⌁</span><h3>Pip value</h3><p>Estimate pip value for common FX pairs.</p></button>
+      </div>
+      <div class="footer">CALCULATE · CHECK · DECIDE</div>
+    </section>
+
+    <section class="view" id="toolView" aria-label="Calculator">
+      <div class="backrow"><button class="back" onclick="showView('tools')">← ALL TOOLS</button></div>
+      <div id="toolContent"></div>
+    </section>
+
+    <section class="view" id="learnView" aria-label="Learn">
+      <div class="page-head"><div class="eyebrow">Build a repeatable process</div><h1>Learn</h1><p>Trading is a skill built through observation, structured practice and honest review.</p></div>
+      <div class="panel">
+        <div class="eyebrow">The learning rhythm</div>
+        <div class="link-list">
+          <div class="link-row"><div><strong>01 · Notice</strong><span>Observe structure, context and market behavior.</span></div><b>↗</b></div>
+          <div class="link-row"><div><strong>02 · Compare</strong><span>Test your reading against alternative explanations.</span></div><b>↗</b></div>
+          <div class="link-row"><div><strong>03 · Apply</strong><span>Build a thesis, define risk and plan execution.</span></div><b>↗</b></div>
+          <div class="link-row"><div><strong>04 · Review</strong><span>Record what happened and what should improve.</span></div><b>↗</b></div>
+        </div>
+      </div>
+      <div class="quote">“You won’t always be right, but a trade without a thesis is just a guess. Know why.”<small>TRADETHESIS PRINCIPLE</small></div>
+      <div class="footer">LEARN THE PROCESS, NOT A PROMISE</div>
+    </section>
+
+    <section class="view" id="aboutView" aria-label="About">
+      <div class="page-head"><div class="eyebrow">A considered approach</div><h1>About TradeThesis</h1><p>Conviction before execution. A trading education project focused on understanding markets, forming a thesis and managing risk.</p></div>
+      <div class="panel"><div class="eyebrow">Our point of view</div><h3>Reason before action.</h3><p class="sub">A good process makes room for uncertainty. It asks what the market is showing, what would invalidate the idea and how much is at risk before a trade is placed.</p><div class="quote">From market observation to trading conviction.</div></div>
+      <div class="panel"><div class="eyebrow">The standard</div><h3>Calm. Honest. Practical.</h3><p class="sub">No certainty theatre. No shortcut promises. Just tools and education designed to make trading decisions more deliberate.</p></div>
+      <div class="footer">TRADETHESIS · EST. FOR THE THINKING TRADER</div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <button class="nav-item active" data-view="home" onclick="showView('home')"><span class="nav-icon">⌂</span>Home</button>
+    <button class="nav-item" data-view="challenges" onclick="showView('challenges')"><span class="nav-icon">⚑</span>Challenges</button>
+    <button class="nav-item" data-view="tools" onclick="showView('tools')"><span class="nav-icon">⌘</span>Tools</button>
+    <button class="nav-item" data-view="learn" onclick="showView('learn')"><span class="nav-icon">∴</span>Learn</button>
+    <button class="nav-item" data-view="about" onclick="showView('about')"><span class="nav-icon">◎</span>About</button>
+  </nav>
+
+  <script>
+    const tg = window.Telegram && window.Telegram.WebApp;
+    if (tg) { tg.ready(); tg.expand(); try { tg.setHeaderColor('#f4f0e8'); tg.setBackgroundColor('#f4f0e8'); } catch(e) {} }
+
+    const views = ['home','challenges','tools','tool','learn','about'];
+    let currentView = 'home';
+    const nav = document.querySelector('.bottom-nav');
+    function showView(name) {
+      currentView = name;
+      views.forEach(v => document.getElementById(v+'View').classList.toggle('active', v===name));
+      document.querySelectorAll('.nav-item').forEach(b => b.classList.toggle('active', b.dataset.view===name || (name==='tool' && b.dataset.view==='tools')));
+      if (tg && tg.BackButton) { if (name==='home') tg.BackButton.hide(); else { tg.BackButton.show(); } }
+      window.scrollTo({top:0,behavior:'instant'});
+    }
+    if (tg && tg.BackButton) tg.BackButton.onClick(()=>showView(currentView==='tool'?'tools':'home'));
+    function openTool(type) { renderTool(type); showView('tool'); }
+
+    const toolTemplates = {
+      position: `<div class="page-head"><div class="eyebrow">Risk planning · 01</div><h1>Position size</h1><p>Calculate a theoretical position size from your account risk and stop distance.</p></div>
+        <div class="panel"><h3>Define the risk</h3><p class="sub">Enter values in the same currency and price units used by your instrument.</p>
+        <div class="field-grid"><div class="field"><label>Account balance</label><input id="balance" type="number" min="0" step="any" value="10000"></div><div class="field"><label>Risk (%)</label><input id="riskPct" type="number" min="0" max="100" step="any" value="1"></div></div>
+        <div class="field-grid"><div class="field"><label>Entry price</label><input id="entry" type="number" min="0" step="any" value="100"></div><div class="field"><label>Stop price</label><input id="stop" type="number" min="0" step="any" value="98"></div></div>
+        <div class="field"><label>Value per price unit, per unit held</label><input id="unitValue" type="number" min="0" step="any" value="1"></div>
+        <button class="primary" onclick="calculatePosition()">CALCULATE POSITION</button><div class="result" id="positionResult"></div><p class="note">This is a simplified sizing estimate. Adjust for lot size, contract multiplier, fees, slippage, currency conversion and broker margin rules.</p></div>`,
+      rr: `<div class="page-head"><div class="eyebrow">Trade planning · 02</div><h1>Risk / reward</h1><p>Compare the distance to your invalidation point with the distance to your planned target.</p></div>
+        <div class="panel"><h3>Map the trade</h3><div class="field-grid"><div class="field"><label>Entry price</label><input id="rrEntry" type="number" step="any" value="100"></div><div class="field"><label>Stop price</label><input id="rrStop" type="number" step="any" value="97"></div></div><div class="field"><label>Target price</label><input id="rrTarget" type="number" step="any" value="109"></div><div class="field"><label>Direction</label><select id="rrDirection"><option value="long">Long</option><option value="short">Short</option></select></div><button class="primary" onclick="calculateRR()">ANALYZE RISK / REWARD</button><div class="result" id="rrResult"></div><p class="note">Ratio is based on price distances only. It does not estimate probability of success or include costs.</p></div>`,
+      margin: `<div class="page-head"><div class="eyebrow">Exposure · 03</div><h1>Margin guide</h1><p>Estimate notional exposure and indicative margin from leverage. Actual broker requirements vary.</p></div>
+        <div class="panel"><h3>Estimate exposure</h3><div class="field"><label>Position units</label><input id="mUnits" type="number" min="0" step="any" value="1000"></div><div class="field"><label>Price per unit</label><input id="mPrice" type="number" min="0" step="any" value="1.08"></div><div class="field"><label>Leverage (e.g. 20 for 20:1)</label><input id="mLev" type="number" min="0.0001" step="any" value="20"></div><button class="primary" onclick="calculateMargin()">ESTIMATE MARGIN</button><div class="result" id="marginResult"></div><p class="note">Assumes price × units gives notional value in your account currency. Excludes broker-specific margin tiers, conversion and fees.</p></div>`,
+      pip: `<div class="page-head"><div class="eyebrow">Foreign exchange · 04</div><h1>Pip value</h1><p>Estimate pip value for a standard FX pip. This simplified calculator assumes your quote currency is your account currency.</p></div>
+        <div class="panel"><h3>Calculate pip value</h3><div class="field"><label>Units of base currency</label><input id="pipUnits" type="number" min="0" step="any" value="10000"></div><div class="field"><label>Pip size</label><select id="pipSize"><option value="0.0001">0.0001 — most FX pairs</option><option value="0.01">0.01 — JPY-quoted pairs</option></select></div><button class="primary" onclick="calculatePip()">CALCULATE PIP VALUE</button><div class="result" id="pipResult"></div><p class="note">For cross-currency pairs, convert quote currency to your account currency. Some instruments use different tick or pip conventions.</p></div>`
+    };
+    function renderTool(type){document.getElementById('toolContent').innerHTML=toolTemplates[type]||'';}
+    function num(id){return Number(document.getElementById(id).value)}
+    function showResult(id,label,value,detail){const el=document.getElementById(id);el.innerHTML='<div class="result-label">'+label+'</div><strong>'+value+'</strong><small>'+detail+'</small>';el.classList.add('show')}
+    function fmt(n){return new Intl.NumberFormat(undefined,{maximumFractionDigits:4}).format(n)}
+    function calculatePosition(){
+      const bal=num('balance'),pct=num('riskPct'),entry=num('entry'),stop=num('stop'),unit=num('unitValue'),distance=Math.abs(entry-stop);
+      if(!(bal>0&&pct>0&&pct<=100&&distance>0&&unit>0)){showResult('positionResult','Check your inputs','—','Enter positive values and ensure entry and stop are different.');return}
+      const cash=bal*pct/100,qty=cash/(distance*unit);
+      showResult('positionResult','Estimated position size',fmt(qty)+' units','Planned cash risk: '+fmt(cash)+' · Stop distance: '+fmt(distance)+' · Before costs and contract adjustments.');
+    }
+    function calculateRR(){
+      const e=num('rrEntry'),s=num('rrStop'),t=num('rrTarget'),d=document.getElementById('rrDirection').value;
+      const risk=d==='long'?e-s:s-e,reward=d==='long'?t-e:e-t;
+      if(!(risk>0&&reward>0)){showResult('rrResult','Invalid trade geometry','—','For a long: stop below entry and target above. For a short: stop above entry and target below.');return}
+      showResult('rrResult','Potential reward / risk','1 : '+fmt(reward/risk),'Risk distance: '+fmt(risk)+' · Reward distance: '+fmt(reward));
+    }
+    function calculateMargin(){const u=num('mUnits'),p=num('mPrice'),l=num('mLev');if(!(u>0&&p>0&&l>0)){showResult('marginResult','Check your inputs','—','All values must be greater than zero.');return}const n=u*p;showResult('marginResult','Indicative margin',fmt(n/l),'Notional exposure: '+fmt(n)+' · Leverage: '+fmt(l)+':1');}
+    function calculatePip(){const u=num('pipUnits'),s=num('pipSize');if(!(u>0&&s>0)){showResult('pipResult','Check your inputs','—','Enter a positive position size.');return}showResult('pipResult','Pip value in quote currency',fmt(u*s),'Units × pip size. Convert the quote currency when it differs from your account currency.');}
+
+    async function loadChallenges(){
+      try{
+        const response=await fetch('./data/challenges.json',{cache:'no-store'});
+        if(!response.ok) throw new Error('No challenge data');
+        const data=await response.json();
+        const active=(data.challenges||[]).filter(c=>c.active);
+        const banner=document.getElementById('activeChallenge');
+        const content=document.getElementById('challengeContent');
+        if(active.length){
+          const c=active[0];banner.style.display='block';document.getElementById('challengeName').textContent=c.name||'Trading Challenge';document.getElementById('challengeMeta').textContent=c.subtitle||'An active TradeThesis campaign';
+          content.innerHTML=active.map(c=>'<div class="panel"><div class="eyebrow">ACTIVE CAMPAIGN</div><h3>'+escapeHtml(c.name||'Trading Challenge')+'</h3><p class="sub">'+escapeHtml(c.description||'Follow the campaign and track your process.')+'</p>'+(c.public_url?'<a href="'+safeUrl(c.public_url)+'" target="_blank" rel="noopener" style="color:var(--terra);font-size:11px;font-weight:700">VIEW CAMPAIGN ↗</a>':'')+'</div>').join('');
+        }else{
+          banner.style.display='none';
+          content.innerHTML='<div class="empty-state"><div class="symbol">∴</div><h3>No active campaign</h3><p>There is no live challenge at the moment. When a campaign opens, you will find its details here.</p></div>';
+        }
+        const archived=(data.challenges||[]).filter(c=>!c.active&&c.archived);
+        if(archived.length){content.innerHTML+='<div class="section-head"><h2>Past campaigns</h2></div>'+archived.map(c=>'<div class="panel"><div class="eyebrow">ARCHIVE</div><h3>'+escapeHtml(c.name||'Past campaign')+'</h3><p class="sub">'+escapeHtml(c.description||'Campaign archive')+'</p></div>').join('')}
+      }catch(e){document.getElementById('activeChallenge').style.display='none';document.getElementById('challengeContent').innerHTML='<div class="empty-state"><div class="symbol">∴</div><h3>No active campaign</h3><p>There is no live challenge at the moment. When a campaign opens, you will find its details here.</p></div>'}
+    }
+    function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+    function safeUrl(v){try{const u=new URL(v,location.href);return ['https:'].includes(u.protocol)?u.href:'#'}catch(e){return '#'}}
+    document.getElementById('todayLabel').textContent=new Intl.DateTimeFormat(undefined,{month:'short',day:'2-digit'}).format(new Date()).toUpperCase();
+    loadChallenges();
+  </script>
+</body>
+</html>
