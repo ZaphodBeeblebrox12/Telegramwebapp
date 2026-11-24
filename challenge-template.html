@@ -188,7 +188,7 @@
           '<div class="eyebrow">Individual challenge · ' + escapeHtml(campaign.asset_class || campaign.instrument || 'Trading campaign') + '</div>' +
           '<h1>' + escapeHtml(title) + '</h1>' +
           '<p>' + escapeHtml(campaign.description || campaign.brief || 'Campaign progress and trade history.') + '</p>' +
-          '<div class="meta-line"><span class="state-pill ' + status.className + '">' + status.label + '</span><span>CHALLENGE ID · ' + escapeHtml(campaign.id) + '</span><span>' + escapeHtml(campaign.instrument || campaign.asset_class || 'MARKET') + '</span></div>' +
+          '<div class="meta-line"><span class="state-pill ' + status.className + '">' + status.label + '</span><span>' + escapeHtml(campaign.instrument || campaign.asset_class || 'MARKET') + '</span></div>' +
           launchNote +
         '</header>' +
         '<section class="panel">' +
