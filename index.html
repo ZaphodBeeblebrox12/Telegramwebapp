@@ -143,6 +143,7 @@
     .campaign-hero.crypto .balance{color:#e7fffc}
     .campaign-hero.crypto .goal{color:#a9c9d1}
     .campaign-hero.crypto .progress-marker{transform:translate(-50%,-50%)}
+    .campaign-hero.crypto .progress-marker.crypto-bitcoin{width:30px;height:32px;transform:translate(-50%,-50%);object-fit:contain;filter:drop-shadow(0 3px 4px rgba(0,0,0,.58))}
     @media(max-width:380px){.campaign-hero{padding-left:14px;padding-right:14px}.campaign-hero .headline{font-size:clamp(23px,8vw,28px)}.campaign-hero .bottomline{left:auto;right:auto}.campaign-hero .balance{font-size:16px}.campaign-hero .progress-caption{font-size:6.5px;gap:3px}.campaign-hero .progress-marker{width:28px;height:28px}.campaign-hero .progress-marker.general-globe{width:34px;height:34px}}
     .campaign-hero.launch{padding-bottom:14px}
     .campaign-hero.launch .headline{font-size:clamp(22px,7.4vw,28px);line-height:.98;margin-top:13px}
@@ -592,12 +593,16 @@
       let marker='';
       if(isCrypto){
         const instrument=String(c.instrument||'').toUpperCase();
-        const symbol=/BTC|BITCOIN/.test(instrument)?'₿':/ETH|ETHEREUM/.test(instrument)?'Ξ':'C';
-        marker='<svg class="progress-marker" style="left:'+width+'%" viewBox="0 0 48 48" role="img" aria-label="Crypto token at current progress">'+
-          '<defs><linearGradient id="'+markerId+'" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c7fff2"/><stop offset=".5" stop-color="#46d9cb"/><stop offset="1" stop-color="#147b9b"/></linearGradient></defs>'+
-          '<path d="M24 2 L43 13 L43 35 L24 46 L5 35 L5 13 Z" fill="#061923" stroke="#9affeb" stroke-width="1.5"/>'+
-          '<circle cx="24" cy="24" r="15" fill="url(#'+markerId+')" stroke="#d4fff5" stroke-width="1.4"/>'+
-          '<text x="24" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="'+(symbol==='C'?19:21)+'" font-weight="900" fill="#073045">'+symbol+'</text></svg>';
+        if(!/ETH|ETHEREUM/.test(instrument)){
+          marker='<img class="progress-marker crypto-bitcoin" style="left:'+width+'%" src="./assets/bitcoin-coin.png" alt="Bitcoin coin marking current crypto campaign progress">';
+        }else{
+          const symbol='Ξ';
+          marker='<svg class="progress-marker" style="left:'+width+'%" viewBox="0 0 48 48" role="img" aria-label="Ethereum token at current progress">'+
+            '<defs><linearGradient id="'+markerId+'" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c7fff2"/><stop offset=".5" stop-color="#46d9cb"/><stop offset="1" stop-color="#147b9b"/></linearGradient></defs>'+
+            '<path d="M24 2 L43 13 L43 35 L24 46 L5 35 L5 13 Z" fill="#061923" stroke="#9affeb" stroke-width="1.5"/>'+
+            '<circle cx="24" cy="24" r="15" fill="url(#'+markerId+')" stroke="#d4fff5" stroke-width="1.4"/>'+
+            '<text x="24" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" font-weight="900" fill="#073045">'+symbol+'</text></svg>';
+        }
       }else if(isGeneral){
         marker='<svg class="progress-marker general-globe" style="left:'+width+'%" viewBox="0 0 60 60" role="img" aria-label="Globe marking current multi-market campaign progress">'+
           '<defs>'+
