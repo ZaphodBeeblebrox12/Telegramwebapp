@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-25T13:38:50.522975+00:00",
+  "generated_at": "2026-11-25T15:33:26.609992+00:00",
   "basis_note": "Current balance = starting balance + realised campaign-sized FIFO P&L. New positions use the full realised campaign balance and the configured risk percentage. Legacy trades retain their pre-sizing ledger basis.",
   "challenges": [
     {
@@ -10,7 +10,7 @@
       "edition": "STANDARD",
       "instrument": "GOLD",
       "currency": "USD",
-      "risk_percentage": 1.0,
+      "risk_percentage": 5.0,
       "starting_balance": 500.0,
       "target_balance": 5000.0,
       "current_balance": 505.46,
