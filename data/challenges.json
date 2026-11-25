@@ -1,14 +1,16 @@
 {
-  "generated_at": "2026-11-24T21:45:07.479047+00:00",
-  "basis_note": "Current balance = starting balance + realised FIFO ledger P&L. No position-size normalisation or FX conversion is applied.",
+  "generated_at": "2026-11-25T13:19:17.765754+00:00",
+  "basis_note": "Current balance = starting balance + realised campaign-sized FIFO P&L. New positions use the full realised campaign balance and the configured risk percentage. Legacy trades retain their pre-sizing ledger basis.",
   "challenges": [
     {
       "id": "15",
       "name": "Gold Rush",
       "brief": "",
       "asset_class": "METAL",
+      "edition": "STANDARD",
       "instrument": "GOLD",
       "currency": "USD",
+      "risk_percentage": 1.0,
       "starting_balance": 500.0,
       "target_balance": 5000.0,
       "current_balance": 500.0,
@@ -28,7 +30,7 @@
       "starts_at": null,
       "archived": false,
       "subtitle": "GOLD · Active",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": []
     },
     {
@@ -36,8 +38,10 @@
       "name": "Gold Rush",
       "brief": "",
       "asset_class": "METAL",
+      "edition": "STANDARD",
       "instrument": "GOLD",
       "currency": "USD",
+      "risk_percentage": 1.0,
       "starting_balance": 500.0,
       "target_balance": 5000.0,
       "current_balance": 500.0,
@@ -57,7 +61,7 @@
       "starts_at": "2026-12-01T19:30:00+05:30",
       "archived": false,
       "subtitle": "GOLD · Scheduled",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": []
     },
     {
@@ -65,8 +69,10 @@
       "name": "Gold Rush",
       "brief": "",
       "asset_class": "METAL",
+      "edition": "STANDARD",
       "instrument": "GOLD",
       "currency": "USD",
+      "risk_percentage": 1.0,
       "starting_balance": 500.0,
       "target_balance": 5000.0,
       "current_balance": 500.0,
@@ -86,7 +92,7 @@
       "starts_at": "2026-12-01T19:03:00+05:30",
       "archived": false,
       "subtitle": "GOLD · Scheduled",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": []
     },
     {
@@ -94,8 +100,10 @@
       "name": "Global Multi-Market Challenge",
       "brief": "",
       "asset_class": "GENERAL",
+      "edition": "STANDARD",
       "instrument": "GENERAL",
       "currency": "USD",
+      "risk_percentage": 1.0,
       "starting_balance": 500.0,
       "target_balance": 5000.0,
       "current_balance": 500.0,
@@ -115,7 +123,7 @@
       "starts_at": "2026-12-01T19:30:00+05:30",
       "archived": false,
       "subtitle": "GENERAL · Scheduled",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": []
     },
     {
@@ -123,8 +131,10 @@
       "name": "Crypto Rush",
       "brief": "",
       "asset_class": "CRYPTO",
+      "edition": "STANDARD",
       "instrument": "CRYPTO",
       "currency": "USD",
+      "risk_percentage": 1.0,
       "starting_balance": 100.0,
       "target_balance": 1000.0,
       "current_balance": 100.0,
@@ -144,7 +154,7 @@
       "starts_at": null,
       "archived": false,
       "subtitle": "CRYPTO · Active",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": []
     },
     {
@@ -152,8 +162,10 @@
       "name": "Crypto Rush",
       "brief": "",
       "asset_class": "CRYPTO",
+      "edition": "STANDARD",
       "instrument": "CRYPTO",
       "currency": "USD",
+      "risk_percentage": 1.0,
       "starting_balance": 100.0,
       "target_balance": 1000.0,
       "current_balance": 100.0,
@@ -173,7 +185,7 @@
       "starts_at": null,
       "archived": true,
       "subtitle": "CRYPTO · Completed",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": []
     },
     {
@@ -181,8 +193,10 @@
       "name": "Global Multi-Market Challenge",
       "brief": "",
       "asset_class": "GENERAL",
+      "edition": "STANDARD",
       "instrument": "GENERAL",
       "currency": "USD",
+      "risk_percentage": 1.0,
       "starting_balance": 500.0,
       "target_balance": 5000.0,
       "current_balance": 500.0,
@@ -202,7 +216,7 @@
       "starts_at": "2026-12-01T19:30:00+05:30",
       "archived": true,
       "subtitle": "GENERAL · Completed",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": []
     },
     {
@@ -210,8 +224,10 @@
       "name": "Global Multi-Market Challenge",
       "brief": "",
       "asset_class": "GENERAL",
+      "edition": "STANDARD",
       "instrument": "GENERAL",
       "currency": "USD",
+      "risk_percentage": 1.0,
       "starting_balance": 500.0,
       "target_balance": 5000.0,
       "current_balance": 500.0,
@@ -231,7 +247,7 @@
       "starts_at": "2026-12-01T19:30:00+05:30",
       "archived": true,
       "subtitle": "GENERAL · Completed",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": []
     },
     {
@@ -239,8 +255,10 @@
       "name": "Global Multi-Market Challenge",
       "brief": "",
       "asset_class": "GENERAL",
+      "edition": "STANDARD",
       "instrument": "GENERAL",
       "currency": "USD",
+      "risk_percentage": 1.0,
       "starting_balance": 500.0,
       "target_balance": 5000.0,
       "current_balance": 500.0,
@@ -260,7 +278,7 @@
       "starts_at": "2026-12-01T19:30:00+05:30",
       "archived": true,
       "subtitle": "GENERAL · Completed",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": []
     },
     {
@@ -268,8 +286,10 @@
       "name": "General Challenge",
       "brief": "",
       "asset_class": "GENERAL",
+      "edition": "STANDARD",
       "instrument": "GENERAL",
       "currency": "USD",
+      "risk_percentage": 1.0,
       "starting_balance": 500.0,
       "target_balance": 5000.0,
       "current_balance": 500.0,
@@ -289,7 +309,7 @@
       "starts_at": "2026-12-01T19:30:00+05:30",
       "archived": true,
       "subtitle": "GENERAL · Completed",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": []
     },
     {
@@ -297,8 +317,10 @@
       "name": "General Challenge",
       "brief": "",
       "asset_class": "GENERAL",
+      "edition": "STANDARD",
       "instrument": "GENERAL",
       "currency": "USD",
+      "risk_percentage": 1.0,
       "starting_balance": 500.0,
       "target_balance": 5000.0,
       "current_balance": 500.0,
@@ -318,7 +340,7 @@
       "starts_at": null,
       "archived": true,
       "subtitle": "GENERAL · Completed",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": []
     },
     {
@@ -326,8 +348,10 @@
       "name": "General Challenge",
       "brief": "",
       "asset_class": "GENERAL",
+      "edition": "STANDARD",
       "instrument": "GENERAL",
       "currency": "USD",
+      "risk_percentage": 1.0,
       "starting_balance": 1000.0,
       "target_balance": 10000.0,
       "current_balance": 1000.0,
@@ -347,7 +371,7 @@
       "starts_at": "2026-11-30T19:30:00+05:30",
       "archived": true,
       "subtitle": "GENERAL · Completed",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": []
     },
     {
@@ -355,8 +379,10 @@
       "name": "Gold Rush",
       "brief": "",
       "asset_class": "METAL",
+      "edition": "STANDARD",
       "instrument": "GOLD",
       "currency": "USD",
+      "risk_percentage": 1.0,
       "starting_balance": 100.0,
       "target_balance": 1000.0,
       "current_balance": 100.0,
@@ -376,7 +402,7 @@
       "starts_at": "2026-11-27T20:00:00+05:30",
       "archived": true,
       "subtitle": "GOLD · Completed",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": []
     },
     {
@@ -384,8 +410,10 @@
       "name": "Crypto Rush",
       "brief": "",
       "asset_class": "CRYPTO",
+      "edition": "STANDARD",
       "instrument": "CRYPTO",
       "currency": "USD",
+      "risk_percentage": 1.0,
       "starting_balance": 100.0,
       "target_balance": 1000.0,
       "current_balance": 100.0,
@@ -405,7 +433,7 @@
       "starts_at": "2026-11-27T20:00:00+05:30",
       "archived": true,
       "subtitle": "CRYPTO · Completed",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": []
     },
     {
@@ -413,8 +441,10 @@
       "name": "Gold Challenge",
       "brief": "",
       "asset_class": "METAL",
+      "edition": "STANDARD",
       "instrument": "GOLD",
       "currency": "USD",
+      "risk_percentage": 1.0,
       "starting_balance": 500.0,
       "target_balance": 5000.0,
       "current_balance": 1319.7,
@@ -434,7 +464,7 @@
       "starts_at": null,
       "archived": true,
       "subtitle": "GOLD · Completed",
-      "description": "Campaign progress based on realised FIFO ledger P&L. Figures are not normalised for position size or currency conversion.",
+      "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": [
         {
           "opened_at": "2026-11-24T12:13:54.376566+05:30",
@@ -444,7 +474,14 @@
           "leverage_multiplier": 50,
           "entry_price": 4482.305,
           "exit_price": 4474.108,
-          "realised_pnl": 819.7
+          "realised_pnl": 819.7,
+          "quantity": null,
+          "quantity_label": "",
+          "risk_percentage": null,
+          "risk_amount": null,
+          "balance_before": null,
+          "sizing_status": "LEGACY",
+          "sizing_reason": ""
         }
       ]
     }
