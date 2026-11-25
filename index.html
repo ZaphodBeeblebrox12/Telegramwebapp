@@ -14,7 +14,7 @@
   <style>
     :root{--paper:#f4f0e8;--paper2:#ebe5d9;--ink:#242923;--muted:#73766d;--line:#d9d2c5;--terra:#b95f43;--terra2:#e9c5b5;--sage:#748574;--sage2:#d9e0d4;--gold:#c49a53;--white:#fffdf8;--shadow:0 12px 30px rgba(44,40,32,.07);font-family:"DM Sans",sans-serif;color:var(--ink);background:var(--paper)}
     *{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--paper)}button,input,select{font:inherit}button{cursor:pointer}
-    .app{max-width:560px;margin:0 auto;min-height:100dvh;padding:0 18px calc(102px + env(safe-area-inset-bottom));position:relative}
+    .app{max-width:560px;margin:0 auto;min-height:100dvh;padding:0 18px calc(158px + env(safe-area-inset-bottom));position:relative}
     .topbar{height:62px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
     .brand{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
     .brand-mark{width:46px;height:46px;padding:0;display:block;flex:0 0 auto;object-fit:contain;border-radius:50%}
@@ -114,6 +114,23 @@
       .global-pocket .global-pocket-metrics div{padding:7px 5px}
     }
     .campaign-hero.crypto{background:radial-gradient(circle at 82% 18%,rgba(62,222,197,.18),transparent 30%),linear-gradient(125deg,#071b2b,#14294e 54%,#092d38);color:#eafffb;border:1px solid #42cdbd}
+    .campaign-hero.forex{background:radial-gradient(circle at 82% 18%,rgba(137,163,237,.16),transparent 30%),linear-gradient(125deg,#141c35,#283b65 55%,#172642);color:#f0f3ff;border:1px solid #8297cb}
+    .campaign-hero.energy{background:radial-gradient(circle at 82% 18%,rgba(244,177,99,.16),transparent 30%),linear-gradient(125deg,#2a1b13,#624027 55%,#2b2118);color:#fff5e8;border:1px solid #c58a50}
+    .campaign-hero.index{background:radial-gradient(circle at 82% 18%,rgba(173,157,255,.16),transparent 30%),linear-gradient(125deg,#211d36,#423b68 55%,#26213f);color:#f5f1ff;border:1px solid #a89be2}
+    .campaign-hero.stock{background:radial-gradient(circle at 82% 18%,rgba(142,205,147,.15),transparent 30%),linear-gradient(125deg,#14271d,#2e533d 55%,#183223);color:#f0fff2;border:1px solid #83b48c}
+    .campaign-hero.option{background:radial-gradient(circle at 82% 18%,rgba(234,160,145,.15),transparent 30%),linear-gradient(125deg,#2a1b20,#60333b 55%,#2c2028);color:#fff0ed;border:1px solid #cc8c86}
+    .campaign-hero.commodity{background:radial-gradient(circle at 82% 18%,rgba(219,194,132,.15),transparent 30%),linear-gradient(125deg,#292317,#5b4b2b 55%,#30291c);color:#fff9e9;border:1px solid #c5ad70}
+    .campaign-hero.metal{background:radial-gradient(circle at 82% 18%,rgba(188,212,222,.16),transparent 30%),linear-gradient(125deg,#1c252a,#3c505a 55%,#202c32);color:#f2fbff;border:1px solid #9cb2bc}
+    .campaign-hero.other{background:linear-gradient(125deg,#1c2721,#35473a 55%,#202d25);color:#f5fff5;border:1px solid #9aac9b}
+    .campaign-hero.forex .tag,.campaign-hero.forex .profit{color:#c3d1ff}
+    .campaign-hero.energy .tag,.campaign-hero.energy .profit{color:#ffd09a}
+    .campaign-hero.index .tag,.campaign-hero.index .profit{color:#d1c8ff}
+    .campaign-hero.stock .tag,.campaign-hero.stock .profit{color:#bce8c2}
+    .campaign-hero.option .tag,.campaign-hero.option .profit{color:#ffc4b8}
+    .campaign-hero.commodity .tag,.campaign-hero.commodity .profit{color:#ead6a6}
+    .campaign-hero.metal .tag,.campaign-hero.metal .profit{color:#d4e2e8}
+    .campaign-hero.other .tag,.campaign-hero.other .profit{color:#d5ded4}
+    .campaign-hero.forex .headline,.campaign-hero.energy .headline,.campaign-hero.index .headline,.campaign-hero.stock .headline,.campaign-hero.option .headline,.campaign-hero.commodity .headline,.campaign-hero.metal .headline,.campaign-hero.other .headline{color:#fff}
     .campaign-hero.crypto:before{content:"BLOCK BY BLOCK";position:absolute;right:-15px;top:31px;transform:rotate(90deg);font:900 9px "DM Mono",monospace;letter-spacing:.2em;color:#75e5dd55;z-index:-1}
     .campaign-hero.crypto .tag{color:#81f3d7}
     .campaign-hero.crypto .stage{color:#a6c9dd}
@@ -211,6 +228,29 @@
     .trade-history-pnl.flat{color:var(--muted)}
     .link-list{display:flex;flex-direction:column}.link-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);background:none;border-left:0;border-right:0;border-top:0;text-align:left;width:100%}.link-row:last-child{border-bottom:0}.link-row strong{font:600 15px "Playfair Display",serif;display:block}.link-row span{font-size:10px;color:var(--muted);display:block;margin-top:4px}.link-row b{color:var(--terra);font-size:17px;font-weight:400}
     .quote{margin:16px 0;padding:18px 17px;border-left:2px solid var(--terra);background:#eee8dc;font:italic 17px/1.4 "Playfair Display",serif}.quote small{display:block;font:9px "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+    .campaign-dock{position:fixed;z-index:6;left:50%;transform:translateX(-50%);bottom:calc(57px + env(safe-area-inset-bottom));width:min(560px,100%);min-height:48px;padding:6px 12px 7px;display:grid;grid-template-columns:70px minmax(0,1fr);align-items:center;gap:8px;background:rgba(244,240,232,.97);border-top:1px solid var(--line);box-shadow:0 -6px 18px rgba(44,40,32,.08);backdrop-filter:blur(15px)}
+    .campaign-dock[hidden]{display:none!important}
+    body[data-view="home"] .campaign-dock,body[data-view="challenges"] .campaign-dock{display:none}
+    .campaign-dock-label{font:800 8px/1.35 "DM Mono",monospace;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+    .campaign-dock-list{display:flex;align-items:center;gap:7px;min-width:0;overflow-x:auto;scrollbar-width:none}
+    .campaign-dock-list::-webkit-scrollbar{display:none}
+    .campaign-dock-item{flex:0 0 auto;min-width:156px;max-width:210px;display:flex;align-items:center;gap:7px;padding:6px 8px;border:1px solid var(--line);background:var(--white);color:var(--ink);text-decoration:none;border-radius:3px}
+    .campaign-dock-symbol{width:25px;height:25px;flex:none;display:grid;place-items:center;border-radius:50%;background:#e8e4da;color:#53594f;font:800 9px "DM Mono",monospace}
+    .campaign-dock-copy{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+    .campaign-dock-copy strong{font:700 9px "DM Sans",sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .campaign-dock-copy small{font:7px "DM Mono",monospace;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
+    .campaign-dock-stat{font:800 9px "DM Mono",monospace;color:var(--sage);white-space:nowrap}
+    .campaign-dock-item.upcoming .campaign-dock-stat{color:#9b783d}
+    .campaign-dock-item.gold .campaign-dock-symbol{background:#f3e8cf;color:#916322}
+    .campaign-dock-item.crypto .campaign-dock-symbol{background:#d9f2ec;color:#157b78}
+    .campaign-dock-item.general .campaign-dock-symbol{background:#dcebe0;color:#356c50}
+    .campaign-dock-item.forex .campaign-dock-symbol{background:#e1e6f5;color:#40598f}
+    .campaign-dock-item.energy .campaign-dock-symbol{background:#f5e3d2;color:#a35c28}
+    .campaign-dock-item.index .campaign-dock-symbol{background:#e6e2f5;color:#5d5296}
+    .campaign-dock-item.stock .campaign-dock-symbol{background:#deebdf;color:#42734d}
+    .campaign-dock-item.option .campaign-dock-symbol{background:#f2dfdb;color:#a14f4a}
+    .campaign-dock-item.metal .campaign-dock-symbol,.campaign-dock-item.commodity .campaign-dock-symbol{background:#e2e8e9;color:#5b6b72}
+    @media(max-width:380px){.campaign-dock{grid-template-columns:59px minmax(0,1fr);padding-left:8px;padding-right:8px;gap:6px}.campaign-dock-item{min-width:144px;max-width:185px}}
     .bottom-nav{position:fixed;z-index:5;bottom:0;left:50%;transform:translateX(-50%);width:min(560px,100%);padding:10px 13px calc(10px + env(safe-area-inset-bottom));background:rgba(244,240,232,.96);backdrop-filter:blur(15px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr)}
     .nav-item{border:0;background:none;color:#898a80;display:flex;flex-direction:column;align-items:center;gap:5px;padding:3px 0;font-size:9px;font-weight:600}.nav-item .nav-icon{font:18px "Playfair Display",serif;line-height:1}.nav-item.active{color:var(--terra)}
     .footer{font:9px "DM Mono",monospace;color:#99988d;text-align:center;padding:25px 0 8px;letter-spacing:.08em}
@@ -237,7 +277,7 @@
     body.campaign-render-mode #activeChallenges .campaign-hero *{animation:none!important;transition:none!important}
   </style>
 </head>
-<body>
+<body data-view="home">
   <main class="app">
     <header class="topbar">
       <div class="brand"><img class="brand-mark" src="./assets/tradethesis-mark.svg?v=2" alt="" aria-hidden="true"><span>TradeThesis</span></div>
@@ -308,6 +348,11 @@
     </section>
   </main>
 
+  <aside class="campaign-dock" id="campaignDock" hidden aria-label="Campaign tracker">
+    <div class="campaign-dock-label">CAMPAIGN<br>TRACKER</div>
+    <div class="campaign-dock-list" id="campaignDockList"></div>
+  </aside>
+
   <nav class="bottom-nav" aria-label="Main navigation">
     <button class="nav-item active" data-view="home" onclick="showView('home')"><span class="nav-icon">⌂</span>Home</button>
     <button class="nav-item" data-view="challenges" onclick="showView('challenges')"><span class="nav-icon">⚑</span>Challenges</button>
@@ -350,6 +395,7 @@
     const nav = document.querySelector('.bottom-nav');
     function showView(name) {
       currentView = name;
+      document.body.dataset.view = name;
       views.forEach(v => document.getElementById(v+'View').classList.toggle('active', v===name));
       document.querySelectorAll('.nav-item').forEach(b => b.classList.toggle('active', b.dataset.view===name || (name==='tool' && b.dataset.view==='tools')));
       if (tg && tg.BackButton) { if (name==='home') tg.BackButton.hide(); else { tg.BackButton.show(); } }
@@ -387,7 +433,7 @@
       const e=num('rrEntry'),s=num('rrStop'),t=num('rrTarget'),d=document.getElementById('rrDirection').value;
       const risk=d==='long'?e-s:s-e,reward=d==='long'?t-e:e-t;
       if(!(risk>0&&reward>0)){showResult('rrResult','Invalid trade geometry','—','For a long: stop below entry and target above. For a short: stop above entry and target below.');return}
-      showResult('rrResult','Potential reward / risk','1 : '+fmt(reward/risk),'Risk distance: '+fmt(risk)+' · Reward distance: '+fmt(reward));
+      showResult('rrResult','Potential reward / risk',fmt(reward/risk)+' : 1','Reward distance: '+fmt(reward)+' · Risk distance: '+fmt(risk));
     }
     function calculateMargin(){const u=num('mUnits'),p=num('mPrice'),l=num('mLev');if(!(u>0&&p>0&&l>0)){showResult('marginResult','Check your inputs','—','All values must be greater than zero.');return}const n=u*p;showResult('marginResult','Indicative margin',fmt(n/l),'Notional exposure: '+fmt(n)+' · Leverage: '+fmt(l)+':1');}
     function calculatePip(){const u=num('pipUnits'),s=num('pipSize');if(!(u>0&&s>0)){showResult('pipResult','Check your inputs','—','Enter a positive position size.');return}showResult('pipResult','Pip value in quote currency',fmt(u*s),'Units × pip size. Convert the quote currency when it differs from your account currency.');}
@@ -397,21 +443,45 @@
       try{return new Intl.NumberFormat('en-IN',{style:'currency',currency:currency||'USD',maximumFractionDigits:2}).format(amount)}
       catch(e){return (currency||'')+' '+fmt(amount)}
     }
+    const CAMPAIGN_META = {
+      gold:{label:'GOLD',liveLabel:'LIVE GOLD RUSH',headline:'GOLD RUSH',launchHeadline:'GOLD<br>RUSH',launchSubline:'THE GOLD HUNT BEGINS IN',quest:['PICKAXE READY','FIRST STRIKE','GOLD VEIN'],stage:'GOLD MILESTONE',milestone:'NEXT STRIKE',complete:'GOLD RUSH COMPLETE · TARGET CLEARED',theme:'nugget',glyph:'Au',artFill:'#b87926',artStroke:'#ffe2a0',artText:'#fff3c4'},
+      crypto:{label:'CRYPTO',liveLabel:'LIVE CRYPTO RUSH',headline:'CRYPTO RUSH',launchHeadline:'THE CRYPTO<br>QUEST',launchSubline:'THE QUEST BEGINS IN',quest:['GEAR UP','FIRST QUEST','BUILD MOMENTUM'],stage:'QUEST MILESTONE',milestone:'NEXT QUEST',complete:'ALL QUEST MILESTONES CLEARED',theme:'crypto',glyph:'₿',artFill:'#31b9b4',artStroke:'#a2fff0',artText:'#063448'},
+      general:{label:'GLOBAL',liveLabel:'LIVE GLOBAL CAMPAIGN',headline:'GLOBAL CHALLENGE',launchHeadline:'GLOBAL<br>CHALLENGE',launchSubline:'MULTIPLE MARKETS GO LIVE IN',quest:['CROSS-MARKET','TRADES COUNT','ONE GOAL'],stage:'CROSS-MARKET',milestone:'NEXT MILESTONE',complete:'GLOBAL CAMPAIGN TARGET CLEARED',theme:'general',glyph:'◎',artFill:'#258b78',artStroke:'#b9e8c9',artText:'#e7fff0'},
+      forex:{label:'FOREX',liveLabel:'LIVE FOREX CAMPAIGN',headline:'FOREX CHALLENGE',launchHeadline:'FOREX<br>CHALLENGE',launchSubline:'THE NEXT SESSION BEGINS IN',quest:['MAP PAIRS','FIND SETUPS','MANAGE RISK'],stage:'FX MILESTONE',milestone:'NEXT SESSION',complete:'FOREX CAMPAIGN TARGET CLEARED',theme:'forex',glyph:'FX',artFill:'#344d83',artStroke:'#c7d6ff',artText:'#f2f5ff'},
+      energy:{label:'ENERGY',liveLabel:'LIVE ENERGY CAMPAIGN',headline:'ENERGY CHALLENGE',launchHeadline:'ENERGY<br>CHALLENGE',launchSubline:'THE NEXT ENERGY MOVE BEGINS IN',quest:['TRACK SUPPLY','READ MOMENTUM','MANAGE RISK'],stage:'ENERGY MILESTONE',milestone:'NEXT MILESTONE',complete:'ENERGY CAMPAIGN TARGET CLEARED',theme:'energy',glyph:'⚡',artFill:'#a95f2c',artStroke:'#ffd39b',artText:'#fff2df'},
+      index:{label:'INDICES',liveLabel:'LIVE INDICES CAMPAIGN',headline:'INDICES CHALLENGE',launchHeadline:'INDICES<br>CHALLENGE',launchSubline:'THE NEXT MARKET SESSION BEGINS IN',quest:['READ THE INDEX','WAIT FOR SETUPS','MANAGE RISK'],stage:'INDEX MILESTONE',milestone:'NEXT MILESTONE',complete:'INDICES CAMPAIGN TARGET CLEARED',theme:'index',glyph:'IDX',artFill:'#4b4b91',artStroke:'#d0caff',artText:'#f2f0ff'},
+      stock:{label:'STOCKS',liveLabel:'LIVE STOCKS CAMPAIGN',headline:'STOCKS CHALLENGE',launchHeadline:'STOCKS<br>CHALLENGE',launchSubline:'THE NEXT EQUITY SESSION BEGINS IN',quest:['SCAN THE FIELD','SELECT SETUPS','MANAGE RISK'],stage:'STOCK MILESTONE',milestone:'NEXT MILESTONE',complete:'STOCKS CAMPAIGN TARGET CLEARED',theme:'stock',glyph:'↗',artFill:'#38694d',artStroke:'#c5edc9',artText:'#effff0'},
+      option:{label:'OPTIONS',liveLabel:'LIVE OPTIONS CAMPAIGN',headline:'OPTIONS CHALLENGE',launchHeadline:'OPTIONS<br>CHALLENGE',launchSubline:'THE NEXT OPTIONS SETUP BEGINS IN',quest:['READ THE CHAIN','ASSESS THE RISK','EXECUTE WITH PLAN'],stage:'OPTIONS MILESTONE',milestone:'NEXT MILESTONE',complete:'OPTIONS CAMPAIGN TARGET CLEARED',theme:'option',glyph:'Δ',artFill:'#914f4a',artStroke:'#ffd0c1',artText:'#fff1ec'},
+      commodity:{label:'COMMODITIES',liveLabel:'LIVE COMMODITIES CAMPAIGN',headline:'COMMODITIES CHALLENGE',launchHeadline:'COMMODITIES<br>CHALLENGE',launchSubline:'THE NEXT COMMODITY MOVE BEGINS IN',quest:['FOLLOW THE CYCLE','FIND VALUE','MANAGE RISK'],stage:'COMMODITY MILESTONE',milestone:'NEXT MILESTONE',complete:'COMMODITIES CAMPAIGN TARGET CLEARED',theme:'commodity',glyph:'Ag',artFill:'#78613b',artStroke:'#ead6a6',artText:'#fff8e8'},
+      metal:{label:'METALS',liveLabel:'LIVE METALS CAMPAIGN',headline:'METALS CHALLENGE',launchHeadline:'METALS<br>CHALLENGE',launchSubline:'THE NEXT METALS MOVE BEGINS IN',quest:['TRACK THE METAL','READ PRICE ACTION','MANAGE RISK'],stage:'METALS MILESTONE',milestone:'NEXT MILESTONE',complete:'METALS CAMPAIGN TARGET CLEARED',theme:'metal',glyph:'Ag',artFill:'#61717a',artStroke:'#d4e2e8',artText:'#f5fbff'},
+      other:{label:'MARKET',liveLabel:'LIVE MARKET CAMPAIGN',headline:'MARKET CHALLENGE',launchHeadline:'MARKET<br>CHALLENGE',launchSubline:'THE NEXT MARKET MOVE BEGINS IN',quest:['ASSESS CONDITIONS','WAIT FOR SETUPS','MANAGE RISK'],stage:'CAMPAIGN MILESTONE',milestone:'NEXT MILESTONE',complete:'CAMPAIGN TARGET CLEARED',theme:'other',glyph:'∴',artFill:'#48504a',artStroke:'#d5ded4',artText:'#f5fff5'}
+    };
     function campaignKind(c){
-      const asset=String(c.asset_class||'').toUpperCase();
-      const instrument=String(c.instrument||'').toUpperCase();
-      if(asset.includes('CRYPTO')||/\b(BTC|BITCOIN|ETH|ETHEREUM|SOL|SOLANA|XRP|ADA|DOGE|AVAX|BNB)\b/.test(instrument)) return 'crypto';
-      if(asset.includes('METAL')||/GOLD|XAU/.test(instrument)||/GOLD/i.test(String(c.name||''))) return 'gold';
-      return 'general';
+      const asset=String(c&&c.asset_class||'').trim().toUpperCase().replace(/[^A-Z0-9]+/g,'_');
+      const instrument=String(c&&c.instrument||'').trim().toUpperCase();
+      const name=String(c&&c.name||'').trim().toUpperCase();
+      const descriptor=asset+' '+instrument+' '+name;
+      if(/(^|_)(GENERAL|ALL|ALL_MARKETS)(_|$)/.test(asset)||/\b(GENERAL|ALL_MARKETS)\b/.test(instrument)) return 'general';
+      if(asset.includes('CRYPTO')||/\b(BTC|BITCOIN|ETH|ETHEREUM|SOL|SOLANA|XRP|ADA|DOGE|AVAX|BNB)\b/.test(descriptor)) return 'crypto';
+      if(asset.includes('FOREX')||asset==='FX'||asset.includes('CURRENCY')||/\b(FOREX|FX)\b/.test(instrument)) return 'forex';
+      if(asset.includes('ENERGY')||/\b(ENERGY|OIL|GAS|NATURAL_GAS|BRENT|WTI)\b/.test(instrument)) return 'energy';
+      if(asset.includes('INDEX')||asset.includes('INDICE')||/\b(INDEX|INDICES)\b/.test(instrument)) return 'index';
+      if(asset.includes('STOCK')||asset.includes('EQUITY')||/\b(STOCKS|EQUITIES)\b/.test(instrument)) return 'stock';
+      if(asset.includes('OPTION')||asset.includes('DERIVATIVE')||/\b(OPTIONS|OPTION)\b/.test(instrument)) return 'option';
+      if(asset.includes('COMMODITY')||asset.includes('AGRICULTURE')) return 'commodity';
+      if(asset.includes('METAL')||/\b(GOLD|XAU)\b/.test(descriptor)) return /\b(GOLD|XAU)\b/.test(descriptor) ? 'gold' : 'metal';
+      if(/\b(SILVER|XAG|PLATINUM|PALLADIUM)\b/.test(descriptor)) return 'metal';
+      if(/\b(GOLD|XAU)\b/.test(descriptor)) return 'gold';
+      return 'other';
     }
     function campaignDisplayName(c){
       const name=String(c&&c.name||'').trim();
       if(name) return name;
-      const kind=campaignKind(c);
-      if(kind==='gold') return 'Gold Challenge';
-      if(kind==='crypto') return 'Crypto Challenge';
-      if(kind==='general') return 'Global Multi-Market Challenge';
-      return 'Trading Challenge';
+      const defaults={gold:'Gold Challenge',crypto:'Crypto Challenge',general:'Global Multi-Market Challenge',forex:'Forex Challenge',energy:'Energy Challenge',index:'Indices Challenge',stock:'Stocks Challenge',option:'Options Challenge',commodity:'Commodities Challenge',metal:'Metals Challenge'};
+      return defaults[campaignKind(c)]||'Trading Challenge';
+    }
+    function campaignIcon(kind){
+      return (CAMPAIGN_META[kind]||CAMPAIGN_META.other).glyph;
     }
     function challengeUrl(c,source){
       const id=String(c&&c.id!==undefined&&c.id!==null?c.id:'').trim();
@@ -506,6 +576,7 @@
       if(kind==='general') return campaignGlobalLiveBanner(c,source);
       const isCrypto=kind==='crypto';
       const isGeneral=kind==='general';
+      const meta=CAMPAIGN_META[kind]||CAMPAIGN_META.other;
       const width=Math.min(100,Math.max(0,Number(c.progress_pct||0)));
       const progressValue=Number(c.progress_pct||0);
       const progress=fmt(progressValue);
@@ -516,8 +587,8 @@
       const balance=campaignMoney(c.current_balance,currency);
       const realised=Number(c.realised_pnl||0);
       const pnl=(realised>=0?'+':'−')+campaignMoney(Math.abs(realised),currency);
-      const label=(isCrypto?'LIVE CRYPTO RUSH':kind==='gold'?'LIVE GOLD RUSH':isGeneral?'LIVE GENERAL CAMPAIGN':'LIVE CAMPAIGN')+' · #'+String(c.id||'');
-      const headline=isCrypto?'CRYPTO RUSH':kind==='gold'?'GOLD RUSH':isGeneral?'GENERAL CHALLENGE':'MARKET RUSH';
+      const label=meta.liveLabel+' · #'+String(c.id||'');
+      const headline=meta.headline;
       const markerId='campaign-marker-'+String(c.id||'live').replace(/[^a-z0-9_-]/gi,'');
       let marker='';
       if(isCrypto){
@@ -548,17 +619,22 @@
           '<path d="M17 14 Q25 8 35 10" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".72"/>'+
           '<circle cx="30" cy="30" r="21.5" fill="none" stroke="#e4fff0" stroke-width=".85"/>'+
           '</svg>';
-      }else{
+      }else if(kind==='gold'){
         marker='<svg class="progress-marker" style="left:'+width+'%" viewBox="0 0 48 42" role="img" aria-label="Gold nugget at current progress">'+
           '<defs><linearGradient id="'+markerId+'" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0a8"/><stop offset=".42" stop-color="#f3c65e"/><stop offset="1" stop-color="#a9661b"/></linearGradient></defs>'+
           '<path d="M5 26 L9 11 L19 4 L33 7 L43 18 L38 33 L22 39 L9 35 Z" fill="url(#'+markerId+')" stroke="#ffe9a3" stroke-width="1.5"/>'+
           '<path d="M9 12 L20 17 L33 7 M20 17 L22 39 M20 17 L43 18 M9 12 L5 26" fill="none" stroke="#fff1bd" stroke-width="1.6" opacity=".8"/>'+
           '<path d="M17 8 L23 12 L19 17 L10 15 Z" fill="#fff4c8" opacity=".65"/></svg>';
+      }else{
+        marker='<svg class="progress-marker" style="left:'+width+'%" viewBox="0 0 48 48" role="img" aria-label="'+meta.label+' campaign progress">'+
+          '<circle cx="24" cy="24" r="20" fill="'+meta.artFill+'" stroke="'+meta.artStroke+'" stroke-width="2"/>'+
+          '<circle cx="24" cy="24" r="15.5" fill="none" stroke="'+meta.artText+'" stroke-width="1" opacity=".55"/>'+
+          '<text x="24" y="29" text-anchor="middle" font-family="Arial,sans-serif" font-size="'+(meta.glyph.length>2?10:16)+'" font-weight="900" fill="'+meta.artText+'">'+meta.glyph+'</text></svg>';
       }
       const action='OPEN '+campaignDisplayName(c).toUpperCase()+' #'+String(c.id||'')+' ↗';
-      const caption=nextMilestone?(isCrypto?'NEXT QUEST · '+nextMilestone+'% MILESTONE':kind==='gold'?'NEXT STRIKE · '+nextMilestone+'% MILESTONE':'NEXT MILESTONE · '+nextMilestone+'%'):(isCrypto?'ALL QUEST MILESTONES CLEARED':kind==='gold'?'GOLD RUSH COMPLETE · TARGET CLEARED':'TARGET CLEARED');
-      const stage=isCrypto?'QUEST MILESTONE':isGeneral?'CROSS-MARKET':'MILESTONE 01';
-      return '<div class="campaign-hero '+(isCrypto?'crypto':kind==='gold'?'nugget':'general')+'" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign #'+escapeHtml(c.id)+'">'+
+      const caption=nextMilestone?meta.milestone+' · '+nextMilestone+'% MILESTONE':meta.complete;
+      const stage=meta.stage;
+      return '<div class="campaign-hero '+meta.theme+'" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign #'+escapeHtml(c.id)+'">'+
         '<div class="top"><span class="tag">'+label+'</span><span class="micro stage">'+stage+'</span></div>'+
         '<div class="headline">'+headline+'</div>'+
         '<div class="sub">'+caption+'</div>'+
@@ -572,6 +648,7 @@
       if(kind==='general') return campaignGlobalUpcomingBanner(c,source);
       const isCrypto=kind==='crypto';
       const isGeneral=kind==='general';
+      const meta=CAMPAIGN_META[kind]||CAMPAIGN_META.other;
       const timestamp=Date.parse(c.starts_at||'');
       if(!Number.isFinite(timestamp)) return '';
       const title=campaignDisplayName(c);
@@ -581,13 +658,10 @@
         timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',
         hour:'2-digit',minute:'2-digit',hour12:true
       })+' IST';
-      const cls=isCrypto?'crypto':isGeneral?'general':'nugget';
-      const headline=isCrypto?'THE CRYPTO<br>QUEST':isGeneral?'GENERAL<br>CHALLENGE':'GOLD RUSH';
-      const subline=isCrypto?'THE QUEST BEGINS IN':isGeneral?'MULTIPLE MARKETS GO LIVE IN':'THE GOLD HUNT BEGINS IN';
-      const quest=isCrypto
-        ?['GEAR UP','FIRST QUEST','BUILD MOMENTUM']
-        :isGeneral?['CROSS-MARKET','TRADES COUNT','ONE GOAL']
-        :['PICKAXE READY','FIRST STRIKE','GOLD VEIN'];
+      const cls=meta.theme;
+      const headline=meta.launchHeadline;
+      const subline=meta.launchSubline;
+      const quest=meta.quest;
       const art=isCrypto
         ?'<svg viewBox="0 0 150 112" role="img" aria-label="A glowing crypto token on a connected blockchain trail">'+
           '<path d="M10 82 C38 84 45 45 73 51 S106 88 139 22" fill="none" stroke="#70ead7" stroke-width="3" stroke-dasharray="4 6" opacity=".58"/>'+
@@ -611,7 +685,7 @@
           '<circle cx="12" cy="84" r="5" fill="#e7fff0" stroke="#7cb99a" stroke-width="1.5"/>'+
           '<path d="M20 26 L23 16 L26 26 L36 29 L26 32 L23 42 L20 32 L10 29 Z" fill="#d7f9df" opacity=".8"/>'+
           '</svg>'
-        :'<svg viewBox="0 0 150 112" role="img" aria-label="A shining gold nugget on a treasure trail leading to a locked chest">'+
+        :kind==='gold' ? '<svg viewBox="0 0 150 112" role="img" aria-label="A shining gold nugget on a treasure trail leading to a locked chest">'+
           '<path d="M8 86 C36 90 45 49 75 57 S111 83 141 28" fill="none" stroke="#f4ce76" stroke-width="3" stroke-dasharray="4 6" opacity=".68"/>'+
           '<path d="M15 86 L27 86 M130 45 L141 28" stroke="#ffe7a4" stroke-width="2" opacity=".62"/>'+
           '<path d="M34 61 L39 33 L58 15 L83 20 L100 43 L91 70 L63 82 L42 76 Z" fill="#b87926" stroke="#ffdf83" stroke-width="2"/>'+
@@ -624,9 +698,17 @@
           '<circle cx="16" cy="86" r="5" fill="#ffe8a2" stroke="#fff7d6" stroke-width="1.5"/>'+
           '<path d="M113 20 L116 10 L119 20 L129 23 L119 26 L116 36 L113 26 L103 23 Z" fill="#ffe8a2" opacity=".9"/>'+
           '<path d="M30 14 L32 8 L34 14 L40 16 L34 18 L32 24 L30 18 L24 16 Z" fill="#ffe8a2" opacity=".75"/>'+
+          '</svg>'
+        : '<svg viewBox="0 0 150 112" role="img" aria-label="'+meta.label+' market campaign symbol">'+
+          '<path d="M10 82 C38 84 45 45 73 51 S106 88 139 22" fill="none" stroke="'+meta.artStroke+'" stroke-width="3" stroke-dasharray="4 6" opacity=".58"/>'+
+          '<path d="M15 82 L27 82 M125 36 L139 22" stroke="'+meta.artStroke+'" stroke-width="2" opacity=".6"/>'+
+          '<circle cx="74" cy="53" r="34" fill="'+meta.artFill+'" stroke="'+meta.artStroke+'" stroke-width="2"/>'+
+          '<circle cx="74" cy="53" r="27" fill="none" stroke="'+meta.artText+'" stroke-width="1.2" opacity=".55"/>'+
+          '<text x="74" y="64" text-anchor="middle" font-family="Arial,sans-serif" font-size="'+(meta.glyph.length>2?18:29)+'" font-weight="900" fill="'+meta.artText+'">'+meta.glyph+'</text>'+
+          '<circle cx="17" cy="82" r="5" fill="'+meta.artStroke+'"/><circle cx="133" cy="27" r="5" fill="'+meta.artStroke+'"/>'+
           '</svg>';
       return '<div class="campaign-hero launch '+cls+'" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" aria-label="Open '+escapeHtml(title)+' challenge #'+escapeHtml(c.id)+'">'+
-        '<div class="top"><span class="tag">UP NEXT · '+escapeHtml(title.toUpperCase())+'</span><span class="micro stage">'+(isGeneral?'MULTI-MARKET':'QUEST LOCKED')+'</span></div>'+
+        '<div class="top"><span class="tag">UP NEXT · '+escapeHtml(title.toUpperCase())+'</span><span class="micro stage">'+meta.stage+'</span></div>'+
         '<div class="launch-main"><div><div class="headline">'+headline+'</div><div class="sub">'+subline+'</div></div><div class="launch-art" aria-hidden="true">'+art+'</div></div>'+
         '<div class="countdown" data-countdown-target="'+timestamp+'">'+
           '<div class="countdown-unit"><b data-countdown-days>00</b><span>DAYS</span></div>'+
@@ -744,15 +826,20 @@
         '</a>'+
       '</div>';
     }
+    let challengeLoadInFlight=false;
+    let lastChallengeLoadAt=0;
     async function loadChallenges(){
+      if(challengeLoadInFlight||campaignRenderMode) return;
+      challengeLoadInFlight=true;
       try{
-        const response=await fetch('./data/challenges.json',{cache:'no-store'});
+        const response=await fetch('./data/challenges.json?refresh='+Date.now(),{cache:'no-store'});
         if(!response.ok) throw new Error('No challenge data');
         const data=await response.json();
         const campaigns=Array.isArray(data.challenges)?data.challenges:[];
-        const active=campaigns.filter(c=>c.active);
-        const scheduled=campaigns.filter(c=>(c.status==='SCHEDULED'||c.scheduled)&&c.starts_at);
-        const archived=campaigns.filter(c=>!c.active&&c.archived);
+        const active=campaigns.filter(c=>String(c.status||'').toUpperCase()==='ACTIVE'||c.active===true);
+        const scheduled=campaigns.filter(c=>(String(c.status||'').toUpperCase()==='SCHEDULED'||c.scheduled===true)&&c.starts_at);
+        const archived=campaigns.filter(c=>String(c.status||'').toUpperCase()==='COMPLETED'||c.archived===true);
+        renderCampaignDock(campaigns);
         const activeGlobal=active.find(c=>campaignKind(c)==='general');
         const nextGlobal=scheduled
           .filter(c=>campaignKind(c)==='general')
@@ -781,12 +868,42 @@
           const updated=new Date(data.generated_at);
           if(!Number.isNaN(updated.getTime())) content.innerHTML+='<p class="note">Campaign figures last published '+updated.toLocaleString()+'</p>';
         }
+        lastChallengeLoadAt=Date.now();
       }catch(e){
-        document.getElementById('activeChallenges').style.display='none';
-        document.getElementById('challengeContent').innerHTML='<div class="empty-state"><div class="symbol">∴</div><h3>Challenge data unavailable</h3><p>Campaign figures will appear here when the publishing bot connects.</p></div>';
+        if(!lastChallengeLoadAt){
+          document.getElementById('activeChallenges').style.display='none';
+          document.getElementById('challengeContent').innerHTML='<div class="empty-state"><div class="symbol">∴</div><h3>Challenge data unavailable</h3><p>Campaign figures will appear here when the publishing bot connects.</p></div>';
+        }
+      }finally{
+        challengeLoadInFlight=false;
       }
     }
+    function refreshChallengesIfStale(force){
+      if(campaignRenderMode||document.visibilityState!=='visible') return;
+      if(force||Date.now()-lastChallengeLoadAt>=30000) loadChallenges();
+    }
         function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+    function renderCampaignDock(campaigns){
+      const dock=document.getElementById('campaignDock');
+      const list=document.getElementById('campaignDockList');
+      if(!dock||!list) return;
+      const active=campaigns.filter(c=>String(c.status||'').toUpperCase()==='ACTIVE'||c.active===true);
+      const upcoming=campaigns.filter(c=>(String(c.status||'').toUpperCase()==='SCHEDULED'||c.scheduled===true)&&c.starts_at)
+        .sort((a,b)=>Date.parse(a.starts_at||'')-Date.parse(b.starts_at||''));
+      const featured=active.length?active:upcoming.slice(0,3);
+      dock.hidden=featured.length===0;
+      dock.dataset.state=active.length?'active':'upcoming';
+      list.innerHTML=featured.map(c=>{
+        const kind=campaignKind(c);
+        const isActive=active.length>0;
+        const meta=isActive?'LIVE · '+(CAMPAIGN_META[kind]||CAMPAIGN_META.other).label+' · #'+String(c.id||''):'UP NEXT · '+new Date(c.starts_at).toLocaleDateString('en-IN',{day:'2-digit',month:'short',timeZone:'Asia/Kolkata'});
+        const value=isActive?fmt(Number(c.progress_pct||0))+'%':'VIEW';
+        return '<a class="campaign-dock-item '+kind+(isActive?'':' upcoming')+'" href="'+challengeUrl(c,'challenges')+'" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign">'+
+          '<span class="campaign-dock-symbol" aria-hidden="true">'+escapeHtml(campaignIcon(kind))+'</span>'+
+          '<span class="campaign-dock-copy"><strong>'+escapeHtml(campaignDisplayName(c))+'</strong><small>'+escapeHtml(meta)+'</small></span>'+
+          '<span class="campaign-dock-stat">'+escapeHtml(value)+'</span></a>';
+      }).join('');
+    }
     function safeUrl(v){try{const u=new URL(v,location.href);return ['https:'].includes(u.protocol)?u.href:'#'}catch(e){return '#'}}
     window.renderCampaignCard = function(campaign){
       if(!campaign || campaign.id===undefined || campaign.id===null){
@@ -810,6 +927,10 @@
       loadChallenges();
       updateCampaignCountdowns();
       window.setInterval(updateCampaignCountdowns,1000);
+      window.setInterval(()=>refreshChallengesIfStale(false),60000);
+      document.addEventListener('visibilitychange',()=>{if(!document.hidden) refreshChallengesIfStale(true);});
+      window.addEventListener('focus',()=>refreshChallengesIfStale(false));
+      window.addEventListener('pageshow',()=>refreshChallengesIfStale(true));
     }
   </script>
 </body>
