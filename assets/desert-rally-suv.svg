@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 148" role="img" aria-label="Yellow Desert Rally performance SUV">
+<defs>
+ <linearGradient id="body" x1="0" y1="0" x2=".1" y2="1"><stop stop-color="#fff08a"/><stop offset=".28" stop-color="#ffd52d"/><stop offset=".7" stop-color="#e7a900"/><stop offset="1" stop-color="#98610b"/></linearGradient>
+ <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#2d3332"/><stop offset="1" stop-color="#070b0b"/></linearGradient>
+ <linearGradient id="dust" x1="0" y1="0" x2="1" y2=".2"><stop stop-color="#d58b3b" stop-opacity="0"/><stop offset=".45" stop-color="#e3a35a" stop-opacity=".58"/><stop offset="1" stop-color="#ffd38b" stop-opacity=".82"/></linearGradient>
+ <filter id="blur"><feGaussianBlur stdDeviation="3"/></filter>
+</defs>
+<g opacity=".9" filter="url(#blur)">
+ <path d="M7 104 C36 73 56 88 76 109 C101 129 136 113 160 119 C130 137 81 138 28 128Z" fill="url(#dust)"/>
+ <circle cx="25" cy="99" r="19" fill="#e9b36d" opacity=".45"/><circle cx="60" cy="120" r="13" fill="#e8ad61" opacity=".55"/>
+</g>
+<path d="M20 94 L31 79 65 71 104 43 170 30 245 32 290 45 324 67 388 75 425 89 438 103 426 113 34 113Z" fill="url(#body)" stroke="#fff1a1" stroke-width="2" stroke-linejoin="round"/>
+<path d="M103 44 L169 29 242 34 282 48 305 70 90 70Z" fill="url(#glass)" stroke="#f9df67" stroke-width="2"/>
+<path d="M175 31 L169 70 M245 35 L269 70" stroke="#9e7417" stroke-width="2" opacity=".8"/>
+<path d="M32 80 L69 73 91 47 M306 71 L327 65" fill="none" stroke="#fff6c4" stroke-width="2" opacity=".88"/>
+<path d="M101 75 L145 74 166 109 110 109Z M285 76 L326 77 353 106 308 108Z" fill="#242720" stroke="#a07b22" stroke-width="1.5"/>
+<path d="M78 72 L96 49 106 45 90 77Z" fill="#f5bd19" stroke="#fff1a1" stroke-width="1.3"/>
+<path d="M338 72 L379 76 402 84 373 87 349 83Z" fill="#232824" stroke="#d4a71e" stroke-width="1.5"/>
+<path d="M414 88 L438 95 L438 100 L416 99Z" fill="#fff5cb"/>
+<path d="M425 103 L443 108 437 113 412 113" fill="none" stroke="#1a1e1b" stroke-width="4"/>
+<path d="M25 94 L16 101 30 105" fill="none" stroke="#161a18" stroke-width="4"/>
+<path d="M47 88 L74 80 M313 78 L332 82 M350 94 L389 96" stroke="#fff3ac" stroke-width="2" opacity=".78"/>
+<path d="M17 113 L433 113" stroke="#1b201c" stroke-width="6"/>
+<g>
+ <circle cx="108" cy="111" r="28" fill="#090d0c" stroke="#202522" stroke-width="4"/><circle cx="108" cy="111" r="17" fill="#71756e" stroke="#f4d44a" stroke-width="3"/><circle cx="108" cy="111" r="6" fill="#171b19"/>
+ <path d="M108 94 V128 M91 111 H125 M96 99 L120 123 M120 99 L96 123" stroke="#dbe0d4" stroke-width="2"/>
+ <circle cx="354" cy="111" r="28" fill="#090d0c" stroke="#202522" stroke-width="4"/><circle cx="354" cy="111" r="17" fill="#71756e" stroke="#f4d44a" stroke-width="3"/><circle cx="354" cy="111" r="6" fill="#171b19"/>
+ <path d="M354 94 V128 M337 111 H371 M342 99 L366 123 M366 99 L342 123" stroke="#dbe0d4" stroke-width="2"/>
+</g>
+<path d="M31 79 L59 71 76 72 63 81 39 86Z" fill="#181e1b"/>
+<path d="M70 42 L93 36 104 43 83 50Z" fill="#f9df74"/>
+<path d="M25 116 C58 131 93 138 123 134" fill="none" stroke="#ffdf9a" stroke-width="3" opacity=".65"/>
+</svg>

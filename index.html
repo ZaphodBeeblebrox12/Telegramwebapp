@@ -59,6 +59,83 @@
     .campaign-hero.nugget .progress-caption b,.campaign-hero.nugget .profit{color:#f5d27b}
     .campaign-hero.nugget .balance{color:#fff2cf}
     .campaign-hero.nugget .goal{color:#b8cbb8}
+    /* Gold Rush — Desert Rally: shared bright desert scene and SUV progress marker. */
+    .campaign-hero.nugget.desert-rally{
+      background-image:
+        linear-gradient(90deg,rgba(16,9,3,.48) 0%,rgba(22,12,4,.30) 46%,rgba(20,10,3,.10) 100%),
+        linear-gradient(0deg,rgba(10,6,2,.34),rgba(10,6,2,.04)),
+        url('./assets/desert-rally-scene.svg');
+      background-size:cover;background-position:center 57%;background-repeat:no-repeat;
+      color:#fff2cf;border:1px solid #d9a650;
+      box-shadow:0 10px 24px rgba(35,17,4,.32);
+    }
+    .campaign-hero.nugget.desert-rally:before{
+      content:"DESERT RALLY  /  GOLD DIVISION";
+      position:absolute;right:-35px;top:31px;transform:rotate(90deg);
+      font:900 7px "DM Mono",monospace;letter-spacing:.22em;
+      color:rgba(255,224,155,.46);z-index:-1;
+    }
+    .campaign-hero.desert-rally .tag{color:#ffe2a0}
+    .campaign-hero.desert-rally .stage{color:#ffdda0}
+    .campaign-hero.desert-rally .headline{color:#fff0bd;text-shadow:0 2px 12px rgba(34,14,2,.58)}
+    .campaign-hero.desert-rally .sub{color:#ffe2ad}
+    .campaign-hero.desert-rally .track{background:rgba(74,39,17,.86);border:1px solid #e8bd70}
+    .campaign-hero.desert-rally .track i{background:linear-gradient(90deg,#b86a25,#f3c267,#ffe7a0);box-shadow:0 0 13px rgba(255,205,108,.76)}
+    .campaign-hero.desert-rally .progress-caption{color:#ffe5b4;text-shadow:0 1px 4px rgba(22,10,2,.9)}
+    .campaign-hero.desert-rally .progress-caption b,.campaign-hero.desert-rally .profit{color:#ffe098}
+    .campaign-hero.desert-rally .balance{color:#fff4d7;text-shadow:0 1px 5px rgba(18,8,2,.78)}
+    .campaign-hero.desert-rally .goal{color:#f8dba7}
+    .campaign-hero.desert-rally .progress-wrap{margin-top:38px}
+    .campaign-hero.desert-rally .progress-marker.desert-rally-car{
+      width:112px;height:43px;top:50%;transform:translate(-50%,-86%) rotate(0);
+      object-fit:contain;filter:drop-shadow(0 4px 5px rgba(20,9,2,.72));
+    }
+    .campaign-hero.desert-rally .bottomline{border-top-color:rgba(255,227,177,.42)}
+    .campaign-hero.desert-rally.paused{filter:none}
+    .campaign-hero.desert-rally .rally-pause-note{
+      margin-top:8px;color:#ffe0a1;font:800 7px "DM Mono",monospace;
+      letter-spacing:.105em;text-shadow:0 1px 4px rgba(16,7,1,.9)
+    }
+    .campaign-hero.desert-rally.launch{padding:12px 14px 11px}
+    .campaign-hero.desert-rally.launch .headline{font-size:clamp(26px,8vw,33px);margin-top:8px}
+    .campaign-hero.desert-rally.launch .progress-wrap{margin-top:40px}
+    .campaign-hero.desert-rally.launch .countdown{margin-top:12px}
+    .campaign-hero.desert-rally.launch .countdown-unit{background:rgba(28,14,4,.54);border-color:rgba(255,218,150,.48)}
+    .campaign-hero.desert-rally.launch .countdown-unit b{color:#fff0bd}
+    .campaign-hero.desert-rally.launch .countdown-unit span{color:#ffe1ab}
+    .campaign-hero.desert-rally.launch .launch-date{color:#ffe2ac;border-top-color:rgba(255,222,169,.42)}
+    .challenge-summary.desert-rally-summary{
+      position:relative;isolation:isolate;overflow:hidden;padding:0;
+      border:1px solid rgba(220,169,88,.86);
+      background-image:
+        linear-gradient(90deg,rgba(17,9,3,.65),rgba(22,12,4,.43) 55%,rgba(20,10,3,.20)),
+        linear-gradient(0deg,rgba(9,5,2,.42),rgba(9,5,2,.04)),
+        url('./assets/desert-rally-scene.svg');
+      background-size:cover;background-position:center 58%;background-repeat:no-repeat;
+      box-shadow:0 10px 24px rgba(35,17,4,.3);
+    }
+    .desert-rally-summary .campaign-card-link{display:block;padding:13px 14px;color:#fff0ce}
+    .desert-rally-summary .campaign-card-top .eyebrow{color:#ffdfa0}
+    .desert-rally-summary .campaign-id{color:#f8d59b}
+    .desert-rally-summary h3{color:#fff0ca;text-shadow:0 1px 5px rgba(20,8,1,.9)}
+    .desert-rally-summary p.sub{color:#f7e0bd;text-shadow:0 1px 4px rgba(20,8,1,.88)}
+    .desert-rally-summary .campaign-balance{color:#ffe7b7}
+    .desert-rally-summary .campaign-balance strong{color:#fff2d0}
+    .desert-rally-summary .campaign-progress-meta{color:#f4d7a6}
+    .desert-rally-summary .campaign-progress-meta b{color:#fff0bd}
+    .desert-rally-summary .campaign-progress{position:relative;height:7px;margin:25px 4px 18px 0;overflow:visible;background:rgba(61,33,14,.84);border:1px solid rgba(250,210,144,.8);border-radius:10px}
+    .desert-rally-summary .campaign-progress i{display:block;height:100%;border-radius:10px;background:linear-gradient(90deg,#b56b28,#f3c46b,#ffe4a3);box-shadow:0 0 10px rgba(255,207,119,.6)}
+    .desert-rally-summary .rally-summary-car{position:absolute;top:50%;width:82px;height:29px;transform:translate(-50%,-87%);object-fit:contain;filter:drop-shadow(0 3px 4px rgba(14,7,2,.8));pointer-events:none}
+    .desert-rally-summary .campaign-metric{background:rgba(30,16,6,.38);border-color:rgba(255,223,177,.24)}
+    .desert-rally-summary .campaign-metric span{color:#f4d9ac}
+    .desert-rally-summary .campaign-metric strong{color:#fff0cc}
+    .desert-rally-summary .campaign-card-footer{color:#ffe1aa;border-top-color:rgba(255,226,177,.35)}
+    .desert-rally-summary .campaign-card-footer strong{color:#ffe3a5}
+    @media(max-width:390px){
+      .campaign-hero.desert-rally .progress-marker.desert-rally-car{width:98px;height:39px}
+      .desert-rally-summary .campaign-card-link{padding:12px}
+      .desert-rally-summary .rally-summary-car{width:74px;height:26px}
+    }
     .campaign-hero.general{background:radial-gradient(circle at 82% 18%,rgba(153,211,183,.17),transparent 31%),linear-gradient(125deg,#10241f,#1a3b34 55%,#102a29);color:#f0fff8;border:1px solid #8ab79f}
     .campaign-hero.general:before{content:"CROSS-MARKET · ONE CAMPAIGN";position:absolute;right:-47px;top:37px;transform:rotate(90deg);font:900 8px "DM Mono",monospace;letter-spacing:.16em;color:#c0ead044;z-index:-1}
     .campaign-hero.general .tag{color:#b9e8c9}
@@ -532,6 +609,10 @@
       return campaignKind(c)==='general' &&
         String(c&&c.edition||'STANDARD').trim().toUpperCase()==='LAMBO';
     }
+    function campaignIsDesertRally(c){
+      return campaignKind(c)==='gold' &&
+        String(c&&c.edition||'STANDARD').trim().toUpperCase()==='DESERT_RALLY';
+    }
     function campaignDisplayName(c){
       const name=String(c&&c.name||'').trim();
       if(name) return name;
@@ -689,11 +770,72 @@
       '</div>';
     }
 
+    function desertRallyMarker(progress,extraClass){
+      const position=Math.max(9,Math.min(91,Number(progress)||0));
+      const cls=extraClass||'progress-marker desert-rally-car';
+      return '<img class="'+cls+'" style="left:'+position+'%" src="./assets/desert-rally-suv.svg" alt="Desert Rally SUV marking campaign progress">';
+    }
+    function campaignGoldDesertRallyBanner(c,source){
+      const currency=c.currency||'USD';
+      const status=String(c.status||'ACTIVE').toUpperCase();
+      const progressValue=Number(c.progress_pct||0);
+      const progress=Math.min(100,Math.max(0,progressValue));
+      const progressText=fmt(progressValue)+'%';
+      const target=campaignMoney(c.target_balance,currency);
+      const balance=campaignMoney(c.current_balance,currency);
+      const realised=Number(c.realised_pnl||0);
+      const pnl=(realised>=0?'+':'−')+campaignMoney(Math.abs(realised),currency);
+      const completed=status==='COMPLETED'||progressValue>=100;
+      const paused=status==='PAUSED';
+      const headline=completed?'RALLY COMPLETE':'DESERT RALLY';
+      const stage=completed?'✓ TARGET CLEARED':paused?'Ⅱ PAUSED':'● LIVE RALLY';
+      const sub=completed?'THE GOLD TARGET IS CLEARED':paused?'RALLY TEMPORARILY ON HOLD':
+        'NEXT CHECKPOINT · '+([25,50,75,100].find(level=>progressValue<level)||100)+'% MILESTONE';
+      const reached=completed?'100% TARGET CLEARED':paused?progressText+' PAUSED':progressText+' REACHED';
+      const carPosition=completed?91:Math.max(9,Math.min(91,progress));
+      const action=completed?'RALLY FINISHED · #'+String(c.id||''):
+        paused?'PAUSED · #'+String(c.id||''):'OPEN DESERT RALLY #'+String(c.id||'')+' ↗';
+      return '<div class="campaign-hero nugget desert-rally'+(paused?' paused':'')+'" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" aria-label="Open Gold Rush Desert Rally campaign #'+escapeHtml(c.id)+'">'+
+        '<div class="top"><span class="tag">'+(completed?'PAST GOLD RUSH':paused?'GOLD RUSH · PAUSED':'LIVE GOLD RUSH')+' · #'+escapeHtml(c.id)+'</span><span class="micro stage">DESERT RALLY EDITION · '+stage+'</span></div>'+
+        '<div class="headline">'+headline+'</div>'+
+        '<div class="sub">'+sub+'</div>'+
+        '<div class="progress-wrap"><div class="track"><i style="width:'+progress+'%"></i></div>'+
+        desertRallyMarker(carPosition)+'</div>'+
+        '<div class="progress-caption"><span>START · '+escapeHtml(campaignMoney(c.starting_balance,currency))+'</span><b>'+reached+'</b><span>'+escapeHtml(target)+' GOAL</span></div>'+
+        (paused?'<div class="rally-pause-note">NEW ENTRIES PAUSED · EXISTING LINKED TRADES REMAIN TRACKED</div>':'')+
+        '<div class="bottomline"><div><div class="micro">'+(completed?'FINAL BALANCE':'CURRENT BALANCE')+'</div><div class="balance">'+escapeHtml(completed?balance:balance)+'</div></div>'+
+        '<div style="text-align:right"><div class="profit">'+escapeHtml(pnl)+' REALISED</div><div class="goal">'+escapeHtml(action)+'</div></div></div>'+
+      '</div>';
+    }
+    function campaignGoldDesertRallyUpcomingBanner(c,source){
+      const timestamp=Date.parse(c.starts_at||'');
+      if(!Number.isFinite(timestamp)) return '';
+      const currency=c.currency||'USD';
+      const target=campaignMoney(c.target_balance,currency);
+      const launchLabel=new Date(timestamp).toLocaleString('en-IN',{
+        timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',
+        hour:'2-digit',minute:'2-digit',hour12:true
+      })+' IST';
+      return '<div class="campaign-hero nugget desert-rally launch" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" aria-label="Open Gold Rush Desert Rally upcoming campaign #'+escapeHtml(c.id)+'">'+
+        '<div class="top"><span class="tag">UP NEXT · GOLD RUSH · #'+escapeHtml(c.id)+'</span><span class="micro stage">DESERT RALLY EDITION</span></div>'+
+        '<div class="headline">DESERT RALLY</div>'+
+        '<div class="sub">THE GOLD RUN STARTS IN</div>'+
+        '<div class="progress-wrap"><div class="track"><i style="width:0%"></i></div>'+desertRallyMarker(9)+'</div>'+
+        '<div class="countdown">'+
+          '<div class="countdown-unit"><b data-countdown-days>00</b><span>DAYS</span></div>'+
+          '<div class="countdown-unit"><b data-countdown-hours>00</b><span>HOURS</span></div>'+
+          '<div class="countdown-unit"><b data-countdown-minutes>00</b><span>MINUTES</span></div>'+
+          '<div class="countdown-unit"><b data-countdown-seconds>00</b><span>SECONDS</span></div>'+
+        '</div>'+
+        '<div class="launch-date"><span>LAUNCH · <strong>'+escapeHtml(launchLabel)+'</strong></span><span>TARGET · <strong>'+escapeHtml(target)+'</strong></span></div>'+
+      '</div>';
+    }
     function campaignBanner(c,source){
       const kind=campaignKind(c);
       if(kind==='general') return campaignIsLambo(c)
         ?campaignGlobalLamboBanner(c,source)
         :campaignGlobalLiveBanner(c,source);
+      if(kind==='gold'&&campaignIsDesertRally(c)) return campaignGoldDesertRallyBanner(c,source);
       const isCrypto=kind==='crypto';
       const isGeneral=kind==='general';
       const meta=CAMPAIGN_META[kind]||CAMPAIGN_META.other;
@@ -776,6 +918,7 @@
       if(kind==='general') return campaignIsLambo(c)
         ?campaignGlobalLamboUpcomingBanner(c,source)
         :campaignGlobalUpcomingBanner(c,source);
+      if(kind==='gold'&&campaignIsDesertRally(c)) return campaignGoldDesertRallyUpcomingBanner(c,source);
       const isCrypto=kind==='crypto';
       const isGeneral=kind==='general';
       const meta=CAMPAIGN_META[kind]||CAMPAIGN_META.other;
@@ -926,7 +1069,41 @@
       '</div>';
     }
 
+    function campaignDesertRallySummaryCard(c,label){
+      const progress=Number(c.progress_pct||0);
+      const progressWidth=Math.min(100,Math.max(0,progress));
+      const position=String(c.status||'').toUpperCase()==='COMPLETED'?91:Math.max(9,Math.min(91,progress));
+      const currency=c.currency||'USD';
+      const targetState=progress>=100?'Target cleared':campaignMoney(c.remaining_to_target,currency)+' remaining';
+      const name=campaignDisplayName(c);
+      const id=escapeHtml(String(c.id===undefined?'—':c.id));
+      const status=String(c.status||'').toUpperCase();
+      const launchNote=status==='SCHEDULED'&&c.starts_at
+        ?'Launch scheduled for '+new Date(c.starts_at).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',dateStyle:'medium',timeStyle:'short'})+' IST'
+        :'';
+      const stateLabel=status==='PAUSED'?'PAUSED CAMPAIGN':status==='COMPLETED'?'PAST CAMPAIGN':
+        status==='SCHEDULED'?'UPCOMING CAMPAIGN':'ACTIVE CAMPAIGN';
+      return '<div class="panel challenge-summary desert-rally-summary">'+
+        '<a class="campaign-card-link" href="'+challengeUrl(c,'challenges')+'" aria-label="Open '+escapeHtml(name)+' challenge #'+id+'">'+
+          '<div class="campaign-card-top"><span class="eyebrow">'+stateLabel+' · DESERT RALLY</span><span class="campaign-id">ID · '+id+'</span></div>'+
+          '<h3>'+escapeHtml(name)+'</h3>'+
+          '<p class="sub">'+escapeHtml(c.brief||'Desert Rally edition · Gold trades count only towards this independent campaign and any other matching active campaigns.')+'</p>'+
+          (launchNote?'<p class="note">'+escapeHtml(launchNote)+'</p>':'')+
+          '<div class="campaign-balance"><span>'+(status==='COMPLETED'?'Final balance':'Current balance')+'</span><strong>'+escapeHtml(campaignMoney(c.current_balance,currency))+'</strong></div>'+
+          '<div class="campaign-progress-meta"><span>Target progress</span><b>'+escapeHtml(fmt(progress))+'%</b></div>'+
+          '<div class="campaign-progress"><i style="width:'+progressWidth+'%"></i>'+desertRallyMarker(position,'rally-summary-car')+'</div>'+
+          '<div class="campaign-progress-meta"><span>'+escapeHtml(targetState)+'</span><span>Target '+escapeHtml(campaignMoney(c.target_balance,currency))+'</span></div>'+
+          '<div class="campaign-metrics">'+
+            '<div class="campaign-metric"><span>Starting</span><strong>'+escapeHtml(campaignMoney(c.starting_balance,currency))+'</strong></div>'+
+            '<div class="campaign-metric"><span>Realised P&amp;L</span><strong>'+escapeHtml(campaignMoney(c.realised_pnl,currency))+'</strong></div>'+
+            '<div class="campaign-metric"><span>Trades</span><strong>'+escapeHtml(fmt(c.total_trades||0))+'</strong></div>'+
+          '</div>'+
+          '<div class="campaign-card-footer"><span>WINS '+escapeHtml(fmt(c.wins||0))+' · LOSSES '+escapeHtml(fmt(c.losses||0))+' · OPEN '+escapeHtml(fmt(c.open_trades||0))+'</span><strong>VIEW CAMPAIGN ↗</strong></div>'+
+        '</a>'+
+      '</div>';
+    }
     function campaignCard(c,label){
+      if(campaignIsDesertRally(c)) return campaignDesertRallySummaryCard(c,label);
       const progress=Number(c.progress_pct||0);
       const progressWidth=Math.min(100,Math.max(0,progress));
       const progressText=fmt(progress)+'%';
@@ -969,6 +1146,7 @@
         const active=campaigns.filter(c=>String(c.status||'').toUpperCase()==='ACTIVE'||c.active===true);
         const scheduled=campaigns.filter(c=>(String(c.status||'').toUpperCase()==='SCHEDULED'||c.scheduled===true)&&c.starts_at);
         const archived=campaigns.filter(c=>String(c.status||'').toUpperCase()==='COMPLETED'||c.archived===true);
+        const paused=campaigns.filter(c=>String(c.status||'').toUpperCase()==='PAUSED');
         renderCampaignDock(campaigns);
         const activeGlobals=active.filter(c=>campaignKind(c)==='general');
         for(const activeGlobal of activeGlobals){
@@ -984,15 +1162,21 @@
         );
         const banners=document.getElementById('activeChallenges');
         const content=document.getElementById('challengeContent');
-        banners.innerHTML=bannerScheduled.map(c=>campaignHeroMarkup(c,'home')).join('')+active.map(c=>campaignHeroMarkup(c,'home')).join('');
-        banners.style.display=(active.length||scheduled.length)?'grid':'none';
-        if(active.length||scheduled.length){
+        const pausedRally=paused.filter(c=>campaignIsDesertRally(c));
+        banners.innerHTML=bannerScheduled.map(c=>campaignHeroMarkup(c,'home')).join('')+
+          active.map(c=>campaignHeroMarkup(c,'home')).join('')+
+          pausedRally.map(c=>campaignHeroMarkup(c,'home')).join('');
+        banners.style.display=(active.length||scheduled.length||pausedRally.length)?'grid':'none';
+        if(active.length||scheduled.length||paused.length){
           content.innerHTML='';
           if(scheduled.length){
             content.innerHTML+='<div class="section-head"><h2>Coming up</h2></div>'+scheduled.map(c=>campaignLaunchBanner(c,'challenges')+campaignCard(c,'UPCOMING CAMPAIGN')).join('');
           }
           if(active.length){
             content.innerHTML+='<div class="section-head"><h2>Live now</h2></div>'+active.map(c=>campaignCard(c,'ACTIVE CAMPAIGN')).join('');
+          }
+          if(paused.length){
+            content.innerHTML+='<div class="section-head"><h2>Paused</h2></div>'+paused.map(c=>campaignCard(c,'PAUSED CAMPAIGN')).join('');
           }
         }else{
           content.innerHTML='<div class="empty-state"><div class="symbol">∴</div><h3>No active campaign</h3><p>There is no live or upcoming campaign at the moment. New launches will appear here when announced.</p></div>';
@@ -1026,15 +1210,19 @@
       const active=campaigns.filter(c=>String(c.status||'').toUpperCase()==='ACTIVE'||c.active===true);
       const upcoming=campaigns.filter(c=>(String(c.status||'').toUpperCase()==='SCHEDULED'||c.scheduled===true)&&c.starts_at)
         .sort((a,b)=>Date.parse(a.starts_at||'')-Date.parse(b.starts_at||''));
-      const featured=active.length?active:upcoming.slice(0,3);
+      const paused=campaigns.filter(c=>String(c.status||'').toUpperCase()==='PAUSED');
+      const featured=active.length?active:upcoming.length?upcoming.slice(0,3):paused.slice(0,3);
       dock.hidden=featured.length===0;
-      dock.dataset.state=active.length?'active':'upcoming';
+      dock.dataset.state=active.length?'active':upcoming.length?'upcoming':'paused';
       list.innerHTML=featured.map(c=>{
         const kind=campaignKind(c);
         const isActive=active.length>0;
-        const meta=isActive?'LIVE · '+(CAMPAIGN_META[kind]||CAMPAIGN_META.other).label+' · #'+String(c.id||''):'UP NEXT · '+new Date(c.starts_at).toLocaleDateString('en-IN',{day:'2-digit',month:'short',timeZone:'Asia/Kolkata'});
-        const value=isActive?fmt(Number(c.progress_pct||0))+'%':'VIEW';
-        return '<a class="campaign-dock-item '+kind+(isActive?'':' upcoming')+'" href="'+challengeUrl(c,'challenges')+'" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign">'+
+        const itemStatus=String(c.status||'').toUpperCase();
+        const meta=isActive?'LIVE · '+(CAMPAIGN_META[kind]||CAMPAIGN_META.other).label+' · #'+String(c.id||''):
+          itemStatus==='PAUSED'?'PAUSED · '+String(c.name||'CAMPAIGN'):
+          'UP NEXT · '+new Date(c.starts_at).toLocaleDateString('en-IN',{day:'2-digit',month:'short',timeZone:'Asia/Kolkata'});
+        const value=isActive?fmt(Number(c.progress_pct||0))+'%':itemStatus==='PAUSED'?'PAUSED':'VIEW';
+        return '<a class="campaign-dock-item '+kind+(isActive?'': ' upcoming')+(campaignIsDesertRally(c)?' desert-rally':'')+'" href="'+challengeUrl(c,'challenges')+'" aria-label="Open '+escapeHtml(campaignDisplayName(c))+' campaign">'+
           '<span class="campaign-dock-symbol" aria-hidden="true">'+escapeHtml(campaignIcon(kind))+'</span>'+
           '<span class="campaign-dock-copy"><strong>'+escapeHtml(campaignDisplayName(c))+'</strong><small>'+escapeHtml(meta)+'</small></span>'+
           '<span class="campaign-dock-stat">'+escapeHtml(value)+'</span></a>';

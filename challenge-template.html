@@ -27,6 +27,45 @@
     .state-pill.active{background:#e3eadf;color:#526b50;border-color:#bfcfba}
     .state-pill.scheduled{background:#f2e9d4;color:#85682e;border-color:#dfc999}
     .state-pill.completed{background:#e9e5dc;color:#6f7067;border-color:#d5cfc2}
+    .state-pill.paused{background:#f2e3c9;color:#875b27;border-color:#d8b67b}
+    .page-head.desert-rally-page-head{
+      position:relative;isolation:isolate;overflow:hidden;padding:20px 16px 18px;margin:18px -2px 15px;
+      border:1px solid rgba(218,169,91,.82);border-radius:6px;color:#fff0ca;
+      background-image:linear-gradient(90deg,rgba(14,8,3,.50),rgba(20,11,3,.22)),url('../../assets/desert-rally-scene.svg');
+      background-size:cover;background-position:center 56%;background-repeat:no-repeat;
+      box-shadow:0 10px 24px rgba(35,17,4,.22)
+    }
+    .desert-rally-page-head .eyebrow{color:#ffe0a0}
+    .desert-rally-page-head h1{color:#fff0c8;text-shadow:0 2px 10px rgba(25,10,1,.7)}
+    .desert-rally-page-head p{color:#ffe7c3;text-shadow:0 1px 5px rgba(25,10,1,.75)}
+    .desert-rally-page-head .meta-line{color:#f7d8a3}
+    .desert-rally-detail{
+      color:#fff0ce;border-color:rgba(217,168,89,.86);
+      background-image:linear-gradient(90deg,rgba(15,9,4,.68),rgba(21,12,4,.43) 56%,rgba(18,9,3,.29)),
+        linear-gradient(0deg,rgba(9,5,2,.38),rgba(9,5,2,.02)),
+        url('../../assets/desert-rally-scene.svg');
+      background-size:cover;background-position:center 58%;background-repeat:no-repeat;
+      box-shadow:0 10px 26px rgba(36,17,4,.26)
+    }
+    .desert-rally-detail .balance-label,.desert-rally-detail .progress-head,
+    .desert-rally-detail .progress-foot,.desert-rally-detail .outcome-line{color:#f8dfb4}
+    .desert-rally-detail .balance-value{color:#fff0ca;text-shadow:0 2px 7px rgba(19,8,2,.8)}
+    .desert-rally-detail .pnl-value{color:#ffe09b}
+    .desert-rally-detail .progress-head strong{color:#fff0c9}
+    .desert-rally-detail .progress-track{position:relative;overflow:visible;background:rgba(58,31,13,.86);border:1px solid #e7bd76}
+    .desert-rally-detail .progress-track i{background:linear-gradient(90deg,#b66a29,#f3c36a,#ffe4a0);box-shadow:0 0 10px rgba(255,204,116,.55)}
+    .rally-detail-progress{position:relative;margin:39px 3px 8px 0}
+    .rally-detail-progress .progress-track{height:9px}
+    .rally-detail-car{position:absolute;top:50%;width:106px;height:40px;object-fit:contain;
+      transform:translate(-50%,-86%);filter:drop-shadow(0 4px 5px rgba(17,8,2,.76));pointer-events:none}
+    .desert-rally-detail .metric{background:rgba(28,15,6,.48);border-color:rgba(255,225,178,.24)}
+    .desert-rally-detail .metric span{color:#f7d7a2}
+    .desert-rally-detail .metric strong{color:#fff0ca}
+    .desert-rally-detail .outcome-line{border-top-color:rgba(255,226,181,.34)}
+    @media(max-width:380px){
+      .page-head.desert-rally-page-head{padding:16px 12px;margin-left:0;margin-right:0}
+      .rally-detail-car{width:96px;height:36px}
+    }
     .panel{background:var(--white);border:1px solid var(--line);padding:17px;margin:0 0 13px;box-shadow:var(--shadow)}
     .panel h2{font:600 21px "Playfair Display",serif;margin:0 0 13px}
     .balance-label{font:9px "DM Mono",monospace;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
@@ -151,6 +190,10 @@
       if(/GOLD|XAU/.test(descriptor)) return 'gold';
       return 'other';
     }
+    function campaignIsDesertRally(campaign) {
+      return campaignKind(campaign)==='gold' &&
+        String(campaign&&campaign.edition||'STANDARD').trim().toUpperCase()==='DESERT_RALLY';
+    }
     function campaignGlyph(kind) {
       return ({gold:'Au',crypto:'₿',general:'◎',forex:'FX',energy:'⚡',index:'IDX',stock:'↗',option:'Δ',commodity:'Ag',metal:'Ag'})[kind]||'∴';
     }
@@ -161,16 +204,19 @@
       const active=campaigns.filter(item=>String(item.status||'').toUpperCase()==='ACTIVE'||item.active===true);
       const upcoming=campaigns.filter(item=>(String(item.status||'').toUpperCase()==='SCHEDULED'||item.scheduled===true)&&item.starts_at)
         .sort((a,b)=>Date.parse(a.starts_at||'')-Date.parse(b.starts_at||''));
-      const featured=active.length?active:upcoming.slice(0,3);
+      const paused=campaigns.filter(item=>String(item.status||'').toUpperCase()==='PAUSED');
+      const featured=active.length?active:upcoming.length?upcoming.slice(0,3):paused.slice(0,3);
       dock.hidden=featured.length===0;
-      dock.dataset.state=active.length?'active':'upcoming';
+      dock.dataset.state=active.length?'active':upcoming.length?'upcoming':'paused';
       list.innerHTML=featured.map(item=>{
         const kind=campaignKind(item);
         const current=String(item.id)===String(CHALLENGE_ID);
+        const itemStatus=String(item.status||'').toUpperCase();
         const status=active.length
           ?'LIVE · '+String(item.asset_class||item.instrument||'MARKET').toUpperCase()+' · #'+String(item.id)
+          :itemStatus==='PAUSED'?'PAUSED · #'+String(item.id)
           :'UP NEXT · '+dateLabel(item.starts_at,{day:'2-digit',month:'short',timeZone:'Asia/Kolkata'});
-        const stat=active.length?numberFormat(item.progress_pct)+'%':'VIEW';
+        const stat=active.length?numberFormat(item.progress_pct)+'%':itemStatus==='PAUSED'?'PAUSED':'VIEW';
         const href=current?'#challengeDetail':new URL('challenges/'+encodeURIComponent(String(item.id))+'/?from=challenges',appRoot).href;
         return '<a class="campaign-dock-item '+kind+(active.length?'':' upcoming')+(current?' current':'')+'" href="'+escapeHtml(href)+'"'+(current?' aria-current="page"':'')+'>'+
           '<span class="campaign-dock-symbol" aria-hidden="true">'+escapeHtml(campaignGlyph(kind))+'</span>'+
@@ -209,6 +255,7 @@
       if (raw === 'SCHEDULED') return { label:'SCHEDULED', className:'scheduled' };
       if (raw === 'COMPLETED' || campaign.archived) return { label:'COMPLETED', className:'completed' };
       if (raw === 'ACTIVE' || campaign.active) return { label:'ACTIVE', className:'active' };
+      if (raw === 'PAUSED') return { label:'PAUSED', className:'paused' };
       return { label:raw, className:'completed' };
     }
     function renderTradeHistory(trades, currency) {
@@ -240,6 +287,12 @@
       const pnlClass = realised < 0 ? 'negative' : '';
       const title = String(campaign.name || 'Trading Challenge');
       const tradeHistory = Array.isArray(campaign.trade_history) ? campaign.trade_history : [];
+      const desertRally = campaignIsDesertRally(campaign);
+      const markerPosition = status.className === 'completed' ? 91 : Math.max(9,Math.min(91,progressWidth));
+      const progressMarkup = desertRally
+        ? '<div class="rally-detail-progress"><div class="progress-track"><i style="width:' + progressWidth + '%"></i></div>' +
+          '<img class="rally-detail-car" src="../../assets/desert-rally-suv.svg" alt="Desert Rally SUV marking campaign progress" style="left:' + markerPosition + '%"></div>'
+        : '<div class="progress-track"><i style="width:' + progressWidth + '%"></i></div>';
       const launchNote = campaign.starts_at
         ? '<div class="note">SCHEDULED LAUNCH · ' + escapeHtml(dateLabel(campaign.starts_at, { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:true })) + ' IST</div>'
         : '';
@@ -248,19 +301,19 @@
         : '';
       document.title = title + ' | TradeThesis';
       document.getElementById('challengeDetail').innerHTML =
-        '<header class="page-head">' +
+        '<header class="page-head' + (desertRally?' desert-rally-page-head':'') + '">' +
           '<div class="eyebrow">Individual challenge · ' + escapeHtml(campaign.asset_class || campaign.instrument || 'Trading campaign') + '</div>' +
           '<h1>' + escapeHtml(title) + '</h1>' +
           '<p>' + escapeHtml(campaign.description || campaign.brief || 'Campaign progress and trade history.') + '</p>' +
           '<div class="meta-line"><span class="state-pill ' + status.className + '">' + status.label + '</span><span>' + escapeHtml(campaign.instrument || campaign.asset_class || 'MARKET') + '</span></div>' +
           launchNote +
         '</header>' +
-        '<section class="panel">' +
+        '<section class="panel' + (desertRally?' desert-rally-detail':'') + '">' +
           '<div class="balance-label">Current balance</div>' +
           '<strong class="balance-value">' + escapeHtml(money(campaign.current_balance, currency)) + '</strong>' +
           '<div class="pnl-value ' + pnlClass + '">' + (realised > 0 ? '+' : realised < 0 ? '−' : '') + escapeHtml(money(Math.abs(realised), currency)) + ' realised P&amp;L</div>' +
           '<div class="progress-head"><span>Target progress</span><strong>' + escapeHtml(numberFormat(progressValue)) + '%</strong></div>' +
-          '<div class="progress-track"><i style="width:' + progressWidth + '%"></i></div>' +
+          progressMarkup +
           '<div class="progress-foot"><span>START · ' + escapeHtml(money(campaign.starting_balance, currency)) + '</span><span>TARGET · ' + escapeHtml(money(campaign.target_balance, currency)) + '</span></div>' +
           '<div class="metric-grid">' +
             '<div class="metric"><span>Trades</span><strong>' + escapeHtml(numberFormat(campaign.total_trades || tradeHistory.length)) + '</strong></div>' +
