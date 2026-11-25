@@ -143,8 +143,9 @@
     .campaign-hero.crypto .balance{color:#e7fffc}
     .campaign-hero.crypto .goal{color:#a9c9d1}
     .campaign-hero.crypto .progress-marker{transform:translate(-50%,-50%)}
-    .campaign-hero.crypto .progress-marker.crypto-bitcoin{width:30px;height:32px;transform:translate(-50%,-50%);object-fit:contain;filter:drop-shadow(0 3px 4px rgba(0,0,0,.58))}
+    .campaign-hero.crypto .progress-marker.crypto-bitcoin{width:35px;height:35px;transform:translate(-50%,-50%);filter:drop-shadow(0 3px 4px rgba(0,0,0,.58))}
     @media(max-width:380px){.campaign-hero{padding-left:14px;padding-right:14px}.campaign-hero .headline{font-size:clamp(23px,8vw,28px)}.campaign-hero .bottomline{left:auto;right:auto}.campaign-hero .balance{font-size:16px}.campaign-hero .progress-caption{font-size:6.5px;gap:3px}.campaign-hero .progress-marker{width:28px;height:28px}.campaign-hero .progress-marker.general-globe{width:34px;height:34px}}
+    @media(max-width:380px){.campaign-hero.crypto .progress-marker.crypto-bitcoin{width:33px;height:33px}}
     .campaign-hero.launch{padding-bottom:14px}
     .campaign-hero.launch .headline{font-size:clamp(22px,7.4vw,28px);line-height:.98;margin-top:13px}
     .campaign-hero.launch .sub{margin-top:6px}
@@ -594,7 +595,11 @@
       if(isCrypto){
         const instrument=String(c.instrument||'').toUpperCase();
         if(!/ETH|ETHEREUM/.test(instrument)){
-          marker='<img class="progress-marker crypto-bitcoin" style="left:'+width+'%" src="./assets/bitcoin-coin.png" alt="Bitcoin coin marking current crypto campaign progress">';
+          marker='<svg class="progress-marker crypto-bitcoin" style="left:'+width+'%" viewBox="0 0 48 48" role="img" aria-label="Gold Bitcoin coin marking current crypto campaign progress">'+
+            '<defs><linearGradient id="'+markerId+'-btc-gold" x2=".9" y2="1"><stop stop-color="#fff0a6"/><stop offset=".48" stop-color="#e6a935"/><stop offset="1" stop-color="#8d4b12"/></linearGradient></defs>'+
+            '<circle cx="24" cy="24" r="21" fill="url(#'+markerId+'-btc-gold)" stroke="#fff0af" stroke-width="1.5"/>'+
+            '<circle cx="24" cy="24" r="17.5" fill="none" stroke="#9d5b17" opacity=".65"/>'+
+            '<text x="24" y="31" text-anchor="middle" font-family="Arial,sans-serif" font-size="23" font-weight="900" fill="#60370c">₿</text></svg>';
         }else{
           const symbol='Ξ';
           marker='<svg class="progress-marker" style="left:'+width+'%" viewBox="0 0 48 48" role="img" aria-label="Ethereum token at current progress">'+
