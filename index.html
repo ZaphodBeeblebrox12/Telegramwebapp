@@ -104,6 +104,57 @@
     .global-pocket .global-pocket-countdown>div{text-align:center;padding:7px 3px;background:rgba(255,255,255,.05);border:1px solid rgba(197,222,194,.18);border-radius:3px}
     .global-pocket .global-pocket-countdown b{display:block;font:900 17px "DM Mono",monospace;color:#e8f4d9}
     .global-pocket .global-pocket-countdown span{display:block;font:700 6px "DM Mono",monospace;letter-spacing:.12em;color:#a6c1a9;margin-top:2px}
+    /* Separate Lamborghini-themed General campaign edition. */
+    .campaign-hero.global-lambo{padding:16px 17px 14px;background:
+      radial-gradient(circle at 78% 12%,rgba(177,255,32,.13),transparent 32%),
+      linear-gradient(125deg,#07110a 0%,#101d13 54%,#071009 100%);
+      border:1px solid #92bd32;border-radius:6px;color:#f4f8e9;box-shadow:0 10px 25px rgba(2,10,4,.28)}
+    .campaign-hero.global-lambo:before{content:"AVENTADOR EDGE";position:absolute;right:-22px;top:31px;transform:rotate(90deg);font:900 8px "DM Mono",monospace;letter-spacing:.22em;color:#c5f35b42;z-index:-1}
+    .global-lambo .global-pocket-top .tag{color:#d2ff63}
+    .global-lambo .global-pocket-status{color:#d7ff76;border-color:#587d28;background:rgba(138,195,41,.09)}
+    .global-lambo .global-pocket-heading{margin-top:14px;margin-bottom:10px}
+    .global-lambo .global-pocket-kicker{color:#a8cb68}
+    .global-lambo .global-pocket-heading h2{color:#f1f8dd;letter-spacing:-.035em}
+    .global-lambo .global-pocket-heading p{color:#b8c7a8}
+    .global-lambo .global-pocket-balance span{color:#b6c79b}
+    .global-lambo .global-pocket-balance strong{color:#edffd0}
+    .global-lambo .global-pocket-markets{margin:11px 0 12px}
+    .global-lambo .global-pocket-markets span{color:#e4f4cf;background:#172719;border-color:#405b2d}
+    .global-lambo .global-pocket-metrics{margin:11px 0 9px}
+    .global-lambo .global-pocket-metrics div{background:rgba(190,244,112,.045);border-color:rgba(185,227,112,.17)}
+    .global-lambo .global-pocket-metrics strong{color:#f0f8df}
+    .global-lambo .global-pocket-metrics span{color:#9cb483}
+    .global-lambo .global-pocket-metrics div:first-child strong,
+    .global-lambo .global-pocket-metrics div:nth-child(3) strong{color:#caff55}
+    .global-lambo .global-pocket-track{height:8px;background:#202d1b;border:1px solid #607a36;overflow:visible}
+    .global-lambo .global-pocket-track i{background:linear-gradient(90deg,#6f9c19,#d5ff57);box-shadow:0 0 14px rgba(183,255,51,.34)}
+    .global-lambo-progress-wrap{position:relative;margin:51px 5px 0 0}
+    .global-lambo-car-marker{position:absolute;left:9%;top:50%;width:94px;height:43px;transform:translate(-50%,-88%);z-index:4;filter:drop-shadow(0 4px 4px rgba(0,0,0,.68));pointer-events:none;overflow:visible}
+    .global-lambo .global-pocket-progress-meta{color:#a9ba91}
+    .global-lambo .global-pocket-progress-meta b{color:#d5ff61}
+    .global-lambo .global-pocket-next{background:rgba(171,221,75,.055);border-color:#526b31;border-left-color:#b9eb43}
+    .global-lambo .global-pocket-next-head{color:#d1f47b}
+    .global-lambo .global-pocket-next h3{color:#f1f8dd}
+    .global-lambo .global-pocket-next p{color:#c2cfad}
+    .global-lambo .global-pocket-countdown{margin-top:13px}
+    .global-lambo .global-pocket-countdown>div{background:rgba(186,238,81,.055);border-color:rgba(186,238,81,.2)}
+    .global-lambo .global-pocket-countdown b{color:#eaffbd}
+    .global-lambo .global-pocket-countdown span{color:#abc57c}
+    .global-lambo-upcoming-car{height:58px;margin:11px 0 2px;display:flex;align-items:center;justify-content:flex-end;border-bottom:1px solid rgba(190,238,91,.3)}
+    .global-lambo-upcoming-car svg{width:130px;height:52px;filter:drop-shadow(0 3px 5px rgba(0,0,0,.65))}
+    .global-lambo-upcoming-svg{position:static;width:130px;height:52px;transform:none;filter:drop-shadow(0 3px 5px rgba(0,0,0,.65))}
+    .global-lambo.global-pocket-upcoming .global-pocket-heading{margin-bottom:8px}
+    .global-lambo.global-pocket-upcoming .global-pocket-countdown{margin-top:12px}
+    @media(max-width:390px){
+      .campaign-hero.global-lambo{padding:13px 12px}
+      .global-lambo .global-pocket-heading{gap:8px}
+      .global-lambo .global-pocket-heading h2{font-size:19px}
+      .global-lambo .global-pocket-balance strong{font-size:17px}
+      .global-lambo .global-pocket-markets span{font-size:6.3px;padding:5px}
+      .global-lambo .global-pocket-metrics{gap:5px}
+      .global-lambo .global-pocket-metrics div{padding:7px 5px}
+      .global-lambo-car-marker{width:82px;height:38px}
+    }
     .global-pocket-upcoming .upcoming-heading{margin-bottom:10px}
     .global-pocket-upcoming .upcoming-brief{margin-top:8px}
     @media(max-width:390px){
@@ -477,6 +528,10 @@
       if(/GOLD|XAU/.test(descriptor)) return 'gold';
       return 'other';
     }
+    function campaignIsLambo(c){
+      return campaignKind(c)==='general' &&
+        String(c&&c.edition||'STANDARD').trim().toUpperCase()==='LAMBO';
+    }
     function campaignDisplayName(c){
       const name=String(c&&c.name||'').trim();
       if(name) return name;
@@ -543,6 +598,75 @@
         globalNextChallengeBrief(c.next_challenge,source)+
       '</div>';
     }
+    function globalLamboCarSvg(extraClass,idSuffix){
+      const cls=extraClass||'global-lambo-car-marker';
+      const suffix=String(idSuffix||'preview').replace(/[^a-z0-9_-]/gi,'');
+      const bodyId='lambo-body-'+suffix;
+      const glassId='lambo-glass-'+suffix;
+      return '<svg class="'+cls+'" viewBox="0 0 168 64" role="img" aria-label="Lamborghini Aventador-style supercar">'+
+        '<defs><linearGradient id="'+bodyId+'" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#eaff8c"/><stop offset=".38" stop-color="#b9f329"/><stop offset="1" stop-color="#4e7610"/></linearGradient><linearGradient id="'+glassId+'" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#355039"/><stop offset="1" stop-color="#07100a"/></linearGradient></defs>'+
+        '<path d="M7 43 L14 34 L35 30 L57 16 L85 10 L113 14 L131 25 L148 31 L163 35 L165 42 L158 48 L12 48 Z" fill="url(#'+bodyId+')" stroke="#efffa7" stroke-width="1.4" stroke-linejoin="round"/>'+
+        '<path d="M57 18 L84 12 L108 16 L126 28 L72 28 Z" fill="url(#'+glassId+')" stroke="#d9ff7c" stroke-width="1.1"/>'+
+        '<path d="M84 13 L81 28 M109 16 L119 28" stroke="#9abf43" stroke-width="1" opacity=".8"/>'+
+        '<path d="M16 34 L43 31 L56 19 M135 28 L150 32" fill="none" stroke="#f4ffb9" stroke-width="1.5" opacity=".9"/>'+
+        '<path d="M73 32 L95 32 L111 43 L80 43 Z" fill="#20371a" stroke="#d7ff70" stroke-width="1.2"/>'+
+        '<path d="M112 32 L132 33 L148 39 L129 41 L115 38 Z" fill="#26391c" stroke="#d7ff70" stroke-width="1"/>'+
+        '<path d="M7 42 L0 44 L9 46 L23 46" fill="none" stroke="#f3ffb8" stroke-width="1.5"/>'+
+        '<path d="M148 35 L163 37 L164 40 L151 40" fill="#f3ffb7"/>'+
+        '<path d="M22 29 L25 24 L39 23 L34 30 Z" fill="#0a170b" stroke="#d9ff7c" stroke-width=".8"/>'+
+        '<circle cx="47" cy="46" r="10.5" fill="#070b08" stroke="#b5e94f" stroke-width="1.8"/><circle cx="47" cy="46" r="5" fill="#607d37" stroke="#e7ff9a" stroke-width="1"/><path d="M47 41 V51 M42 46 H52 M43.5 42.5 L50.5 49.5 M50.5 42.5 L43.5 49.5" stroke="#e5f8a5" stroke-width=".8"/>'+
+        '<circle cx="126" cy="46" r="10.5" fill="#070b08" stroke="#b5e94f" stroke-width="1.8"/><circle cx="126" cy="46" r="5" fill="#607d37" stroke="#e7ff9a" stroke-width="1"/><path d="M126 41 V51 M121 46 H131 M122.5 42.5 L129.5 49.5 M129.5 42.5 L122.5 49.5" stroke="#e5f8a5" stroke-width=".8"/>'+
+        '<path d="M12 32 L13 24 L29 22 L29 26 L18 28" fill="#b9ed35" stroke="#eaff9c" stroke-width=".8"/>'+
+      '</svg>';
+    }
+    function campaignGlobalLamboBanner(c,source){
+      const currency=c.currency||'USD';
+      const balance=campaignMoney(c.current_balance,currency);
+      const target=campaignMoney(c.target_balance,currency);
+      const realised=Number(c.realised_pnl||0);
+      const pnl=(realised>=0?'+':'−')+campaignMoney(Math.abs(realised),currency);
+      const rawProgress=Number(c.progress_pct||0);
+      const progress=Math.min(100,Math.max(0,rawProgress));
+      const progressText=fmt(rawProgress)+'%';
+      const carPosition=Math.max(14,Math.min(86,progress));
+      return '<div class="campaign-hero general global-pocket global-lambo" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" aria-label="Open Global Market Lambo campaign #'+escapeHtml(c.id)+'">'+
+        '<div class="global-pocket-top"><span class="tag">GLOBAL MARKET LAMBO · #'+escapeHtml(c.id)+'</span><span class="global-pocket-status">● AVENTADOR EDITION</span></div>'+
+        '<div class="global-pocket-heading"><div><div class="global-pocket-kicker">ONE CAMPAIGN · MULTIPLE MARKETS</div><h2>GLOBAL MARKET LAMBO</h2>'+
+        '<p>Aventador Edge. Every qualifying market trade moves this independent target.</p></div>'+
+        '<div class="global-pocket-balance"><span>CURRENT BALANCE</span><strong>'+escapeHtml(balance)+'</strong></div></div>'+
+        globalPocketMarketChips()+
+        '<div class="global-pocket-metrics"><div><strong>'+progressText+'</strong><span>PROGRESS</span></div>'+
+        '<div><strong>'+escapeHtml(target)+'</strong><span>TARGET</span></div>'+
+        '<div><strong>'+escapeHtml(pnl)+'</strong><span>REALISED P&amp;L</span></div></div>'+
+        '<div class="global-lambo-progress-wrap"><div class="global-pocket-track"><i style="width:'+progress+'%"></i></div>'+
+        globalLamboCarSvg().replace('class="global-lambo-car-marker"','class="global-lambo-car-marker" style="left:'+carPosition+'%;"')+
+        '</div>'+
+        '<div class="global-pocket-progress-meta"><span>START · '+escapeHtml(campaignMoney(c.starting_balance,currency))+'</span><b>'+progressText+' COMPLETE</b></div>'+
+        globalNextChallengeBrief(c.next_challenge,source)+
+      '</div>';
+    }
+    function campaignGlobalLamboUpcomingBanner(c,source){
+      const timestamp=Date.parse(c.starts_at||'');
+      if(!Number.isFinite(timestamp)) return '';
+      const currency=c.currency||'USD';
+      const brief=meaningfulGlobalBrief(c);
+      const briefMarkup=brief
+        ?'<div class="global-pocket-next upcoming-brief"><div class="global-pocket-next-head"><span>CAMPAIGN BRIEF</span></div><p>'+escapeHtml(brief)+'</p></div>'
+        :'';
+      return '<div class="campaign-hero general global-pocket global-lambo global-pocket-upcoming" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" aria-label="Open Global Market Lambo upcoming campaign #'+escapeHtml(c.id)+'">'+
+        '<div class="global-pocket-top"><span class="tag">GLOBAL MARKET LAMBO · #'+escapeHtml(c.id)+'</span><span class="global-pocket-status upcoming">UPCOMING LAMBO EDITION</span></div>'+
+        '<div class="global-pocket-heading upcoming-heading"><div><div class="global-pocket-kicker">AVENTADOR EDGE · YOUR NEXT MULTI-MARKET ROUND</div><h2>GLOBAL MARKET LAMBO</h2>'+
+        '<p>One independently tracked target across supported markets.</p></div>'+
+        '<div class="global-pocket-balance"><span>TARGET</span><strong>'+escapeHtml(campaignMoney(c.target_balance,currency))+'</strong></div></div>'+
+        globalPocketMarketChips()+
+        '<div class="global-lambo-upcoming-car">'+globalLamboCarSvg('global-lambo-upcoming-svg','upcoming-'+c.id)+'</div>'+
+        briefMarkup+
+        '<div class="global-pocket-countdown" data-countdown-target="'+timestamp+'">'+
+          '<div><b data-countdown-days>00</b><span>DAYS</span></div><div><b data-countdown-hours>00</b><span>HOURS</span></div>'+
+          '<div><b data-countdown-minutes>00</b><span>MINUTES</span></div><div><b data-countdown-seconds>00</b><span>SECONDS</span></div>'+
+        '</div>'+
+      '</div>';
+    }
     function campaignGlobalUpcomingBanner(c,source){
       const timestamp=Date.parse(c.starts_at||'');
       if(!Number.isFinite(timestamp)) return '';
@@ -567,7 +691,9 @@
 
     function campaignBanner(c,source){
       const kind=campaignKind(c);
-      if(kind==='general') return campaignGlobalLiveBanner(c,source);
+      if(kind==='general') return campaignIsLambo(c)
+        ?campaignGlobalLamboBanner(c,source)
+        :campaignGlobalLiveBanner(c,source);
       const isCrypto=kind==='crypto';
       const isGeneral=kind==='general';
       const meta=CAMPAIGN_META[kind]||CAMPAIGN_META.other;
@@ -647,7 +773,9 @@
     }
     function campaignLaunchBanner(c,source){
       const kind=campaignKind(c);
-      if(kind==='general') return campaignGlobalUpcomingBanner(c,source);
+      if(kind==='general') return campaignIsLambo(c)
+        ?campaignGlobalLamboUpcomingBanner(c,source)
+        :campaignGlobalUpcomingBanner(c,source);
       const isCrypto=kind==='crypto';
       const isGeneral=kind==='general';
       const meta=CAMPAIGN_META[kind]||CAMPAIGN_META.other;
@@ -842,12 +970,18 @@
         const scheduled=campaigns.filter(c=>(String(c.status||'').toUpperCase()==='SCHEDULED'||c.scheduled===true)&&c.starts_at);
         const archived=campaigns.filter(c=>String(c.status||'').toUpperCase()==='COMPLETED'||c.archived===true);
         renderCampaignDock(campaigns);
-        const activeGlobal=active.find(c=>campaignKind(c)==='general');
-        const nextGlobal=scheduled
-          .filter(c=>campaignKind(c)==='general')
-          .sort((a,b)=>Date.parse(a.starts_at||'')-Date.parse(b.starts_at||''))[0]||null;
-        if(activeGlobal) activeGlobal.next_challenge=nextGlobal;
-        const bannerScheduled=scheduled.filter(c=>!(activeGlobal&&nextGlobal&&String(c.id)===String(nextGlobal.id)));
+        const activeGlobals=active.filter(c=>campaignKind(c)==='general');
+        for(const activeGlobal of activeGlobals){
+          const edition=String(activeGlobal.edition||'STANDARD').toUpperCase();
+          activeGlobal.next_challenge=scheduled
+            .filter(c=>campaignKind(c)==='general'&&String(c.edition||'STANDARD').toUpperCase()===edition)
+            .sort((a,b)=>Date.parse(a.starts_at||'')-Date.parse(b.starts_at||''))[0]||null;
+        }
+        const bannerScheduled=scheduled.filter(c=>
+          !activeGlobals.some(activeGlobal=>
+            String(activeGlobal.edition||'STANDARD').toUpperCase()===String(c.edition||'STANDARD').toUpperCase()
+          )
+        );
         const banners=document.getElementById('activeChallenges');
         const content=document.getElementById('challengeContent');
         banners.innerHTML=bannerScheduled.map(c=>campaignHeroMarkup(c,'home')).join('')+active.map(c=>campaignHeroMarkup(c,'home')).join('');
