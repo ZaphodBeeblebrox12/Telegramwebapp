@@ -93,11 +93,13 @@
     .global-pocket .global-pocket-track i{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,#5d9d71,#d2ec9a);box-shadow:0 0 12px rgba(174,224,139,.3);transition:width .8s}
     .global-pocket .global-pocket-progress-meta{display:flex;justify-content:space-between;gap:8px;margin:6px 0 0;font:700 7px "DM Mono",monospace;color:#a9c1ad;letter-spacing:.045em}
     .global-pocket .global-pocket-progress-meta b{color:#d3edbd}
-    .global-pocket .global-pocket-next{margin-top:13px;padding:11px 12px;background:linear-gradient(120deg,rgba(220,241,205,.1),rgba(255,255,255,.035));border:1px solid #557554;border-left:3px solid #c6df91;border-radius:4px}
+    .global-pocket .global-pocket-next{margin-top:10px;padding:9px 11px;background:linear-gradient(120deg,rgba(220,241,205,.1),rgba(255,255,255,.035));border:1px solid #557554;border-left:3px solid #c6df91;border-radius:4px}
     .global-pocket .global-pocket-next-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:5px;font:800 7px "DM Mono",monospace;letter-spacing:.095em;color:#c5e4a9}
-    .global-pocket .global-pocket-next h3{font-size:14px;line-height:1.2;margin:7px 0 5px;color:#f0f8e7}
+    .global-pocket .global-pocket-next h3{font-size:13px;line-height:1.2;margin:6px 0 4px;color:#f0f8e7}
     .global-pocket .global-pocket-next p{font-size:9px;line-height:1.5;color:#c0d4c1;margin:0}
-    .global-pocket .global-pocket-next-target{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:9px;font:700 7px "DM Mono",monospace;color:#adcbab}
+    .global-pocket .upcoming-brief{margin-top:9px;padding:8px 10px;border-top:0;border-right:0;border-bottom:0;background:rgba(220,241,205,.055)}
+    .global-pocket .upcoming-brief .global-pocket-next-head{margin-bottom:4px}
+    .global-pocket .upcoming-brief p{font-size:9px;line-height:1.45;color:#c0d4c1;margin:0}
     .global-pocket .global-pocket-countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px}
     .global-pocket .global-pocket-countdown>div{text-align:center;padding:7px 3px;background:rgba(255,255,255,.05);border:1px solid rgba(197,222,194,.18);border-radius:3px}
     .global-pocket .global-pocket-countdown b{display:block;font:900 17px "DM Mono",monospace;color:#e8f4d9}
@@ -496,29 +498,26 @@
         '<span>ENERGY</span><span>GLOBAL STOCKS</span><span>GLOBAL INDICES</span><span>OPTIONS</span>'+
       '</div>';
     }
-    function globalNextChallengeBrief(next,currency,source){
-      if(!next){
-        return '<div class="global-pocket-next">'+
-          '<div class="global-pocket-next-head"><span>NEXT CHALLENGE</span><span>COMING UP</span></div>'+
-          '<h3>Next round in preparation</h3>'+
-          '<p>The next challenge focus and featured markets will appear here once announced.</p>'+
-        '</div>';
-      }
-      const launch=Date.parse(next.starts_at||'');
-      const launchLabel=Number.isFinite(launch)
-        ?new Date(launch).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Kolkata'})
-        :'Launch date to be announced';
-      const brief=String(next.brief||'').trim()||
-        'The challenge focus and featured instruments will be announced before launch.';
+    function meaningfulGlobalBrief(campaign){
+      const brief=String(campaign&&campaign.brief||'').replace(/\s+/g,' ').trim();
+      if(!brief) return '';
+      const normalised=brief.toLowerCase().replace(/[.!?]+$/,'').trim();
+      const placeholders=[
+        'the challenge focus and featured instruments will be announced before launch',
+        'the next challenge focus and featured markets will appear here once announced'
+      ];
+      return placeholders.includes(normalised)?'':brief;
+    }
+    function globalNextChallengeBrief(next,source){
+      const brief=meaningfulGlobalBrief(next);
+      if(!brief) return '';
       const rawTitle=String(next.name||'').trim();
       const nextTitle=/^general (challenge|campaign)$/i.test(rawTitle)||!rawTitle
         ?'Next Global Challenge':rawTitle;
       return '<div class="global-pocket-next" role="link" tabindex="0" onclick="event.stopPropagation();window.location.href=&quot;'+challengeUrl(next,source)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;){event.stopPropagation();window.location.href=&quot;'+challengeUrl(next,source)+'&quot;}" aria-label="Open '+escapeHtml(nextTitle)+' challenge">'+
-        '<div class="global-pocket-next-head"><span>NEXT CHALLENGE</span><span>LAUNCH · '+escapeHtml(launchLabel)+'</span></div>'+
+        '<div class="global-pocket-next-head"><span>NEXT ROUND BRIEF</span></div>'+
         '<h3>'+escapeHtml(nextTitle)+'</h3>'+
         '<p>'+escapeHtml(brief)+'</p>'+
-        '<div class="global-pocket-next-target"><span>STARTING BALANCE · '+escapeHtml(campaignMoney(next.starting_balance,next.currency||currency))+'</span>'+
-        '<span>TARGET · '+escapeHtml(campaignMoney(next.target_balance,next.currency||currency))+'</span></div>'+
       '</div>';
     }
     function campaignGlobalLiveBanner(c,source){
@@ -541,30 +540,24 @@
         '<div><strong>'+escapeHtml(pnl)+'</strong><span>REALISED P&amp;L</span></div></div>'+
         '<div class="global-pocket-progress"><div class="global-pocket-track"><i style="width:'+progress+'%"></i></div>'+
         '<div class="global-pocket-progress-meta"><span>START · '+escapeHtml(campaignMoney(c.starting_balance,currency))+'</span><b>'+progressText+' COMPLETE</b></div></div>'+
-        globalNextChallengeBrief(c.next_challenge,currency,source)+
+        globalNextChallengeBrief(c.next_challenge,source)+
       '</div>';
     }
     function campaignGlobalUpcomingBanner(c,source){
       const timestamp=Date.parse(c.starts_at||'');
       if(!Number.isFinite(timestamp)) return '';
       const currency=c.currency||'USD';
-      const launchLabel=new Date(timestamp).toLocaleString('en-IN',{
-        timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',
-        hour:'2-digit',minute:'2-digit',hour12:true
-      })+' IST';
-      const brief=String(c.brief||'').trim()||
-        'The challenge focus and featured instruments will be announced before launch.';
-      const rawTitle=String(c.name||'').trim();
-      const nextTitle=/^general (challenge|campaign)$/i.test(rawTitle)||!rawTitle
-        ?'Next Global Challenge':rawTitle;
+      const brief=meaningfulGlobalBrief(c);
+      const briefMarkup=brief
+        ?'<div class="global-pocket-next upcoming-brief"><div class="global-pocket-next-head"><span>CHALLENGE BRIEF</span></div><p>'+escapeHtml(brief)+'</p></div>'
+        :'';
       return '<div class="campaign-hero general global-pocket global-pocket-upcoming" role="link" tabindex="0" onclick="window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+challengeUrl(c,source)+'&quot;" aria-label="Open '+escapeHtml(campaignDisplayName(c))+'">'+
         '<div class="global-pocket-top"><span class="tag">TRADETHESIS / GLOBAL</span><span class="global-pocket-status upcoming">UPCOMING CHALLENGE</span></div>'+
         '<div class="global-pocket-heading upcoming-heading"><div><div class="global-pocket-kicker">YOUR NEXT MULTI-MARKET ROUND</div><h2>Global Multi-Market Challenge</h2>'+
         '<p>One shared target across metals, forex, crypto, energy, global stocks and indices.</p></div>'+
         '<div class="global-pocket-balance"><span>TARGET</span><strong>'+escapeHtml(campaignMoney(c.target_balance,currency))+'</strong></div></div>'+
         globalPocketMarketChips()+
-        '<div class="global-pocket-next upcoming-brief"><div class="global-pocket-next-head"><span>CHALLENGE BRIEF</span><span>LAUNCH · '+escapeHtml(launchLabel)+'</span></div>'+
-        '<h3>'+escapeHtml(nextTitle)+'</h3><p>'+escapeHtml(brief)+'</p></div>'+
+        briefMarkup+
         '<div class="global-pocket-countdown" data-countdown-target="'+timestamp+'">'+
           '<div><b data-countdown-days>00</b><span>DAYS</span></div><div><b data-countdown-hours>00</b><span>HOURS</span></div>'+
           '<div><b data-countdown-minutes>00</b><span>MINUTES</span></div><div><b data-countdown-seconds>00</b><span>SECONDS</span></div>'+
