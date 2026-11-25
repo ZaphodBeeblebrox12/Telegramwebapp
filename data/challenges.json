@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-25T15:33:26.609992+00:00",
+  "generated_at": "2026-11-25T15:34:08.106807+00:00",
   "basis_note": "Current balance = starting balance + realised campaign-sized FIFO P&L. New positions use the full realised campaign balance and the configured risk percentage. Legacy trades retain their pre-sizing ledger basis.",
   "challenges": [
     {
@@ -18,9 +18,9 @@
       "progress_pct": 0.1,
       "remaining_to_target": 4494.53,
       "above_target": 0,
-      "total_trades": 1,
+      "total_trades": 2,
       "closed_trades": 1,
-      "open_trades": 0,
+      "open_trades": 1,
       "wins": 1,
       "losses": 0,
       "breakeven": 0,
@@ -32,6 +32,23 @@
       "subtitle": "GOLD · Active",
       "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": [
+        {
+          "opened_at": "2026-11-25T21:04:07.946518+05:30",
+          "symbol": "XAUUSD",
+          "side": "SHORT",
+          "status": "OPEN",
+          "leverage_multiplier": 50,
+          "entry_price": 4479.573,
+          "exit_price": null,
+          "realised_pnl": 0.0,
+          "quantity": 0.05,
+          "quantity_label": "lots",
+          "risk_percentage": 5.0,
+          "risk_amount": 25.27325,
+          "balance_before": 505.465,
+          "sizing_status": "SIZED",
+          "sizing_reason": ""
+        },
         {
           "opened_at": "2026-11-25T18:49:34.303133+05:30",
           "symbol": "XAUUSD",
