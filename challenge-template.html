@@ -269,11 +269,17 @@
         const pnlClass = pnl > 0 ? '' : pnl < 0 ? 'negative' : '';
         const pnlText = (pnl > 0 ? '+' : pnl < 0 ? '−' : '') + money(Math.abs(pnl), currency);
         const leverage = Number(trade.leverage_multiplier) > 0 ? numberFormat(trade.leverage_multiplier) + ':1' : '—';
+        const quantity = Number(trade.quantity);
+        const sizeMeta = trade.sizing_status === 'SIZED' && Number.isFinite(quantity)
+          ? '<span>SIZE ' + escapeHtml(numberFormat(quantity)) + ' ' + escapeHtml(trade.quantity_label || 'units') + '</span>'
+          : trade.sizing_status === 'UNAVAILABLE' ? '<span>SIZE UNAVAILABLE</span>' : '';
+        const riskMeta = Number(trade.risk_percentage) > 0
+          ? '<span>RISK ' + escapeHtml(numberFormat(trade.risk_percentage)) + '%</span>' : '';
         return '<article class="trade-row">' +
           '<div class="trade-top"><div><div class="trade-symbol">' + escapeHtml(trade.symbol || 'Instrument unavailable') + '</div>' +
           '<span class="trade-side">' + escapeHtml(trade.side || '—') + '</span></div>' +
           '<time class="trade-date">' + escapeHtml(dateLabel(trade.opened_at, { day:'2-digit', month:'short', year:'numeric' })) + '</time></div>' +
-          '<div class="trade-meta"><span>ENTRY ' + escapeHtml(price(trade.entry_price)) + '</span><span>EXIT ' + escapeHtml(price(trade.exit_price)) + '</span><span>LEVERAGE ' + escapeHtml(leverage) + '</span></div>' +
+          '<div class="trade-meta"><span>ENTRY ' + escapeHtml(price(trade.entry_price)) + '</span><span>EXIT ' + escapeHtml(price(trade.exit_price)) + '</span><span>LEVERAGE ' + escapeHtml(leverage) + '</span>' + sizeMeta + riskMeta + '</div>' +
           '<div class="trade-bottom"><span class="trade-status">' + escapeHtml(status) + '</span><strong class="trade-pnl ' + pnlClass + '">' + escapeHtml(pnlText) + (status === 'CLOSED' ? ' REALISED' : '') + '</strong></div>' +
           '</article>';
       }).join('');
@@ -322,6 +328,7 @@
             '<div class="metric"><span>Open</span><strong>' + escapeHtml(numberFormat(campaign.open_trades || 0)) + '</strong></div>' +
             '<div class="metric"><span>Breakeven</span><strong>' + escapeHtml(numberFormat(campaign.breakeven || 0)) + '</strong></div>' +
             '<div class="metric"><span>Remaining</span><strong>' + escapeHtml(money(campaign.remaining_to_target, currency)) + '</strong></div>' +
+            '<div class="metric"><span>Risk / trade</span><strong>' + escapeHtml(numberFormat(campaign.risk_percentage || 1)) + '%</strong></div>' +
           '</div>' +
           '<div class="outcome-line">STATUS · ' + escapeHtml(status.label) + ' &nbsp;·&nbsp; ' + escapeHtml(numberFormat(tradeHistory.length)) + ' TRADE RECORDS</div>' +
         '</section>' +
