@@ -15,7 +15,7 @@
   <style>
     :root{--paper:#f4f0e8;--paper2:#ebe5d9;--ink:#242923;--muted:#73766d;--line:#d9d2c5;--terra:#b95f43;--terra2:#e9c5b5;--sage:#748574;--sage2:#d9e0d4;--gold:#c49a53;--white:#fffdf8;--shadow:0 12px 30px rgba(44,40,32,.07);font-family:"DM Sans",sans-serif;color:var(--ink);background:var(--paper)}
     *{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--paper)}a{color:inherit}
-    .app{max-width:560px;margin:0 auto;min-height:100dvh;padding:0 18px calc(104px + env(safe-area-inset-bottom))}
+    .app{max-width:560px;margin:0 auto;min-height:100dvh;padding:0 18px calc(160px + env(safe-area-inset-bottom))}
     .topbar{height:62px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);gap:12px}
     .brand{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
     .brand img{width:38px;height:38px;object-fit:contain}
@@ -57,6 +57,28 @@
     .empty-state strong,.error-state strong{display:block;font:600 19px "Playfair Display",serif;color:var(--ink);margin-bottom:6px}
     .note{font-size:10px;line-height:1.55;color:var(--muted);margin:12px 0}
     .footer{padding:20px 0;text-align:center;font:9px "DM Mono",monospace;letter-spacing:.1em;color:var(--muted)}
+    .campaign-dock{position:fixed;z-index:15;left:50%;transform:translateX(-50%);bottom:calc(57px + env(safe-area-inset-bottom));width:min(560px,100%);min-height:48px;padding:6px 12px 7px;display:grid;grid-template-columns:70px minmax(0,1fr);align-items:center;gap:8px;background:rgba(244,240,232,.97);border-top:1px solid var(--line);box-shadow:0 -6px 18px rgba(44,40,32,.08);backdrop-filter:blur(15px)}
+    .campaign-dock[hidden]{display:none!important}
+    .campaign-dock-label{font:800 8px/1.35 "DM Mono",monospace;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+    .campaign-dock-list{display:flex;align-items:center;gap:7px;min-width:0;overflow-x:auto;scrollbar-width:none}
+    .campaign-dock-list::-webkit-scrollbar{display:none}
+    .campaign-dock-item{flex:0 0 auto;min-width:156px;max-width:210px;display:flex;align-items:center;gap:7px;padding:6px 8px;border:1px solid var(--line);background:var(--white);color:var(--ink);text-decoration:none;border-radius:3px}
+    .campaign-dock-symbol{width:25px;height:25px;flex:none;display:grid;place-items:center;border-radius:50%;background:#e8e4da;color:#53594f;font:800 9px "DM Mono",monospace}
+    .campaign-dock-copy{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+    .campaign-dock-copy strong{font:700 9px "DM Sans",sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .campaign-dock-copy small{font:7px "DM Mono",monospace;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
+    .campaign-dock-stat{font:800 9px "DM Mono",monospace;color:var(--sage);white-space:nowrap}
+    .campaign-dock-item.upcoming .campaign-dock-stat{color:#9b783d}
+    .campaign-dock-item.gold .campaign-dock-symbol{background:#f3e8cf;color:#916322}
+    .campaign-dock-item.crypto .campaign-dock-symbol{background:#d9f2ec;color:#157b78}
+    .campaign-dock-item.general .campaign-dock-symbol{background:#dcebe0;color:#356c50}
+    .campaign-dock-item.forex .campaign-dock-symbol{background:#e1e6f5;color:#40598f}
+    .campaign-dock-item.energy .campaign-dock-symbol{background:#f5e3d2;color:#a35c28}
+    .campaign-dock-item.index .campaign-dock-symbol{background:#e6e2f5;color:#5d5296}
+    .campaign-dock-item.stock .campaign-dock-symbol{background:#deebdf;color:#42734d}
+    .campaign-dock-item.option .campaign-dock-symbol{background:#f2dfdb;color:#a14f4a}
+    .campaign-dock-item.metal .campaign-dock-symbol,.campaign-dock-item.commodity .campaign-dock-symbol{background:#e2e8e9;color:#5b6b72}
+    @media(max-width:380px){.app{padding-left:14px;padding-right:14px}.campaign-dock{grid-template-columns:59px minmax(0,1fr);padding-left:8px;padding-right:8px;gap:6px}.campaign-dock-item{min-width:144px;max-width:185px}.panel{padding:14px}.metric-grid{gap:5px}.metric{padding:9px 7px}.metric strong{font-size:12px}.trade-date{font-size:8px}}
     .bottom-nav{position:fixed;z-index:20;bottom:0;left:50%;transform:translateX(-50%);width:min(560px,100%);padding:10px 13px calc(10px + env(safe-area-inset-bottom));background:rgba(244,240,232,.96);backdrop-filter:blur(15px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr)}
     .nav-item{border:0;background:none;color:#898a80;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:3px 0;text-decoration:none;font:600 9px "DM Sans",sans-serif}
     .nav-item .nav-icon{font:18px "Playfair Display",serif;line-height:1}
@@ -77,6 +99,10 @@
     </main>
     <footer class="footer">TRADETHESIS · CONVICTION BEFORE EXECUTION</footer>
   </div>
+  <aside class="campaign-dock" id="campaignDock" hidden aria-label="Campaign tracker">
+    <div class="campaign-dock-label">CAMPAIGN<br>TRACKER</div>
+    <div class="campaign-dock-list" id="campaignDockList"></div>
+  </aside>
   <nav class="bottom-nav" aria-label="Main navigation">
     <a class="nav-item" href="../../?view=home"><span class="nav-icon" aria-hidden="true">⌂</span><span>Home</span></a>
     <a class="nav-item active" href="../../?view=challenges" aria-current="page"><span class="nav-icon" aria-hidden="true">⚑</span><span>Challenges</span></a>
@@ -107,6 +133,50 @@
       return String(value === null || value === undefined ? '' : value).replace(/[&<>"']/g, character => ({
         '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
       }[character]));
+    }
+    function campaignKind(campaign) {
+      const asset=String(campaign&&campaign.asset_class||'').trim().toUpperCase().replace(/[^A-Z0-9]+/g,'_');
+      const instrument=String(campaign&&campaign.instrument||'').trim().toUpperCase();
+      const name=String(campaign&&campaign.name||'').trim().toUpperCase();
+      const descriptor=asset+' '+instrument+' '+name;
+      if(/(^|_)(GENERAL|ALL|ALL_MARKETS)(_|$)/.test(asset)||/\b(GENERAL|ALL_MARKETS)\b/.test(instrument)) return 'general';
+      if(asset.includes('CRYPTO')||/\b(BTC|BITCOIN|ETH|ETHEREUM|SOL|SOLANA|XRP|ADA|DOGE|AVAX|BNB)\b/.test(descriptor)) return 'crypto';
+      if(asset.includes('FOREX')||asset==='FX'||asset.includes('CURRENCY')||/\b(FOREX|FX)\b/.test(instrument)) return 'forex';
+      if(asset.includes('ENERGY')||/\b(ENERGY|OIL|GAS|NATURAL_GAS|BRENT|WTI)\b/.test(instrument)) return 'energy';
+      if(asset.includes('OPTION')||asset.includes('DERIVATIVE')||/\b(OPTIONS|OPTION)\b/.test(instrument)) return 'option';
+      if(asset.includes('INDEX')||asset.includes('INDICE')||/\b(INDEX|INDICES)\b/.test(instrument)) return 'index';
+      if(asset.includes('STOCK')||asset.includes('EQUITY')||/\b(STOCKS|EQUITIES)\b/.test(instrument)) return 'stock';
+      if(asset.includes('COMMODITY')||asset.includes('AGRICULTURE')) return 'commodity';
+      if(asset.includes('METAL')||/\b(SILVER|XAG|PLATINUM|PALLADIUM)\b/.test(descriptor)) return /GOLD|XAU/.test(descriptor) ? 'gold' : 'metal';
+      if(/GOLD|XAU/.test(descriptor)) return 'gold';
+      return 'other';
+    }
+    function campaignGlyph(kind) {
+      return ({gold:'Au',crypto:'₿',general:'◎',forex:'FX',energy:'⚡',index:'IDX',stock:'↗',option:'Δ',commodity:'Ag',metal:'Ag'})[kind]||'∴';
+    }
+    function renderCampaignDock(data) {
+      const dock=document.getElementById('campaignDock');
+      const list=document.getElementById('campaignDockList');
+      const campaigns=Array.isArray(data.challenges)?data.challenges:[];
+      const active=campaigns.filter(item=>String(item.status||'').toUpperCase()==='ACTIVE'||item.active===true);
+      const upcoming=campaigns.filter(item=>(String(item.status||'').toUpperCase()==='SCHEDULED'||item.scheduled===true)&&item.starts_at)
+        .sort((a,b)=>Date.parse(a.starts_at||'')-Date.parse(b.starts_at||''));
+      const featured=active.length?active:upcoming.slice(0,3);
+      dock.hidden=featured.length===0;
+      dock.dataset.state=active.length?'active':'upcoming';
+      list.innerHTML=featured.map(item=>{
+        const kind=campaignKind(item);
+        const current=String(item.id)===String(CHALLENGE_ID);
+        const status=active.length
+          ?'LIVE · '+String(item.asset_class||item.instrument||'MARKET').toUpperCase()+' · #'+String(item.id)
+          :'UP NEXT · '+dateLabel(item.starts_at,{day:'2-digit',month:'short',timeZone:'Asia/Kolkata'});
+        const stat=active.length?numberFormat(item.progress_pct)+'%':'VIEW';
+        const href=current?'#challengeDetail':new URL('challenges/'+encodeURIComponent(String(item.id))+'/?from=challenges',appRoot).href;
+        return '<a class="campaign-dock-item '+kind+(active.length?'':' upcoming')+(current?' current':'')+'" href="'+escapeHtml(href)+'"'+(current?' aria-current="page"':'')+'>'+
+          '<span class="campaign-dock-symbol" aria-hidden="true">'+escapeHtml(campaignGlyph(kind))+'</span>'+
+          '<span class="campaign-dock-copy"><strong>'+escapeHtml(item.name||'Trading Challenge')+'</strong><small>'+escapeHtml(current?'YOU ARE HERE · '+status:status)+'</small></span>'+
+          '<span class="campaign-dock-stat">'+escapeHtml(current?'OPEN':stat)+'</span></a>';
+      }).join('');
     }
     function numberFormat(value) {
       const number = Number(value || 0);
@@ -208,27 +278,51 @@
       document.getElementById('loadingState').hidden = true;
       document.getElementById('challengeDetail').hidden = false;
     }
+    let detailLoadInFlight=false;
+    let lastDetailLoadAt=0;
+    let hasLoadedDetail=false;
     async function loadChallenge() {
+      if(detailLoadInFlight) return;
+      detailLoadInFlight=true;
       try {
-        const response = await fetch(dataUrl.href, { cache:'no-store' });
+        const refreshUrl=new URL(dataUrl.href);
+        refreshUrl.searchParams.set('refresh',String(Date.now()));
+        const response = await fetch(refreshUrl.href, { cache:'no-store' });
         if (!response.ok) throw new Error('Challenge data could not be loaded.');
         const data = await response.json();
         const campaigns = Array.isArray(data.challenges) ? data.challenges : [];
+        renderCampaignDock(data);
         const campaign = campaigns.find(item => String(item.id) === String(CHALLENGE_ID));
         if (!campaign) {
-          document.getElementById('loadingState').hidden = true;
-          document.getElementById('errorState').hidden = false;
-          document.getElementById('errorState').innerHTML = '<strong>Challenge not found</strong>This challenge may have been removed or its link may be incorrect. Return to the challenge catalogue to see the available campaigns.';
+          if(!hasLoadedDetail){
+            document.getElementById('loadingState').hidden = true;
+            document.getElementById('errorState').hidden = false;
+            document.getElementById('errorState').innerHTML = '<strong>Challenge not found</strong>This challenge may have been removed or its link may be incorrect. Return to the challenge catalogue to see the available campaigns.';
+          }
           return;
         }
         renderChallenge(campaign, data);
+        hasLoadedDetail=true;
+        lastDetailLoadAt=Date.now();
       } catch (error) {
-        document.getElementById('loadingState').hidden = true;
-        document.getElementById('errorState').hidden = false;
-        document.getElementById('errorState').innerHTML = '<strong>Challenge unavailable</strong>' + escapeHtml(error.message || 'Challenge information could not be loaded.') + ' Try returning to the catalogue.';
+        if(!hasLoadedDetail){
+          document.getElementById('loadingState').hidden = true;
+          document.getElementById('errorState').hidden = false;
+          document.getElementById('errorState').innerHTML = '<strong>Challenge unavailable</strong>' + escapeHtml(error.message || 'Challenge information could not be loaded.') + ' Try returning to the catalogue.';
+        }
+      } finally {
+        detailLoadInFlight=false;
       }
     }
+    function refreshDetailIfStale(force) {
+      if(document.visibilityState!=='visible') return;
+      if(force||Date.now()-lastDetailLoadAt>=30000) loadChallenge();
+    }
     loadChallenge();
+    window.setInterval(()=>refreshDetailIfStale(false),60000);
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden) refreshDetailIfStale(true);});
+    window.addEventListener('focus',()=>refreshDetailIfStale(false));
+    window.addEventListener('pageshow',()=>refreshDetailIfStale(true));
   </script>
 </body>
 </html>
