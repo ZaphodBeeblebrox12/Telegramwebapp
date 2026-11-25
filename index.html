@@ -1056,10 +1056,16 @@
         const pnlText=(pnl>0?'+':pnl<0?'−':'')+campaignMoney(Math.abs(pnl),currency);
         const entry=campaignTradePrice(trade.entry_price);
         const exit=campaignTradePrice(trade.exit_price);
+        const quantity=Number(trade.quantity);
+        const sizeMeta=trade.sizing_status==='SIZED'&&Number.isFinite(quantity)
+          ?'<span>SIZE '+escapeHtml(fmt(quantity))+' '+escapeHtml(trade.quantity_label||'units')+'</span>'
+          :trade.sizing_status==='UNAVAILABLE'?'<span>SIZE UNAVAILABLE</span>':'';
+        const riskMeta=Number(trade.risk_percentage)>0
+          ?'<span>RISK '+escapeHtml(fmt(trade.risk_percentage))+'%</span>':'';
         return '<div class="trade-history-row">'+
           '<div class="trade-history-top"><div><strong class="trade-history-symbol">'+escapeHtml(trade.symbol||'—')+'</strong><span class="trade-history-side">'+escapeHtml(side)+'</span></div>'+
           '<span class="trade-history-date">'+escapeHtml(date)+'</span></div>'+
-          '<div class="trade-history-meta"><span>ENTRY '+escapeHtml(entry)+'</span><span>→ EXIT '+escapeHtml(exit)+'</span><span class="lev">'+escapeHtml(leverage)+'</span></div>'+
+          '<div class="trade-history-meta"><span>ENTRY '+escapeHtml(entry)+'</span><span>→ EXIT '+escapeHtml(exit)+'</span><span class="lev">'+escapeHtml(leverage)+'</span>'+sizeMeta+riskMeta+'</div>'+
           '<div class="trade-history-bottom"><span class="trade-history-status '+statusClass+'">'+escapeHtml(status)+'</span><b class="trade-history-pnl '+pnlClass+'">'+escapeHtml(pnlText)+' REALISED</b></div>'+
         '</div>';
       }).join('');
@@ -1097,6 +1103,7 @@
             '<div class="campaign-metric"><span>Starting</span><strong>'+escapeHtml(campaignMoney(c.starting_balance,currency))+'</strong></div>'+
             '<div class="campaign-metric"><span>Realised P&amp;L</span><strong>'+escapeHtml(campaignMoney(c.realised_pnl,currency))+'</strong></div>'+
             '<div class="campaign-metric"><span>Trades</span><strong>'+escapeHtml(fmt(c.total_trades||0))+'</strong></div>'+
+            '<div class="campaign-metric"><span>Risk / trade</span><strong>'+escapeHtml(fmt(c.risk_percentage||1))+'%</strong></div>'+
           '</div>'+
           '<div class="campaign-card-footer"><span>WINS '+escapeHtml(fmt(c.wins||0))+' · LOSSES '+escapeHtml(fmt(c.losses||0))+' · OPEN '+escapeHtml(fmt(c.open_trades||0))+'</span><strong>VIEW CAMPAIGN ↗</strong></div>'+
         '</a>'+
