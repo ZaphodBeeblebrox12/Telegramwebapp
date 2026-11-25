@@ -141,13 +141,14 @@
       const descriptor=asset+' '+instrument+' '+name;
       if(/(^|_)(GENERAL|ALL|ALL_MARKETS)(_|$)/.test(asset)||/\b(GENERAL|ALL_MARKETS)\b/.test(instrument)) return 'general';
       if(asset.includes('CRYPTO')||/\b(BTC|BITCOIN|ETH|ETHEREUM|SOL|SOLANA|XRP|ADA|DOGE|AVAX|BNB)\b/.test(descriptor)) return 'crypto';
-      if(asset.includes('FOREX')||asset==='FX'||asset.includes('CURRENCY')) return 'forex';
-      if(asset.includes('ENERGY')) return 'energy';
-      if(asset.includes('INDEX')||asset.includes('INDICE')) return 'index';
-      if(asset.includes('STOCK')||asset.includes('EQUITY')) return 'stock';
-      if(asset.includes('OPTION')||asset.includes('DERIVATIVE')) return 'option';
+      if(asset.includes('FOREX')||asset==='FX'||asset.includes('CURRENCY')||/\b(FOREX|FX)\b/.test(instrument)) return 'forex';
+      if(asset.includes('ENERGY')||/\b(ENERGY|OIL|GAS|NATURAL_GAS|BRENT|WTI)\b/.test(instrument)) return 'energy';
+      if(asset.includes('OPTION')||asset.includes('DERIVATIVE')||/\b(OPTIONS|OPTION)\b/.test(instrument)) return 'option';
+      if(asset.includes('INDEX')||asset.includes('INDICE')||/\b(INDEX|INDICES)\b/.test(instrument)) return 'index';
+      if(asset.includes('STOCK')||asset.includes('EQUITY')||/\b(STOCKS|EQUITIES)\b/.test(instrument)) return 'stock';
       if(asset.includes('COMMODITY')||asset.includes('AGRICULTURE')) return 'commodity';
-      if(asset.includes('METAL')||/\b(GOLD|XAU|SILVER|XAG|PLATINUM|PALLADIUM)\b/.test(descriptor)) return /\b(GOLD|XAU)\b/.test(descriptor) ? 'gold' : 'metal';
+      if(asset.includes('METAL')||/\b(SILVER|XAG|PLATINUM|PALLADIUM)\b/.test(descriptor)) return /GOLD|XAU/.test(descriptor) ? 'gold' : 'metal';
+      if(/GOLD|XAU/.test(descriptor)) return 'gold';
       return 'other';
     }
     function campaignGlyph(kind) {
