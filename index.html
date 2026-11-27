@@ -776,7 +776,7 @@
       const href=challengeUrl(c,source);
       const art=campaignSatoshiStashVaultArt(c);
       const top='<div class="stash-top"><span class="stash-tag"><i class="stash-dot"></i>'+topTag+'</span><span class="stash-status">'+statusLabel+'</span></div>';
-      const hero='<div class="stash-hero"><div><h2 class="stash-headline">SATOSHI\\'S<em>STASH</em></h2><p class="stash-subline">'+subline+'</p></div>'+art+'</div>';
+      const hero='<div class="stash-hero"><div><h2 class="stash-headline">SATOSHI\'S<em>STASH</em></h2><p class="stash-subline">'+subline+'</p></div>'+art+'</div>';
       let lower='';
       if(upcoming){
         lower='<div class="stash-countdown countdown" data-countdown-target="'+(Number.isFinite(timestamp)?timestamp:0)+'">'+
@@ -800,7 +800,7 @@
           '<div class="stash-financials"><div class="stash-balance-block"><div class="stash-balance-label">CURRENT STASH</div><div class="stash-balance">'+escapeHtml(campaignMoney(balance,currency))+'</div><div class="stash-pnl">'+escapeHtml(pnlText)+'</div><div class="stash-action">OPEN STASH #'+id+' ↗</div></div>'+
           '<div class="stash-target-card"><div class="stash-target-kicker"><span>✦</span> VAULT TARGET</div><div class="stash-target-amount">'+escapeHtml(currencyTarget)+'</div><div class="stash-target-foot">'+escapeHtml(targetFoot)+'</div><div class="stash-target-meter"><span style="width:'+progress+'%"></span></div></div></div>';
       }
-      return '<div class="campaign-hero crypto satoshi-stash'+(upcoming?' launch upcoming':' live')+'" role="link" tabindex="0" onclick="window.location.href=&quot;'+href+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+href+'&quot;" aria-label="Open Satoshi\\'s Stash campaign #'+id+'">'+top+hero+lower+'</div>';
+      return '<div class="campaign-hero crypto satoshi-stash'+(upcoming?' launch upcoming':' live')+'" role="link" tabindex="0" onclick="window.location.href=&quot;'+href+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+href+'&quot;" aria-label="Open Satoshi\'s Stash campaign #'+id+'">'+top+hero+lower+'</div>';
     }
     function campaignSatoshiStashSummaryCard(c,label){
       const progressValue=Number(c.progress_pct||0);
@@ -814,9 +814,9 @@
       const status=String(c.status||'').toUpperCase();
       const id=escapeHtml(String(c.id||''));
       const targetState=progress>=100?'VAULT UNLOCKED':campaignMoney(c.remaining_to_target,currency)+' TO GO';
-      return '<div class="panel challenge-summary satoshi-stash-summary"><a class="campaign-card-link" href="'+challengeUrl(c,'challenges')+'" aria-label="Open Satoshi\\'s Stash campaign #'+id+'">'+
-        '<div class="stash-summary-top"><span>'+escapeHtml(label)+' · SATOSHI\\'S STASH</span><b>#'+id+'</b></div>'+
-        '<h3>SATOSHI\\'S STASH</h3><p class="sub">'+escapeHtml(c.brief||'Five digital assets. One secure vault. One shared target.')+'</p>'+
+      return '<div class="panel challenge-summary satoshi-stash-summary"><a class="campaign-card-link" href="'+challengeUrl(c,'challenges')+'" aria-label="Open Satoshi\'s Stash campaign #'+id+'">'+
+        '<div class="stash-summary-top"><span>'+escapeHtml(label)+' · SATOSHI\'S STASH</span><b>#'+id+'</b></div>'+
+        '<h3>SATOSHI\'S STASH</h3><p class="sub">'+escapeHtml(c.brief||'Five digital assets. One secure vault. One shared target.')+'</p>'+
         '<div class="stash-summary-balance"><div><small>CURRENT STASH</small><strong>'+escapeHtml(balance)+'</strong><em>'+escapeHtml(pnlText)+' REALISED</em></div>'+
         '<div class="stash-summary-target"><small>VAULT TARGET</small><strong>'+escapeHtml(target)+'</strong><em>'+escapeHtml(targetState)+'</em></div></div>'+
         '<div class="stash-summary-progress-head"><span>STASH PROGRESS</span><b>'+escapeHtml(fmt(progressValue))+'%</b></div>'+
