@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T19:56:51.507491+00:00",
+  "generated_at": "2026-11-27T19:57:33.542526+00:00",
   "basis_note": "Current balance = starting balance + realised campaign-sized FIFO P&L. New positions use the full realised campaign balance and the configured risk percentage. Legacy trades retain their pre-sizing ledger basis.",
   "challenges": [
     {
@@ -18,7 +18,7 @@
       "progress_pct": 0.0,
       "remaining_to_target": 4500.0,
       "above_target": 0,
-      "total_trades": 2,
+      "total_trades": 3,
       "closed_trades": 1,
       "open_trades": 1,
       "wins": 0,
@@ -33,10 +33,27 @@
       "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": [
         {
-          "opened_at": "2026-11-28T01:26:51.218042+05:30",
+          "opened_at": "2026-11-28T01:27:33.496552+05:30",
           "symbol": "XAUUSD",
           "side": "SHORT",
           "status": "OPEN",
+          "leverage_multiplier": 50,
+          "entry_price": 4480.0,
+          "exit_price": null,
+          "realised_pnl": 0.0,
+          "quantity": null,
+          "quantity_label": "",
+          "risk_percentage": 1.0,
+          "risk_amount": null,
+          "balance_before": 500.0,
+          "sizing_status": "UNAVAILABLE",
+          "sizing_reason": "For a SHORT trade, the stop-loss must be above entry."
+        },
+        {
+          "opened_at": "2026-11-28T01:26:51.218042+05:30",
+          "symbol": "XAUUSD",
+          "side": "SHORT",
+          "status": "DELETED",
           "leverage_multiplier": 50,
           "entry_price": 4480.0,
           "exit_price": null,
