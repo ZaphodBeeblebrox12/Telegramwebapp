@@ -697,7 +697,7 @@
     }
     const CAMPAIGN_META = {
       gold:{label:'GOLD',liveLabel:'LIVE GOLD RUSH',headline:'GOLD RUSH',launchHeadline:'GOLD<br>RUSH',launchSubline:'THE GOLD HUNT BEGINS IN',quest:['PICKAXE READY','FIRST STRIKE','GOLD VEIN'],stage:'GOLD MILESTONE',milestone:'NEXT STRIKE',complete:'GOLD RUSH COMPLETE · TARGET CLEARED',theme:'nugget',glyph:'Au',artFill:'#b87926',artStroke:'#ffe2a0',artText:'#fff3c4'},
-      crypto:{label:'CRYPTO',liveLabel:'LIVE CRYPTO RUSH',headline:'CRYPTO RUSH',launchHeadline:'THE CRYPTO<br>QUEST',launchSubline:'THE QUEST BEGINS IN',quest:['GEAR UP','FIRST QUEST','BUILD MOMENTUM'],stage:'QUEST MILESTONE',milestone:'NEXT QUEST',complete:'ALL QUEST MILESTONES CLEARED',theme:'crypto',glyph:'₿',artFill:'#31b9b4',artStroke:'#a2fff0',artText:'#063448'},
+      crypto:{label:'CRYPTO',liveLabel:'LIVE CRYPTO HEIST',headline:'CRYPTO HEIST',launchHeadline:'CRYPTO<br>HEIST',launchSubline:'THE HEIST BEGINS IN',quest:['CREW ASSEMBLED','FIRST SCORE','BUILD THE HAUL'],stage:'HEIST MILESTONE',milestone:'NEXT SCORE',complete:'CRYPTO HEIST COMPLETE · TARGET CLEARED',theme:'crypto',glyph:'₿',artFill:'#31b9b4',artStroke:'#a2fff0',artText:'#063448'},
       general:{label:'GLOBAL',liveLabel:'LIVE GLOBAL CAMPAIGN',headline:'GLOBAL CHALLENGE',launchHeadline:'GLOBAL<br>CHALLENGE',launchSubline:'MULTIPLE MARKETS GO LIVE IN',quest:['CROSS-MARKET','TRADES COUNT','ONE GOAL'],stage:'CROSS-MARKET',milestone:'NEXT MILESTONE',complete:'GLOBAL CAMPAIGN TARGET CLEARED',theme:'general',glyph:'◎',artFill:'#258b78',artStroke:'#b9e8c9',artText:'#e7fff0'},
       forex:{label:'FOREX',liveLabel:'LIVE FOREX CAMPAIGN',headline:'FOREX CHALLENGE',launchHeadline:'FOREX<br>CHALLENGE',launchSubline:'THE NEXT SESSION BEGINS IN',quest:['MAP PAIRS','FIND SETUPS','MANAGE RISK'],stage:'FX MILESTONE',milestone:'NEXT SESSION',complete:'FOREX CAMPAIGN TARGET CLEARED',theme:'forex',glyph:'FX',artFill:'#344d83',artStroke:'#c7d6ff',artText:'#f2f5ff'},
       energy:{label:'ENERGY',liveLabel:'LIVE ENERGY CAMPAIGN',headline:'ENERGY CHALLENGE',launchHeadline:'ENERGY<br>CHALLENGE',launchSubline:'THE NEXT ENERGY MOVE BEGINS IN',quest:['TRACK SUPPLY','READ MOMENTUM','MANAGE RISK'],stage:'ENERGY MILESTONE',milestone:'NEXT MILESTONE',complete:'ENERGY CAMPAIGN TARGET CLEARED',theme:'energy',glyph:'⚡',artFill:'#a95f2c',artStroke:'#ffd39b',artText:'#fff2df'},
@@ -731,7 +731,10 @@
     }
     function campaignIsSatoshiStash(c){
       const name=String(c&&c.name||'').trim().toLowerCase().replace(/[’‘]/g,"'");
-      return campaignKind(c)==='crypto' && name==="satoshi's stash";
+      const skin=String(c&&c.campaign_skin||'').trim().toUpperCase().replace(/-/g,'_');
+      return campaignKind(c)==='crypto' && (
+        skin==='SATOSHI_STASH' || (!skin && name==="satoshi's stash")
+      );
     }
     function campaignSatoshiStashVaultArt(c){
       const artId='satoshi-vault-'+String(c&&c.id||'campaign').replace(/[^a-z0-9_-]/gi,'');
@@ -854,8 +857,11 @@
     }
     function campaignDisplayName(c){
       const name=String(c&&c.name||'').trim();
-      if(name) return name;
-      const defaults={gold:'Gold Challenge',crypto:"Satoshi's Stash",general:'Global Multi-Market Challenge',forex:'Forex Challenge',energy:'Energy Challenge',index:'Indices Challenge',stock:'Stocks Challenge',option:'Options Challenge',commodity:'Commodities Challenge',metal:'Metals Challenge'};
+      if(name){
+        if(campaignKind(c)==='crypto'&&name.toLowerCase()==='crypto rush') return 'Crypto Heist';
+        return name;
+      }
+      const defaults={gold:'Gold Challenge',crypto:'Crypto Heist',general:'Global Multi-Market Challenge',forex:'Forex Challenge',energy:'Energy Challenge',index:'Indices Challenge',stock:'Stocks Challenge',option:'Options Challenge',commodity:'Commodities Challenge',metal:'Metals Challenge'};
       return defaults[campaignKind(c)]||'Trading Challenge';
     }
     function campaignIcon(kind){
