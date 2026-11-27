@@ -241,7 +241,10 @@
     }
     function campaignIsSatoshiStash(campaign){
       const name=String(campaign&&campaign.name||'').trim().toLowerCase().replace(/[’‘]/g,"'");
-      return campaignKind(campaign)==='crypto' && name==="satoshi's stash";
+      const skin=String(campaign&&campaign.campaign_skin||'').trim().toUpperCase().replace(/-/g,'_');
+      return campaignKind(campaign)==='crypto' && (
+        skin==='SATOSHI_STASH' || (!skin && name==="satoshi's stash")
+      );
     }
     function satoshiStashDetailCoins(){
       return '<div class="stash-detail-coins" aria-label="Bitcoin, Ethereum, Solana, XRP and BNB">'+
@@ -345,7 +348,9 @@
       const progressWidth = Math.min(100, Math.max(0, progressValue));
       const realised = Number(campaign.realised_pnl || 0);
       const pnlClass = realised < 0 ? 'negative' : '';
-      const title = String(campaign.name || 'Trading Challenge');
+      const rawTitle = String(campaign.name || 'Trading Challenge');
+      const title = campaignKind(campaign)==='crypto' && rawTitle.trim().toLowerCase()==='crypto rush'
+        ? 'Crypto Heist' : rawTitle;
       const tradeHistory = Array.isArray(campaign.trade_history) ? campaign.trade_history : [];
       const desertRally = campaignIsDesertRally(campaign);
       const satoshiStash = campaignIsSatoshiStash(campaign);
