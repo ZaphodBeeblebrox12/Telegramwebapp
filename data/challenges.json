@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-25T15:35:50.340948+00:00",
+  "generated_at": "2026-11-27T19:06:51.260037+00:00",
   "basis_note": "Current balance = starting balance + realised campaign-sized FIFO P&L. New positions use the full realised campaign balance and the configured risk percentage. Legacy trades retain their pre-sizing ledger basis.",
   "challenges": [
     {
@@ -121,12 +121,12 @@
       "wins": 0,
       "losses": 0,
       "breakeven": 0,
-      "status": "SCHEDULED",
+      "status": "COMPLETED",
       "active": false,
-      "scheduled": true,
+      "scheduled": false,
       "starts_at": "2026-12-01T19:03:00+05:30",
-      "archived": false,
-      "subtitle": "GOLD · Scheduled",
+      "archived": true,
+      "subtitle": "GOLD · Completed",
       "description": "Campaign progress is based on realised campaign-sized FIFO P&L. Each new trade is sized from the full realised campaign balance.",
       "trade_history": []
     },
