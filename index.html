@@ -989,9 +989,9 @@
           '<div class="countdown-unit"><b data-countdown-minutes>00</b><span>MINUTES</span></div>'+
           '<div class="countdown-unit"><b data-countdown-seconds>00</b><span>SECONDS</span></div>'+
         '</div>'+
-        (kind==='gold'?'':'<div class="launch-quest" aria-label="'+quest.join(', ')+'">'+
+        '<div class="launch-quest" aria-label="'+quest.join(', ')+'">'+
           quest.map((step,index)=>'<div class="launch-quest-step"><b>'+(index+1)+'</b>'+step+'</div>').join('')+
-        '</div>')+
+        '</div>'+
         '<div class="launch-date"><span>LAUNCH · <strong>'+escapeHtml(launchLabel)+'</strong></span><span>TARGET · <strong>'+escapeHtml(goal)+'</strong></span></div>'+
       '</div>';
     }
