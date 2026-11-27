@@ -342,6 +342,31 @@
     .satoshi-stash .stash-launch-date strong{display:block;margin-top:5px;color:#f1d9a9;font-size:8px;line-height:1.45}
     .satoshi-stash .stash-launch-target{display:flex;flex-direction:column;justify-content:center}
     .satoshi-stash .stash-launch-target .stash-target-amount{font-size:clamp(16px,4.4vw,21px)}
+    .challenge-summary.satoshi-stash-summary{overflow:hidden;padding:0;border:1px solid rgba(102,234,216,.5);background:radial-gradient(ellipse at 82% 15%,rgba(102,234,216,.14),transparent 35%),linear-gradient(130deg,#0c1427,#142541 55%,#101a31);color:#effffb;box-shadow:0 12px 27px rgba(15,30,48,.22)}
+    .satoshi-stash-summary .campaign-card-link{display:block;padding:14px 15px;color:#effffb;text-decoration:none}
+    .satoshi-stash-summary .stash-summary-top{display:flex;justify-content:space-between;gap:8px;color:#b2fff1;font:800 7px "DM Mono",monospace;letter-spacing:.13em;text-transform:uppercase}
+    .satoshi-stash-summary h3{margin:9px 0 5px;color:#eafffb;font:900 23px/1 "DM Sans",sans-serif;letter-spacing:-.05em}
+    .satoshi-stash-summary p.sub{color:#b4c9d5;font-size:11px;line-height:1.45;margin:0 0 10px}
+    .satoshi-stash-summary .stash-summary-balance{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:8px;align-items:stretch}
+    .satoshi-stash-summary .stash-summary-balance>div{min-width:0;display:flex;flex-direction:column;justify-content:center}
+    .satoshi-stash-summary .stash-summary-balance small{color:#a9bdcc;font:800 6px "DM Mono",monospace;letter-spacing:.11em}
+    .satoshi-stash-summary .stash-summary-balance strong{margin-top:5px;color:#f4fbf5;font:900 clamp(15px,4vw,19px) "DM Mono",monospace;white-space:nowrap}
+    .satoshi-stash-summary .stash-summary-balance em{margin-top:4px;color:#ffe2a5;font:800 6px "DM Mono",monospace;font-style:normal}
+    .satoshi-stash-summary .stash-summary-target{padding:8px 9px;border:1px solid rgba(245,198,120,.7);border-radius:4px;background:linear-gradient(135deg,rgba(112,78,39,.32),rgba(18,31,48,.9))}
+    .satoshi-stash-summary .stash-summary-target strong{color:#fff0c8}
+    .satoshi-stash-summary .stash-summary-target em{color:#e5c68e}
+    .satoshi-stash-summary .stash-summary-progress-head{display:flex;justify-content:space-between;gap:8px;margin:12px 0 5px;color:#b4c9d5;font:800 7px "DM Mono",monospace;letter-spacing:.1em}
+    .satoshi-stash-summary .stash-summary-progress-head b{color:#66ead8}
+    .satoshi-stash-summary .stash-summary-progress{height:6px;overflow:hidden;border:1px solid rgba(151,216,206,.43);border-radius:10px;background:#081323}
+    .satoshi-stash-summary .stash-summary-progress i{display:block;height:100%;background:linear-gradient(90deg,#247d80,#4bcab9,#d5c18a);box-shadow:0 0 10px rgba(102,234,216,.4)}
+    .satoshi-stash-summary .stash-summary-foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:7px;margin-top:10px;color:#a9bdcc;font:700 6px "DM Mono",monospace;letter-spacing:.06em}
+    .satoshi-stash-summary .stash-summary-foot b{color:#66ead8}
+    @media(max-width:390px){
+      .satoshi-stash-summary .campaign-card-link{padding:12px}
+      .satoshi-stash-summary .stash-summary-balance{gap:6px}
+      .satoshi-stash-summary .stash-summary-target{padding:7px}
+      .satoshi-stash-summary .stash-summary-balance strong{font-size:15px}
+    }
     @media(max-width:390px){
       .campaign-hero.crypto.satoshi-stash{padding:12px 12px 11px}
       .satoshi-stash .stash-hero{grid-template-columns:minmax(0,1fr) 132px;min-height:103px;gap:4px}
