@@ -272,6 +272,101 @@
     .campaign-hero.crypto .progress-caption b,.campaign-hero.crypto .profit{color:#83f4dc}
     .campaign-hero.crypto .balance{color:#e7fffc}
     .campaign-hero.crypto .goal{color:#a9c9d1}
+
+    /* Satoshi's Stash — five-asset vault skin */
+    .campaign-hero.crypto.satoshi-stash{
+      padding:13px 15px 12px;border-radius:9px;isolation:isolate;overflow:hidden;
+      color:#f4f8f5;border:1px solid rgba(166,237,220,.62);
+      background:
+        radial-gradient(ellipse at 81% 25%,rgba(102,234,216,.18),transparent 31%),
+        radial-gradient(ellipse at 22% 96%,rgba(59,107,169,.22),transparent 35%),
+        linear-gradient(130deg,#0c1427 0%,#142541 49%,#101a31 100%);
+      box-shadow:0 15px 30px rgba(15,30,48,.24),0 3px 10px rgba(15,30,48,.12);
+    }
+    .campaign-hero.crypto.satoshi-stash:before{
+      content:"";inset:0;right:0;top:0;transform:none;z-index:-1;opacity:.28;
+      background-image:linear-gradient(rgba(125,219,207,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(125,219,207,.09) 1px,transparent 1px);
+      background-size:24px 24px;mask-image:linear-gradient(110deg,transparent 20%,#000 75%);
+    }
+    .campaign-hero.crypto.satoshi-stash:after{
+      content:"";position:absolute;pointer-events:none;z-index:-1;width:300px;height:300px;right:-144px;top:-152px;
+      border:1px solid rgba(102,234,216,.18);border-radius:50%;
+      box-shadow:0 0 0 18px rgba(102,234,216,.025),0 0 0 42px rgba(102,234,216,.02),0 0 0 70px rgba(102,234,216,.018);
+    }
+    .satoshi-stash .stash-top{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:17px}
+    .satoshi-stash .stash-tag{display:flex;align-items:center;gap:7px;color:#b2fff1;font:800 8px/1.25 "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase}
+    .satoshi-stash .stash-dot{width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:#66ead8;box-shadow:0 0 0 4px rgba(102,234,216,.13),0 0 13px #66ead8}
+    .satoshi-stash .stash-status{color:#ffe2a5;text-align:right;font:800 8px/1.25 "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase}
+    .satoshi-stash .stash-hero{display:grid;grid-template-columns:minmax(0,1fr) 158px;gap:8px;align-items:center;min-height:111px;margin:4px 0 7px}
+    .satoshi-stash .stash-headline{margin:0;color:#effffb;font:950 clamp(26px,7.2vw,36px)/.94 "DM Sans",sans-serif;letter-spacing:-.065em;text-transform:uppercase;text-shadow:0 3px 18px rgba(102,234,216,.12);white-space:normal}
+    .satoshi-stash .stash-headline em{display:block;margin-top:3px;color:#66ead8;font-size:.72em;font-style:normal;letter-spacing:.12em}
+    .satoshi-stash .stash-subline{margin:9px 0 0;color:#c0cddd;font:700 7px/1.5 "DM Mono",monospace;letter-spacing:.13em;text-transform:uppercase}
+    .satoshi-stash .stash-art{width:158px;height:118px;overflow:visible;filter:drop-shadow(0 10px 13px rgba(0,0,0,.25));pointer-events:none}
+    .satoshi-stash .stash-art .art-float{animation:stashVaultFloat 4.2s ease-in-out infinite;transform-origin:center}
+    .satoshi-stash .stash-art .asset-float{filter:drop-shadow(0 2px 3px rgba(0,0,0,.38))}
+    @keyframes stashVaultFloat{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-4px) rotate(1deg)}}
+    .satoshi-stash .stash-countdown{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:7px 0 10px}
+    .satoshi-stash .stash-countdown-unit{min-width:0;min-height:48px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:3px;border:1px solid rgba(178,255,241,.2);border-radius:4px;background:linear-gradient(180deg,rgba(102,234,216,.075),rgba(5,13,27,.2))}
+    .satoshi-stash .stash-countdown-unit b{color:#f9d99c;font:900 20px/.95 "DM Mono",monospace;letter-spacing:-.06em}
+    .satoshi-stash .stash-countdown-unit span{color:#aebed0;font:700 6px/1 "DM Mono",monospace;letter-spacing:.16em;text-transform:uppercase}
+    .satoshi-stash .countdown-ready{grid-column:1/-1;padding:10px 8px;text-align:center;border:1px solid #66ead8;background:rgba(255,255,255,.08);color:#b2fff1;font:900 12px "DM Mono",monospace;letter-spacing:.13em}
+    .satoshi-stash .stash-divider{height:1px;margin:0 0 9px;background:linear-gradient(90deg,transparent,rgba(102,234,216,.34),transparent)}
+    .satoshi-stash .stash-progress-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;color:#d8e5e7;font:800 7px/1.3 "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase}
+    .satoshi-stash .stash-progress-heading strong{color:#66ead8;font-size:8px}
+    .satoshi-stash .stash-track-wrap{position:relative;height:16px;margin:16px 14px 0 8px}
+    .satoshi-stash .stash-track{position:absolute;inset:3px 0;border:1px solid rgba(151,216,206,.43);border-radius:20px;background:linear-gradient(180deg,rgba(1,8,20,.78),rgba(26,48,72,.9));box-shadow:inset 0 2px 5px rgba(0,0,0,.5);overflow:hidden}
+    .satoshi-stash .stash-track i{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,#247d80 0%,#4bcab9 58%,#d5c18a 100%);box-shadow:0 0 12px rgba(102,234,216,.52);transition:width .55s cubic-bezier(.2,.75,.2,1)}
+    .satoshi-stash .stash-coin-marker{position:absolute;left:0;top:50%;width:36px;height:36px;transform:translate(-50%,-50%);z-index:3;filter:drop-shadow(0 3px 5px rgba(0,0,0,.65)) drop-shadow(0 0 6px rgba(102,234,216,.23));pointer-events:none}
+    .satoshi-stash .stash-checkpoints{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:8px;margin:8px 0 0;color:#93aabd;font:700 6px/1.35 "DM Mono",monospace;letter-spacing:.07em;text-align:center;text-transform:uppercase}
+    .satoshi-stash .stash-checkpoints span{min-width:0;white-space:nowrap}
+    .satoshi-stash .stash-checkpoints span:before{content:"";display:block;width:5px;height:5px;margin:0 auto 4px;border:1px solid #80bdb4;border-radius:50%;background:#172c45}
+    .satoshi-stash .stash-checkpoints span.reached{color:#ffe2a5}
+    .satoshi-stash .stash-checkpoints span.reached:before{background:#f5c678;border-color:#fff0c7;box-shadow:0 0 8px rgba(245,198,120,.55)}
+    .satoshi-stash .stash-statsline{display:flex;justify-content:space-between;gap:8px;margin:9px 0 0;color:#a9bdcc;font:700 7px/1.35 "DM Mono",monospace;letter-spacing:.055em;text-transform:uppercase}
+    .satoshi-stash .stash-statsline strong{color:#66ead8;text-align:right}
+    .satoshi-stash .stash-financials{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:stretch;gap:9px;margin-top:11px;padding-top:10px;border-top:1px solid rgba(178,255,241,.19)}
+    .satoshi-stash .stash-balance-block{min-width:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:2px 0 2px 1px}
+    .satoshi-stash .stash-balance-label{color:#a9bdcc;font:800 7px/1.2 "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase}
+    .satoshi-stash .stash-balance{margin-top:5px;color:#f4fbf5;font:900 clamp(17px,4.5vw,22px)/1 "DM Mono",monospace;letter-spacing:-.06em;white-space:nowrap}
+    .satoshi-stash .stash-pnl{margin-top:8px;color:#ffe2a5;font:900 8px/1.3 "DM Mono",monospace}
+    .satoshi-stash .stash-action{margin-top:4px;color:#66ead8;font:800 6px/1.3 "DM Mono",monospace;letter-spacing:.09em;text-transform:uppercase}
+    .satoshi-stash .stash-target-card{position:relative;min-width:0;overflow:hidden;padding:9px 10px 8px;border:1px solid rgba(245,198,120,.78);border-radius:5px;background:radial-gradient(ellipse at 85% 0%,rgba(255,226,165,.18),transparent 55%),linear-gradient(135deg,rgba(112,78,39,.34),rgba(37,44,53,.78) 58%,rgba(18,31,48,.9));box-shadow:inset 0 0 0 1px rgba(255,226,165,.06),0 0 18px rgba(245,198,120,.09)}
+    .satoshi-stash .stash-target-kicker{display:flex;align-items:center;gap:5px;color:#ffe0a0;font:900 6px/1.2 "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase}
+    .satoshi-stash .stash-target-kicker span{color:#fff0bd;font-size:10px}
+    .satoshi-stash .stash-target-amount{margin-top:6px;color:#fff0c8;font:950 clamp(16px,4.4vw,22px)/1 "DM Mono",monospace;letter-spacing:-.065em;white-space:nowrap;text-shadow:0 0 15px rgba(245,198,120,.18)}
+    .satoshi-stash .stash-target-foot{margin-top:5px;color:#e5c68e;font:800 5.5px/1.35 "DM Mono",monospace;letter-spacing:.07em;text-transform:uppercase}
+    .satoshi-stash .stash-target-meter{height:4px;margin-top:7px;overflow:hidden;border-radius:10px;background:rgba(7,14,25,.7);box-shadow:inset 0 1px 2px rgba(0,0,0,.55)}
+    .satoshi-stash .stash-target-meter span{display:block;height:100%;border-radius:10px;background:linear-gradient(90deg,#c18a45,#ffe0a0);box-shadow:0 0 8px rgba(255,220,148,.45);transition:width .55s cubic-bezier(.2,.75,.2,1)}
+    .satoshi-stash .stash-launchline{margin-top:9px;padding-top:9px;border-top:1px solid rgba(178,255,241,.16);display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:stretch;gap:9px;color:#b1c2cf}
+    .satoshi-stash .stash-launch-date{align-self:center;min-width:0;font:700 6px/1.45 "DM Mono",monospace;letter-spacing:.07em;text-transform:uppercase}
+    .satoshi-stash .stash-launch-date strong{display:block;margin-top:5px;color:#f1d9a9;font-size:8px;line-height:1.45}
+    .satoshi-stash .stash-launch-target{display:flex;flex-direction:column;justify-content:center}
+    .satoshi-stash .stash-launch-target .stash-target-amount{font-size:clamp(16px,4.4vw,21px)}
+    @media(max-width:390px){
+      .campaign-hero.crypto.satoshi-stash{padding:12px 12px 11px}
+      .satoshi-stash .stash-hero{grid-template-columns:minmax(0,1fr) 132px;min-height:103px;gap:4px}
+      .satoshi-stash .stash-art{width:132px;height:108px}
+      .satoshi-stash .stash-headline{font-size:clamp(25px,7.2vw,31px)}
+      .satoshi-stash .stash-countdown{gap:5px}
+      .satoshi-stash .stash-countdown-unit{min-height:45px}
+      .satoshi-stash .stash-countdown-unit b{font-size:18px}
+      .satoshi-stash .stash-coin-marker{width:33px;height:33px}
+      .satoshi-stash .stash-financials,.satoshi-stash .stash-launchline{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:7px}
+      .satoshi-stash .stash-target-card{padding:8px 8px 7px}
+      .satoshi-stash .stash-target-amount{font-size:clamp(15px,4.8vw,19px)}
+      .satoshi-stash .stash-target-foot{font-size:5px;letter-spacing:.045em}
+      .satoshi-stash .stash-balance{font-size:17px}
+      .satoshi-stash .stash-pnl{font-size:7px}
+      .satoshi-stash .stash-launch-date strong{font-size:7px}
+      .satoshi-stash .stash-checkpoints{font-size:5.7px;letter-spacing:.04em}
+    }
+    @media(max-width:340px){
+      .satoshi-stash .stash-hero{grid-template-columns:minmax(0,1fr) 112px}
+      .satoshi-stash .stash-art{width:112px;height:100px}
+      .satoshi-stash .stash-financials,.satoshi-stash .stash-launchline{gap:5px}
+      .satoshi-stash .stash-target-amount{font-size:15px}
+      .satoshi-stash .stash-target-kicker{font-size:5.5px;letter-spacing:.07em}
+    }
     .campaign-hero.crypto .progress-marker{transform:translate(-50%,-50%)}
     .campaign-hero.crypto .progress-marker.crypto-bitcoin{width:35px;height:35px;transform:translate(-50%,-50%);filter:drop-shadow(0 3px 4px rgba(0,0,0,.58))}
     @media(max-width:380px){.campaign-hero{padding-left:14px;padding-right:14px}.campaign-hero .headline{font-size:clamp(23px,8vw,28px)}.campaign-hero .bottomline{left:auto;right:auto}.campaign-hero .balance{font-size:16px}.campaign-hero .progress-caption{font-size:6.5px;gap:3px}.campaign-hero .progress-marker{width:28px;height:28px}.campaign-hero .progress-marker.general-globe{width:34px;height:34px}.campaign-hero .progress-marker.gold-nugget-marker{width:34px;height:31px}}
@@ -609,6 +704,125 @@
       return campaignKind(c)==='general' &&
         String(c&&c.edition||'STANDARD').trim().toUpperCase()==='LAMBO';
     }
+    function campaignIsSatoshiStash(c){
+      const name=String(c&&c.name||'').trim().toLowerCase().replace(/[’‘]/g,"'");
+      return campaignKind(c)==='crypto' && name==="satoshi's stash";
+    }
+    function campaignSatoshiStashVaultArt(c){
+      const artId='satoshi-vault-'+String(c&&c.id||'campaign').replace(/[^a-z0-9_-]/gi,'');
+      return '<svg class="stash-art" viewBox="0 0 220 160" role="img" aria-label="A secure digital vault surrounded by Bitcoin, Ethereum, Solana, XRP and BNB coins">'+
+        '<defs>'+
+          '<linearGradient id="'+artId+'-vaultBody" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5a7890"/><stop offset=".42" stop-color="#223a5a"/><stop offset="1" stop-color="#101c32"/></linearGradient>'+
+          '<linearGradient id="'+artId+'-vaultFace" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#8eb8bd"/><stop offset=".35" stop-color="#365e78"/><stop offset="1" stop-color="#182b49"/></linearGradient>'+
+          '<linearGradient id="'+artId+'-coinCyan" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d5fff6"/><stop offset=".48" stop-color="#68e8d5"/><stop offset="1" stop-color="#238d98"/></linearGradient>'+
+          '<linearGradient id="'+artId+'-coinEth" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e5edff"/><stop offset=".52" stop-color="#8198c7"/><stop offset="1" stop-color="#3c527f"/></linearGradient>'+
+          '<linearGradient id="'+artId+'-coinSol" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#baff9c"/><stop offset=".5" stop-color="#66e6c5"/><stop offset="1" stop-color="#9b71f2"/></linearGradient>'+
+          '<linearGradient id="'+artId+'-coinXrp" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#effbff"/><stop offset=".55" stop-color="#91c3df"/><stop offset="1" stop-color="#477b9e"/></linearGradient>'+
+          '<linearGradient id="'+artId+'-coinBnb" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff4bb"/><stop offset=".5" stop-color="#f0bd55"/><stop offset="1" stop-color="#b77828"/></linearGradient>'+
+          '<filter id="'+artId+'-glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'+
+        '</defs>'+
+        '<path d="M21 77 C23 15 76 5 116 13 S202 35 200 83 S164 151 111 148 S22 126 21 77Z" fill="none" stroke="#68e8d5" stroke-width="1" stroke-dasharray="2 6" opacity=".24"/>'+
+        '<path d="M24 79 C45 48 61 35 92 37 M141 28 C162 37 176 50 190 66 M29 111 C48 126 62 133 83 136 M151 126 C169 116 181 104 191 89" fill="none" stroke="#8cefe1" stroke-width="1.15" stroke-dasharray="2 5" opacity=".47"/>'+
+        '<g class="art-float">'+
+          '<g transform="translate(66 32)">'+
+            '<path d="M8 18 L44 0 L81 16 L81 77 L44 96 L8 76 Z" fill="url(#'+artId+'-vaultBody)" stroke="#a9dfd8" stroke-width="1.5"/>'+
+            '<path d="M44 0 L81 16 L81 77 L44 96 Z" fill="#13233f" stroke="#8dc8c4" stroke-width="1"/>'+
+            '<path d="M8 18 L44 35 L81 16" fill="none" stroke="#d3fff0" stroke-width="1.2" opacity=".65"/>'+
+            '<circle cx="44" cy="51" r="27" fill="#10213b" stroke="#7fe4d5" stroke-width="2.3"/>'+
+            '<circle cx="44" cy="51" r="21" fill="url(#'+artId+'-vaultFace)" stroke="#c3fff0" stroke-width="1.2"/>'+
+            '<circle cx="44" cy="51" r="15" fill="#132943" stroke="#7ce6d7" stroke-width="1.5"/>'+
+            '<path d="M44 36 V66 M29 51 H59 M34 41 L54 61 M54 41 L34 61" stroke="#b7fff0" stroke-width="2.5" stroke-linecap="round"/>'+
+            '<circle cx="44" cy="51" r="4" fill="#f5ce89" stroke="#fff0bf" stroke-width="1"/>'+
+            '<path d="M19 24 L27 28 M62 31 L72 26 M18 69 L26 74 M63 72 L72 67" stroke="#9be9dc" stroke-width="2" stroke-linecap="round" opacity=".8"/>'+
+          '</g>'+
+          '<g class="asset-float" transform="translate(8 20) rotate(-13 17 17)" aria-label="Bitcoin">'+
+            '<circle cx="18" cy="18" r="16" fill="#172c49" stroke="#b9fff0" stroke-width="1.3"/><circle cx="18" cy="18" r="12.8" fill="url(#'+artId+'-coinCyan)" stroke="#e3fff8" stroke-width=".9"/><text x="18" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="900" fill="#15374a">₿</text>'+
+          '</g>'+
+          '<g class="asset-float" transform="translate(174 8) rotate(9 16 16)" aria-label="Ethereum">'+
+            '<circle cx="16" cy="16" r="15" fill="#172944" stroke="#c5d5ff" stroke-width="1.2"/><circle cx="16" cy="16" r="11.8" fill="url(#'+artId+'-coinEth)" stroke="#edf4ff" stroke-width=".8"/><path d="M16 5.3 9.8 15.2 16 18.3 22.2 15.2 16 5.3Z" fill="#f1f5ff"/><path d="m9.8 16.4 6.2 8 6.2-8-6.2 3.1-6.2-3.1Z" fill="#aabde6"/>'+
+          '</g>'+
+          '<g class="asset-float" transform="translate(15 111) rotate(-7 15 15)" aria-label="Solana">'+
+            '<circle cx="15" cy="15" r="14" fill="#10293a" stroke="#8ef4d4" stroke-width="1.2"/><circle cx="15" cy="15" r="10.8" fill="#142b43" stroke="#5ee2c7" stroke-width=".7"/><path d="M8.5 9.3h13l-2 2.3h-13l2-2.3Zm0 4.8h13l-2 2.3h-13l2-2.3Zm0 4.8h13l-2 2.3h-13l2-2.3Z" fill="url(#'+artId+'-coinSol)"/>'+
+          '</g>'+
+          '<g class="asset-float" transform="translate(188 72) rotate(8 15 15)" aria-label="XRP">'+
+            '<circle cx="15" cy="15" r="14" fill="#e5f5ff" stroke="#d5f0ff" stroke-width="1.2"/><circle cx="15" cy="15" r="10.8" fill="url(#'+artId+'-coinXrp)" stroke="#ffffff" stroke-width=".7"/><path d="M8.2 9.2h2.4l4.4 3.7 4.4-3.7h2.4l-5.2 4.6a2.4 2.4 0 0 1-3.2 0L8.2 9.2Zm0 11.6h2.4l4.4-3.7 4.4 3.7h2.4l-5.2-4.6a2.4 2.4 0 0 0-3.2 0l-5.2 4.6Z" fill="#17415d"/>'+
+          '</g>'+
+          '<g class="asset-float" transform="translate(151 121) rotate(10 15 15)" aria-label="BNB">'+
+            '<circle cx="15" cy="15" r="14" fill="#352d25" stroke="#ffe7a3" stroke-width="1.2"/><circle cx="15" cy="15" r="10.8" fill="url(#'+artId+'-coinBnb)" stroke="#fff4cf" stroke-width=".7"/><g fill="#80531e" transform="translate(15 15)"><path d="M0-7 3-4 0-1-3-4 0-7ZM6-1 9 2 6 5 3 2 6-1ZM-6-1-3 2-6 5-9 2-6-1ZM0 5 3 8 0 11-3 8 0 5ZM0-2 3 1 0 4-3 1 0-2Z" transform="scale(.72)"/></g>'+
+          '</g>'+
+          '<path d="M108 12 L111 5 L114 12 L121 15 L114 18 L111 25 L108 18 L101 15 Z" fill="#fff0b8" opacity=".92"/><path d="M45 85 L47.5 79 L50 85 L56 87.5 L50 90 L47.5 96 L45 90 L39 87.5 Z" fill="#79ebdd" opacity=".9"/><circle cx="171" cy="50" r="2" fill="#b5fff0" filter="url(#'+artId+'-glow)"/><circle cx="60" cy="139" r="1.8" fill="#b5fff0"/><circle cx="206" cy="55" r="1.6" fill="#f5cb87"/>'+
+        '</g></svg>';
+    }
+    function campaignSatoshiStashBanner(c,source,upcoming){
+      const currency=c.currency||'USD';
+      const start=Number(c.starting_balance||0);
+      const target=Number(c.target_balance||0);
+      const balance=Number(c.current_balance||start);
+      const realised=Number(c.realised_pnl||balance-start);
+      const progressValue=Number(c.progress_pct||0);
+      const progress=Math.min(100,Math.max(0,progressValue));
+      const next=[25,50,75,100].find(level=>progressValue<level);
+      const currencyTarget=campaignMoney(target,currency);
+      const pnlText=(realised>=0?'+':'−')+campaignMoney(Math.abs(realised),currency)+' REALISED';
+      const id=escapeHtml(String(c.id||''));
+      const markerPosition=Math.max(3,Math.min(97,progress));
+      const timestamp=Date.parse(c.starts_at||'');
+      const launchLabel=Number.isFinite(timestamp)
+        ?new Date(timestamp).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true})+' IST'
+        :'Launch time pending';
+      const topTag=(upcoming?'UP NEXT':'LIVE')+" · SATOSHI'S STASH · #"+id;
+      const statusLabel=upcoming?'VAULT LOCKED':progress>=100?'VAULT UNLOCKED':'STASH MILESTONE';
+      const subline=upcoming?'THE DIGITAL FORTUNE OPENS IN':progress>=100?'THE VAULT IS OPEN':(next?next+'% · NEXT STASH MILESTONE':'THE VAULT IS OPEN');
+      const href=challengeUrl(c,source);
+      const art=campaignSatoshiStashVaultArt(c);
+      const top='<div class="stash-top"><span class="stash-tag"><i class="stash-dot"></i>'+topTag+'</span><span class="stash-status">'+statusLabel+'</span></div>';
+      const hero='<div class="stash-hero"><div><h2 class="stash-headline">SATOSHI\\'S<em>STASH</em></h2><p class="stash-subline">'+subline+'</p></div>'+art+'</div>';
+      let lower='';
+      if(upcoming){
+        lower='<div class="stash-countdown countdown" data-countdown-target="'+(Number.isFinite(timestamp)?timestamp:0)+'">'+
+          '<div class="stash-countdown-unit"><b data-countdown-days>00</b><span>DAYS</span></div><div class="stash-countdown-unit"><b data-countdown-hours>00</b><span>HOURS</span></div><div class="stash-countdown-unit"><b data-countdown-minutes>00</b><span>MINUTES</span></div><div class="stash-countdown-unit"><b data-countdown-seconds>00</b><span>SECONDS</span></div>'+
+        '</div><div class="stash-divider"></div><div class="stash-launchline"><div class="stash-launch-date">LAUNCH WINDOW<strong>'+escapeHtml(launchLabel)+'</strong></div><div class="stash-target-card stash-launch-target"><div class="stash-target-kicker"><span>✦</span> STASH TARGET</div><div class="stash-target-amount">'+escapeHtml(currencyTarget)+'</div><div class="stash-target-foot">VAULT OPENS AT 100%</div></div></div>';
+      }else{
+        const milestone=next?next+'% MILESTONE':'TARGET CLEARED';
+        const checkpoints=[0,25,50,75];
+        const checkpointNames=['OPEN','25%','50%','75%'];
+        const checkpointMarkup=checkpointNames.map((label,index)=>'<span class="'+(progress>=checkpoints[index]?'reached':'')+'">'+label+'</span>').join('');
+        const coinId='stash-progress-'+String(c.id||'campaign').replace(/[^a-z0-9_-]/gi,'');
+        const coin='<svg class="stash-coin-marker" style="left:'+markerPosition+'%" viewBox="0 0 48 48" role="img" aria-label="Bitcoin progress coin">'+
+          '<defs><linearGradient id="'+coinId+'" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff3c5"/><stop offset=".45" stop-color="#f1cb83"/><stop offset="1" stop-color="#a76a34"/></linearGradient></defs>'+
+          '<circle cx="24" cy="24" r="22" fill="#11213a" stroke="#c4fff0" stroke-width="1.3"/><circle cx="24" cy="24" r="18" fill="url(#'+coinId+')" stroke="#fff1c0" stroke-width="1.2"/><circle cx="24" cy="24" r="14.5" fill="none" stroke="#8a572c" stroke-width=".8" opacity=".7"/><text x="24" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="900" fill="#573b29">₿</text>'+
+        '</svg>';
+        const targetFoot=progress>=100?'VAULT UNLOCKED':fmt(progress)+'% COMPLETE · UNLOCK AT 100%';
+        lower='<div class="stash-divider"></div><div class="stash-progress-heading"><span>STASH BUILDING · NEXT CHECKPOINT</span><strong>'+milestone+'</strong></div>'+
+          '<div class="stash-track-wrap"><div class="stash-track"><i style="width:'+progress+'%"></i></div>'+coin+'</div>'+
+          '<div class="stash-checkpoints">'+checkpointMarkup+'</div>'+
+          '<div class="stash-statsline"><span>START · <strong>'+escapeHtml(campaignMoney(start,currency))+'</strong></span><strong>'+escapeHtml(fmt(progressValue))+'% STASHED</strong></div>'+
+          '<div class="stash-financials"><div class="stash-balance-block"><div class="stash-balance-label">CURRENT STASH</div><div class="stash-balance">'+escapeHtml(campaignMoney(balance,currency))+'</div><div class="stash-pnl">'+escapeHtml(pnlText)+'</div><div class="stash-action">OPEN STASH #'+id+' ↗</div></div>'+
+          '<div class="stash-target-card"><div class="stash-target-kicker"><span>✦</span> VAULT TARGET</div><div class="stash-target-amount">'+escapeHtml(currencyTarget)+'</div><div class="stash-target-foot">'+escapeHtml(targetFoot)+'</div><div class="stash-target-meter"><span style="width:'+progress+'%"></span></div></div></div>';
+      }
+      return '<div class="campaign-hero crypto satoshi-stash'+(upcoming?' launch upcoming':' live')+'" role="link" tabindex="0" onclick="window.location.href=&quot;'+href+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+href+'&quot;" aria-label="Open Satoshi\\'s Stash campaign #'+id+'">'+top+hero+lower+'</div>';
+    }
+    function campaignSatoshiStashSummaryCard(c,label){
+      const progressValue=Number(c.progress_pct||0);
+      const progress=Math.min(100,Math.max(0,progressValue));
+      const currency=c.currency||'USD';
+      const balance=campaignMoney(c.current_balance,currency);
+      const target=campaignMoney(c.target_balance,currency);
+      const start=campaignMoney(c.starting_balance,currency);
+      const pnl=Number(c.realised_pnl||0);
+      const pnlText=(pnl>=0?'+':'−')+campaignMoney(Math.abs(pnl),currency);
+      const status=String(c.status||'').toUpperCase();
+      const id=escapeHtml(String(c.id||''));
+      const targetState=progress>=100?'VAULT UNLOCKED':campaignMoney(c.remaining_to_target,currency)+' TO GO';
+      return '<div class="panel challenge-summary satoshi-stash-summary"><a class="campaign-card-link" href="'+challengeUrl(c,'challenges')+'" aria-label="Open Satoshi\\'s Stash campaign #'+id+'">'+
+        '<div class="stash-summary-top"><span>'+escapeHtml(label)+' · SATOSHI\\'S STASH</span><b>#'+id+'</b></div>'+
+        '<h3>SATOSHI\\'S STASH</h3><p class="sub">'+escapeHtml(c.brief||'Five digital assets. One secure vault. One shared target.')+'</p>'+
+        '<div class="stash-summary-balance"><div><small>CURRENT STASH</small><strong>'+escapeHtml(balance)+'</strong><em>'+escapeHtml(pnlText)+' REALISED</em></div>'+
+        '<div class="stash-summary-target"><small>VAULT TARGET</small><strong>'+escapeHtml(target)+'</strong><em>'+escapeHtml(targetState)+'</em></div></div>'+
+        '<div class="stash-summary-progress-head"><span>STASH PROGRESS</span><b>'+escapeHtml(fmt(progressValue))+'%</b></div>'+
+        '<div class="stash-summary-progress"><i style="width:'+progress+'%"></i></div>'+
+        '<div class="stash-summary-foot"><span>START '+escapeHtml(start)+'</span><span>'+escapeHtml(fmt(c.total_trades||0))+' TRADES</span><b>OPEN STASH ↗</b></div></a></div>';
+    }
     function campaignIsDesertRally(c){
       return campaignKind(c)==='gold' &&
         String(c&&c.edition||'STANDARD').trim().toUpperCase()==='DESERT_RALLY';
@@ -616,7 +830,7 @@
     function campaignDisplayName(c){
       const name=String(c&&c.name||'').trim();
       if(name) return name;
-      const defaults={gold:'Gold Challenge',crypto:'Crypto Challenge',general:'Global Multi-Market Challenge',forex:'Forex Challenge',energy:'Energy Challenge',index:'Indices Challenge',stock:'Stocks Challenge',option:'Options Challenge',commodity:'Commodities Challenge',metal:'Metals Challenge'};
+      const defaults={gold:'Gold Challenge',crypto:"Satoshi's Stash",general:'Global Multi-Market Challenge',forex:'Forex Challenge',energy:'Energy Challenge',index:'Indices Challenge',stock:'Stocks Challenge',option:'Options Challenge',commodity:'Commodities Challenge',metal:'Metals Challenge'};
       return defaults[campaignKind(c)]||'Trading Challenge';
     }
     function campaignIcon(kind){
@@ -832,6 +1046,7 @@
     }
     function campaignBanner(c,source){
       const kind=campaignKind(c);
+      if(campaignIsSatoshiStash(c)) return campaignSatoshiStashBanner(c,source,false);
       if(kind==='general') return campaignIsLambo(c)
         ?campaignGlobalLamboBanner(c,source)
         :campaignGlobalLiveBanner(c,source);
@@ -924,6 +1139,7 @@
     }
     function campaignLaunchBanner(c,source){
       const kind=campaignKind(c);
+      if(campaignIsSatoshiStash(c)) return campaignSatoshiStashBanner(c,source,true);
       if(kind==='general') return campaignIsLambo(c)
         ?campaignGlobalLamboUpcomingBanner(c,source)
         :campaignGlobalUpcomingBanner(c,source);
@@ -1119,6 +1335,7 @@
       '</div>';
     }
     function campaignCard(c,label){
+      if(campaignIsSatoshiStash(c)) return campaignSatoshiStashSummaryCard(c,label);
       if(campaignIsDesertRally(c)) return campaignDesertRallySummaryCard(c,label);
       const progress=Number(c.progress_pct||0);
       const progressWidth=Math.min(100,Math.max(0,progress));
