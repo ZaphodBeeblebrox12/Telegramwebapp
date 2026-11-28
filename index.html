@@ -1214,6 +1214,7 @@
     }
     function campaignBanner(c,source){
       const kind=campaignKind(c);
+      if(campaignIsBarrelRun(c)) return campaignBarrelRunBanner(c,source);
       if(campaignIsSatoshiStash(c)) return campaignSatoshiStashBanner(c,source,false);
       if(kind==='general') return campaignIsLambo(c)
         ?campaignGlobalLamboBanner(c,source)
@@ -1307,6 +1308,7 @@
     }
     function campaignLaunchBanner(c,source){
       const kind=campaignKind(c);
+      if(campaignIsBarrelRun(c)) return campaignBarrelRunLaunchBanner(c,source);
       if(campaignIsSatoshiStash(c)) return campaignSatoshiStashBanner(c,source,true);
       if(kind==='general') return campaignIsLambo(c)
         ?campaignGlobalLamboUpcomingBanner(c,source)
@@ -1503,6 +1505,7 @@
       '</div>';
     }
     function campaignCard(c,label){
+      if(campaignIsBarrelRun(c)) return campaignBarrelRunSummaryCard(c,label);
       if(campaignIsSatoshiStash(c)) return campaignSatoshiStashSummaryCard(c,label);
       if(campaignIsDesertRally(c)) return campaignDesertRallySummaryCard(c,label);
       const progress=Number(c.progress_pct||0);
