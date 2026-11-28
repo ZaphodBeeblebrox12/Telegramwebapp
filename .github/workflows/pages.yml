@@ -28,6 +28,10 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           enablement: true
+      - name: Prepare campaign artwork
+        run: |
+          python3 scripts/prepare_campaign_assets.py
+          rm -f assets/barrel-run-expedition.webp.b64.part*
       - name: Generate individual challenge pages
         run: python3 scripts/generate_challenge_pages.py
       - name: Upload site
