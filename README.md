@@ -118,3 +118,10 @@ The visible back link and Telegram Mini App BackButton use the same return desti
 Individual challenge pages also retain the app's fixed five-tab bottom navigation
 (Home, Challenges, Tools, Learn and About), so users can move to another app
 section without first returning to the catalogue.
+
+
+The exact expedition image is kept as an ASCII base64 source file at
+assets/barrel-run-expedition.webp.b64.partNN fragments. GitHub Pages runs
+scripts/prepare_campaign_assets.py before generating the challenge pages, rebuilding
+assets/barrel-run-expedition.webp for the deployed site. Run that script locally before
+previewing the campaign pages outside GitHub Pages.

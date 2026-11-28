@@ -163,6 +163,43 @@
     .campaign-dock-item.option .campaign-dock-symbol{background:#f2dfdb;color:#a14f4a}
     .campaign-dock-item.metal .campaign-dock-symbol,.campaign-dock-item.commodity .campaign-dock-symbol{background:#e2e8e9;color:#5b6b72}
     @media(max-width:380px){.app{padding-left:14px;padding-right:14px}.campaign-dock{grid-template-columns:59px minmax(0,1fr);padding-left:8px;padding-right:8px;gap:6px}.campaign-dock-item{min-width:144px;max-width:185px}.panel{padding:14px}.metric-grid{gap:5px}.metric{padding:9px 7px}.metric strong{font-size:12px}.trade-date{font-size:8px}}
+
+    /* BARREL RUN detail page — supplied expedition artwork and gold checkpoint track. */
+    .page-head.barrel-run-page-head{position:relative;isolation:isolate;overflow:hidden;margin:16px 0 14px;padding:20px 15px 17px;border:1px solid rgba(218,151,68,.9);border-radius:8px;color:#fff0d2;background-image:linear-gradient(90deg,rgba(22,11,5,.4),rgba(23,11,5,.72) 48%,rgba(17,9,5,.88)),url('../../assets/barrel-run-expedition.webp');background-size:cover;background-position:center 47%;background-repeat:no-repeat;box-shadow:0 10px 25px rgba(39,18,5,.28)}
+    .barrel-run-page-head .eyebrow{color:#ffd995}
+    .barrel-run-page-head h1{color:#fff0cb;font:950 clamp(29px,8vw,39px)/.92 Impact,"Arial Narrow",sans-serif;letter-spacing:.015em;text-shadow:0 3px 10px rgba(0,0,0,.8)}
+    .barrel-run-page-head p{color:#f5dfc2;text-shadow:0 1px 5px rgba(0,0,0,.8)}
+    .barrel-run-page-head .meta-line{color:#f4d5a7}
+    .barrel-run-page-head .state-pill.active{background:rgba(40,93,34,.65);color:#d4f3b8;border-color:#94c96b}
+    .barrel-run-page-head .state-pill.scheduled{background:rgba(112,67,18,.65);color:#ffe2a2;border-color:#dca653}
+    .barrel-run-page-head .state-pill.completed{background:rgba(100,61,10,.78);color:#fff0ad;border-color:#f1c45d}
+    .br-detail-markets{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+    .br-detail-markets span{padding:6px 7px;border:1px solid rgba(255,213,153,.6);border-radius:3px;background:rgba(26,13,7,.72);color:#fff0d2;font:800 7px "DM Mono",monospace;letter-spacing:.04em}
+    .br-detail-victory{margin-top:10px;padding:8px 10px;border:1px solid #ffd56e;background:rgba(101,55,6,.82);color:#fff0ae;font:900 10px "DM Mono",monospace;letter-spacing:.07em}
+    .panel.barrel-run-detail{overflow:hidden;padding:15px;border:1px solid rgba(207,137,57,.85);border-radius:7px;color:#fff1db;background:linear-gradient(145deg,#24170f,#120e0c 78%);box-shadow:0 12px 25px rgba(46,22,7,.22)}
+    .barrel-run-detail .br-detail-financials{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+    .barrel-run-detail .br-detail-stat{min-width:0;padding:10px 9px;background:rgba(255,255,255,.045);border:1px solid rgba(237,190,128,.18);border-radius:4px}
+    .barrel-run-detail .br-detail-stat span{display:block;color:#d3b999;font:800 8px "DM Mono",monospace;letter-spacing:.07em}
+    .barrel-run-detail .br-detail-stat strong{display:block;margin-top:6px;color:#fff0d2;font:900 clamp(15px,4.6vw,20px) "DM Mono",monospace;white-space:nowrap}
+    .barrel-run-detail .br-detail-stat.current strong{color:#ffdd91}
+    .barrel-run-detail .br-detail-stat.pnl strong{color:#a9ec92}
+    .barrel-run-detail .progress-head.br-detail-progress-head{margin-top:19px;color:#e1c59f}
+    .barrel-run-detail .progress-head.br-detail-progress-head strong{color:#ffe19e}
+    .barrel-run-detail .br-detail-route{margin:15px 5px 5px}
+    .barrel-run-detail .br-detail-track{height:10px;position:relative;border:1px solid #9a642f;border-radius:20px;background:linear-gradient(180deg,#100b09,#352216);box-shadow:inset 0 2px 4px rgba(0,0,0,.72);overflow:visible}
+    .barrel-run-detail .br-detail-track>i{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,#a84e12,#f28a24,#ffd16b);box-shadow:0 0 11px rgba(255,166,54,.66)}
+    .barrel-run-detail .br-detail-marker{position:absolute;top:50%;width:20px;height:20px;transform:translate(-50%,-50%);border:2px solid #fff0b5;border-radius:50%;background:radial-gradient(circle at 32% 25%,#fffce2 0 12%,#ffc34d 35%,#e17b13 72%,#71370d 100%);box-shadow:0 0 0 3px rgba(255,174,54,.16),0 0 13px 5px rgba(255,157,32,.6),0 2px 5px #090604;z-index:3}
+    .barrel-run-detail .br-detail-checkpoints{position:relative;height:31px;margin-top:7px}
+    .barrel-run-detail .br-detail-checkpoint{position:absolute;top:0;transform:translateX(-50%);width:62px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+    .barrel-run-detail .br-detail-checkpoint i{width:8px;height:8px;border-radius:50%;background:#604a31;border:1px solid #a27a48}
+    .barrel-run-detail .br-detail-checkpoint b{color:#e4c398;font:800 9px "DM Mono",monospace;white-space:nowrap}
+    .barrel-run-detail .br-detail-checkpoint.reached i{background:#ffd36b;border-color:#fff0b4;box-shadow:0 0 8px #f1a332}
+    .barrel-run-detail .br-detail-checkpoint.reached b{color:#fff0c1}
+    .barrel-run-detail .br-detail-checkpoint.final{transform:translateX(-100%);align-items:flex-end;text-align:right}
+    .barrel-run-detail .br-detail-next{display:flex;justify-content:space-between;gap:8px;margin-top:8px;padding-top:9px;border-top:1px dashed rgba(231,174,99,.28);color:#d5b997;font:800 8px "DM Mono",monospace}
+    .barrel-run-detail .br-detail-next strong{color:#ffd887;text-align:right}
+    @media(max-width:380px){.page-head.barrel-run-page-head{padding:17px 12px}.panel.barrel-run-detail{padding:12px}.barrel-run-detail .br-detail-financials{gap:6px}.barrel-run-detail .br-detail-stat{padding:8px 7px}.barrel-run-detail .br-detail-stat strong{font-size:15px}.barrel-run-detail .br-detail-checkpoint{width:54px}.barrel-run-detail .br-detail-checkpoint b{font-size:8px}.barrel-run-detail .br-detail-next{font-size:7px}}
+
     .bottom-nav{position:fixed;z-index:20;bottom:0;left:50%;transform:translateX(-50%);width:min(560px,100%);padding:10px 13px calc(10px + env(safe-area-inset-bottom));background:rgba(244,240,232,.96);backdrop-filter:blur(15px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr)}
     .nav-item{border:0;background:none;color:#898a80;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:3px 0;text-decoration:none;font:600 9px "DM Sans",sans-serif}
     .nav-item .nav-icon{font:18px "Playfair Display",serif;line-height:1}
@@ -239,6 +276,267 @@
       return campaignKind(campaign)==='gold' &&
         String(campaign&&campaign.edition||'STANDARD').trim().toUpperCase()==='DESERT_RALLY';
     }
+
+    function campaignIsBarrelRun(campaign){
+      const name=String(campaign&&campaign.name||'').trim().toUpperCase().replace(/[_-]+/g,' ');
+      const skin=String(campaign&&campaign.campaign_skin||'').trim().toUpperCase().replace(/-/g,'_');
+      return campaignKind(campaign)==='energy' && (skin==='BARREL_RUN' || name==='BARREL RUN');
+    }
+    function barrelRunDetailMarkets(){
+      return '<div class="br-detail-markets"><span>WTI CRUDE OIL</span><span>BRENT CRUDE OIL</span><span>NATURAL GAS</span></div>';
+    }
+    function barrelRunDetailCompactMoney(value,currency){
+      const amount=Number(value||0),code=String(currency||'USD').toUpperCase(),prefix=code==='USD'?'
+      const name=String(campaign&&campaign.name||'').trim().toLowerCase().replace(/[’‘]/g,"'");
+      const skin=String(campaign&&campaign.campaign_skin||'').trim().toUpperCase().replace(/-/g,'_');
+      return campaignKind(campaign)==='crypto' && (
+        skin==='SATOSHI_STASH' || (!skin && name==="satoshi's stash")
+      );
+    }
+    function satoshiStashDetailCoins(){
+      return '<div class="stash-detail-coins" aria-label="Bitcoin, Ethereum, Solana, XRP and BNB">'+
+        '<span><b>₿</b> BTC</span><span><b>Ξ</b> ETH</span><span><b>≋</b> SOL</span><span><b>𝖷</b> XRP</span><span><b>◆</b> BNB</span>'+
+      '</div>';
+    }
+    function campaignGlyph(kind) {
+      return ({gold:'Au',crypto:'₿',general:'◎',forex:'FX',energy:'⚡',index:'IDX',stock:'↗',option:'Δ',commodity:'Ag',metal:'Ag'})[kind]||'∴';
+    }
+    function renderCampaignDock(data) {
+      const dock=document.getElementById('campaignDock');
+      const list=document.getElementById('campaignDockList');
+      const campaigns=Array.isArray(data.challenges)?data.challenges:[];
+      const active=campaigns.filter(item=>String(item.status||'').toUpperCase()==='ACTIVE'||item.active===true);
+      const upcoming=campaigns.filter(item=>(String(item.status||'').toUpperCase()==='SCHEDULED'||item.scheduled===true)&&item.starts_at)
+        .sort((a,b)=>Date.parse(a.starts_at||'')-Date.parse(b.starts_at||''));
+      const paused=campaigns.filter(item=>String(item.status||'').toUpperCase()==='PAUSED');
+      const featured=active.length?active:upcoming.length?upcoming.slice(0,3):paused.slice(0,3);
+      dock.hidden=featured.length===0;
+      dock.dataset.state=active.length?'active':upcoming.length?'upcoming':'paused';
+      list.innerHTML=featured.map(item=>{
+        const kind=campaignKind(item);
+        const current=String(item.id)===String(CHALLENGE_ID);
+        const itemStatus=String(item.status||'').toUpperCase();
+        const status=active.length
+          ?'LIVE · '+String(item.asset_class||item.instrument||'MARKET').toUpperCase()+' · #'+String(item.id)
+          :itemStatus==='PAUSED'?'PAUSED · #'+String(item.id)
+          :'UP NEXT · '+dateLabel(item.starts_at,{day:'2-digit',month:'short',timeZone:'Asia/Kolkata'});
+        const stat=active.length?numberFormat(item.progress_pct)+'%':itemStatus==='PAUSED'?'PAUSED':'VIEW';
+        const href=current?'#challengeDetail':new URL('challenges/'+encodeURIComponent(String(item.id))+'/?from=challenges',appRoot).href;
+        return '<a class="campaign-dock-item '+kind+(active.length?'':' upcoming')+(current?' current':'')+'" href="'+escapeHtml(href)+'"'+(current?' aria-current="page"':'')+'>'+
+          '<span class="campaign-dock-symbol" aria-hidden="true">'+escapeHtml(campaignGlyph(kind))+'</span>'+
+          '<span class="campaign-dock-copy"><strong>'+escapeHtml(item.name||'Trading Challenge')+'</strong><small>'+escapeHtml(current?'YOU ARE HERE · '+status:status)+'</small></span>'+
+          '<span class="campaign-dock-stat">'+escapeHtml(current?'OPEN':stat)+'</span></a>';
+      }).join('');
+    }
+    function numberFormat(value) {
+      const number = Number(value || 0);
+      return new Intl.NumberFormat('en-IN', { maximumFractionDigits: 4 }).format(number);
+    }
+    function money(value, currency) {
+      const amount = Number(value || 0);
+      try {
+        return new Intl.NumberFormat('en-IN', {
+          style:'currency', currency:currency || 'USD', maximumFractionDigits:2
+        }).format(amount);
+      } catch (error) {
+        return (currency || 'USD') + ' ' + numberFormat(amount);
+      }
+    }
+    function price(value) {
+      if (value === null || value === undefined || value === '') return '—';
+      const number = Number(value);
+      return Number.isFinite(number) ? number.toLocaleString('en-IN', { maximumFractionDigits:5 }) : '—';
+    }
+    function dateLabel(value, options) {
+      const timestamp = Date.parse(value || '');
+      if (!Number.isFinite(timestamp)) return '—';
+      return new Date(timestamp).toLocaleString('en-IN', Object.assign({
+        timeZone:'Asia/Kolkata'
+      }, options || { day:'2-digit', month:'short', year:'numeric' }));
+    }
+    function campaignStatus(campaign) {
+      const raw = String(campaign.status || (campaign.scheduled ? 'SCHEDULED' : campaign.archived ? 'COMPLETED' : campaign.active ? 'ACTIVE' : 'INACTIVE')).toUpperCase();
+      if (raw === 'SCHEDULED') return { label:'SCHEDULED', className:'scheduled' };
+      if (raw === 'COMPLETED' || campaign.archived) return { label:'COMPLETED', className:'completed' };
+      if (raw === 'ACTIVE' || campaign.active) return { label:'ACTIVE', className:'active' };
+      if (raw === 'PAUSED') return { label:'PAUSED', className:'paused' };
+      return { label:raw, className:'completed' };
+    }
+    function renderTradeHistory(trades, currency) {
+      if (!trades.length) {
+        return '<div class="empty-state"><strong>No trades recorded yet</strong>Trade entries for this challenge will appear here as they are published.</div>';
+      }
+      const sorted = trades.slice().sort((a,b) => Date.parse(b.opened_at || '') - Date.parse(a.opened_at || ''));
+      return sorted.map(trade => {
+        const status = String(trade.status || 'OPEN').toUpperCase();
+        const pnl = Number(trade.realised_pnl || 0);
+        const pnlClass = pnl > 0 ? '' : pnl < 0 ? 'negative' : '';
+        const pnlText = (pnl > 0 ? '+' : pnl < 0 ? '−' : '') + money(Math.abs(pnl), currency);
+        const leverage = Number(trade.leverage_multiplier) > 0 ? numberFormat(trade.leverage_multiplier) + ':1' : '—';
+        const quantity = Number(trade.quantity);
+        const sizeMeta = trade.sizing_status === 'SIZED' && Number.isFinite(quantity)
+          ? '<span>SIZE ' + escapeHtml(numberFormat(quantity)) + ' ' + escapeHtml(trade.quantity_label || 'units') + '</span>'
+          : trade.sizing_status === 'UNAVAILABLE' ? '<span>SIZE UNAVAILABLE</span>' : '';
+        const riskMeta = Number(trade.risk_percentage) > 0
+          ? '<span>RISK ' + escapeHtml(numberFormat(trade.risk_percentage)) + '%</span>' : '';
+        return '<article class="trade-row">' +
+          '<div class="trade-top"><div><div class="trade-symbol">' + escapeHtml(trade.symbol || 'Instrument unavailable') + '</div>' +
+          '<span class="trade-side">' + escapeHtml(trade.side || '—') + '</span></div>' +
+          '<time class="trade-date">' + escapeHtml(dateLabel(trade.opened_at, { day:'2-digit', month:'short', year:'numeric' })) + '</time></div>' +
+          '<div class="trade-meta"><span>ENTRY ' + escapeHtml(price(trade.entry_price)) + '</span><span>EXIT ' + escapeHtml(price(trade.exit_price)) + '</span><span>LEVERAGE ' + escapeHtml(leverage) + '</span>' + sizeMeta + riskMeta + '</div>' +
+          '<div class="trade-bottom"><span class="trade-status">' + escapeHtml(status) + '</span><strong class="trade-pnl ' + pnlClass + '">' + escapeHtml(pnlText) + (status === 'CLOSED' ? ' REALISED' : '') + '</strong></div>' +
+          '</article>';
+      }).join('');
+    }
+    function renderChallenge(campaign, data) {
+      const barrelRun = campaignIsBarrelRun(campaign);
+      const currency = campaign.currency || 'USD';
+      const status = campaignStatus(campaign);
+      const progressValue = Number(campaign.progress_pct || 0);
+      const progressWidth = Math.min(100, Math.max(0, progressValue));
+      const realised = Number(campaign.realised_pnl || 0);
+      const pnlClass = realised < 0 ? 'negative' : '';
+      const rawTitle = String(campaign.name || 'Trading Challenge');
+      const title = campaignKind(campaign)==='crypto' && rawTitle.trim().toLowerCase()==='crypto rush'
+        ? 'Crypto Heist' : rawTitle;
+      const tradeHistory = Array.isArray(campaign.trade_history) ? campaign.trade_history : [];
+      const desertRally = campaignIsDesertRally(campaign);
+      const satoshiStash = campaignIsSatoshiStash(campaign);
+      const markerPosition = status.className === 'completed' ? 91 : Math.max(3,Math.min(97,progressWidth));
+      const stashMarker = '<svg class="stash-detail-coin" style="left:' + markerPosition + '%" viewBox="0 0 48 48" role="img" aria-label="Bitcoin coin marking Satoshi\'s Stash progress">' +
+        '<defs><linearGradient id="stashDetailMarker" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff3c5"/><stop offset=".45" stop-color="#f1cb83"/><stop offset="1" stop-color="#a76a34"/></linearGradient></defs>' +
+        '<circle cx="24" cy="24" r="22" fill="#11213a" stroke="#c4fff0" stroke-width="1.3"/><circle cx="24" cy="24" r="18" fill="url(#stashDetailMarker)" stroke="#fff1c0" stroke-width="1.2"/><circle cx="24" cy="24" r="14.5" fill="none" stroke="#8a572c" stroke-width=".8" opacity=".7"/><text x="24" y="32" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="900" fill="#573b29">₿</text></svg>';
+      const progressMarkup = barrelRun
+        ? barrelRunDetailProgressMarkup(campaign,progressWidth)
+        : desertRally
+        ? '<div class="rally-detail-progress"><div class="progress-track"><i style="width:' + progressWidth + '%"></i></div>' +
+          '<img class="rally-detail-car" src="../../assets/desert-rally-suv.svg" alt="Desert Rally SUV marking campaign progress" style="left:' + markerPosition + '%"></div>'
+        : satoshiStash
+          ? '<div class="stash-detail-progress"><div class="progress-track"><i style="width:' + progressWidth + '%"></i></div>' + stashMarker + '</div>'
+          : '<div class="progress-track"><i style="width:' + progressWidth + '%"></i></div>';
+      const stashNext = [25,50,75,100].find(level => progressValue < level);
+      const financialMarkup = barrelRun
+        ? '<div class="br-detail-financials">'+
+            '<div class="br-detail-stat"><span>STARTING BALANCE</span><strong>'+escapeHtml(money(campaign.starting_balance,currency))+'</strong></div>'+
+            '<div class="br-detail-stat current"><span>CURRENT BALANCE</span><strong>'+escapeHtml(money(campaign.current_balance,currency))+'</strong></div>'+
+            '<div class="br-detail-stat"><span>TARGET</span><strong>'+escapeHtml(money(campaign.target_balance,currency))+'</strong></div>'+
+            '<div class="br-detail-stat pnl"><span>REALISED P&amp;L</span><strong>'+(realised>0?'+':realised<0?'−':'')+escapeHtml(money(Math.abs(realised),currency))+'</strong></div>'+
+          '</div>'
+        : satoshiStash
+        ? '<div class="stash-detail-financials"><div class="stash-detail-current"><div class="balance-label">CURRENT STASH</div><strong class="balance-value">' + escapeHtml(money(campaign.current_balance, currency)) + '</strong><div class="pnl-value ' + pnlClass + '">' + (realised > 0 ? '+' : realised < 0 ? '−' : '') + escapeHtml(money(Math.abs(realised), currency)) + ' realised P&amp;L</div></div><div class="stash-detail-target"><small>✦ VAULT TARGET</small><strong>' + escapeHtml(money(campaign.target_balance, currency)) + '</strong><em>' + (progressValue >= 100 ? 'VAULT UNLOCKED' : escapeHtml(numberFormat(progressValue)) + '% COMPLETE · NEXT ' + (stashNext || 100) + '%') + '</em></div></div>'
+        : '<div class="balance-label">Current balance</div><strong class="balance-value">' + escapeHtml(money(campaign.current_balance, currency)) + '</strong><div class="pnl-value ' + pnlClass + '">' + (realised > 0 ? '+' : realised < 0 ? '−' : '') + escapeHtml(money(Math.abs(realised), currency)) + ' realised P&amp;L</div>';
+      const progressHeadMarkup = barrelRun
+        ? '<div class="progress-head br-detail-progress-head"><span>BARREL RUN ROUTE · NEXT CHECKPOINT</span><strong>'+escapeHtml(numberFormat(progressValue))+'% COMPLETE</strong></div>'
+        : satoshiStash
+        ? '<div class="progress-head stash-progress-head"><span>STASH BUILDING · NEXT CHECKPOINT</span><strong>' + (stashNext ? stashNext + '% MILESTONE' : 'TARGET CLEARED') + '</strong></div>'
+        : '<div class="progress-head"><span>Target progress</span><strong>' + escapeHtml(numberFormat(progressValue)) + '%</strong></div>';
+      const progressFootMarkup = barrelRun
+        ? '<div class="progress-foot"><span>START · '+escapeHtml(money(campaign.starting_balance,currency))+'</span><span>TARGET · '+escapeHtml(money(campaign.target_balance,currency))+'</span></div>'
+        : satoshiStash
+        ? '<div class="progress-foot"><span>START · ' + escapeHtml(money(campaign.starting_balance, currency)) + '</span><strong>' + escapeHtml(numberFormat(progressValue)) + '% STASHED</strong></div>'
+        : '<div class="progress-foot"><span>START · ' + escapeHtml(money(campaign.starting_balance, currency)) + '</span><span>TARGET · ' + escapeHtml(money(campaign.target_balance, currency)) + '</span></div>';
+      const launchNote = campaign.starts_at
+        ? '<div class="note">SCHEDULED LAUNCH · ' + escapeHtml(dateLabel(campaign.starts_at, { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:true })) + ' IST</div>'
+        : '';
+      const generated = data.generated_at
+        ? '<p class="note">Figures last published ' + escapeHtml(dateLabel(data.generated_at, { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' })) + ' IST</p>'
+        : '';
+      document.title = title + ' | TradeThesis';
+      document.getElementById('challengeDetail').innerHTML =
+        '<header class="page-head' + (desertRally?' desert-rally-page-head':'') + (satoshiStash?' satoshi-stash-page-head':'') + (barrelRun?' barrel-run-page-head':'') + '">' +
+          '<div class="eyebrow">Individual challenge · ' + escapeHtml(campaign.asset_class || campaign.instrument || 'Trading campaign') + '</div>' +
+          '<h1>' + escapeHtml(title) + '</h1>' +
+          '<p>' + escapeHtml(campaign.description || campaign.brief || (satoshiStash ? 'Five digital assets orbit one secure vault. One shared target.' : 'Campaign progress and trade history.')) + '</p>' +
+          '<div class="meta-line"><span class="state-pill ' + status.className + '">' + status.label + '</span><span>' + escapeHtml(campaign.instrument || campaign.asset_class || 'MARKET') + '</span></div>' +
+          (satoshiStash ? satoshiStashDetailCoins() : '') + (barrelRun ? barrelRunDetailMarkets() : '') + (barrelRun && progressWidth>=99.99 ? '<div class="br-detail-victory">🏁 BARREL RUN VICTORY · TARGET CLEARED</div>' : '') + launchNote +
+        '</header>' +
+        '<section class="panel' + (desertRally?' desert-rally-detail':'') + (satoshiStash?' satoshi-stash-detail':'') + (barrelRun?' barrel-run-detail':'') + '">' +
+          financialMarkup +
+          progressHeadMarkup +
+          progressMarkup +
+          progressFootMarkup +
+          '<div class="metric-grid">' +
+            '<div class="metric"><span>Trades</span><strong>' + escapeHtml(numberFormat(campaign.total_trades || tradeHistory.length)) + '</strong></div>' +
+            '<div class="metric"><span>Wins</span><strong>' + escapeHtml(numberFormat(campaign.wins || 0)) + '</strong></div>' +
+            '<div class="metric"><span>Losses</span><strong>' + escapeHtml(numberFormat(campaign.losses || 0)) + '</strong></div>' +
+            '<div class="metric"><span>Open</span><strong>' + escapeHtml(numberFormat(campaign.open_trades || 0)) + '</strong></div>' +
+            '<div class="metric"><span>Breakeven</span><strong>' + escapeHtml(numberFormat(campaign.breakeven || 0)) + '</strong></div>' +
+            '<div class="metric"><span>Remaining</span><strong>' + escapeHtml(money(campaign.remaining_to_target, currency)) + '</strong></div>' +
+            '<div class="metric"><span>Risk / trade</span><strong>' + escapeHtml(numberFormat(campaign.risk_percentage || 1)) + '%</strong></div>' +
+          '</div>' +
+          '<div class="outcome-line">STATUS · ' + escapeHtml(status.label) + ' &nbsp;·&nbsp; ' + escapeHtml(numberFormat(tradeHistory.length)) + ' TRADE RECORDS</div>' +
+        '</section>' +
+        '<section class="panel"><h2>Trade history</h2>' + renderTradeHistory(tradeHistory, currency) + '</section>' +
+        '<p class="note">' + escapeHtml(data.basis_note || 'Campaign balance and performance are based on the published challenge ledger.') + '</p>' +
+        generated;
+      document.getElementById('loadingState').hidden = true;
+      document.getElementById('challengeDetail').hidden = false;
+    }
+    let detailLoadInFlight=false;
+    let lastDetailLoadAt=0;
+    let hasLoadedDetail=false;
+    async function loadChallenge() {
+      if(detailLoadInFlight) return;
+      detailLoadInFlight=true;
+      try {
+        const refreshUrl=new URL(dataUrl.href);
+        refreshUrl.searchParams.set('refresh',String(Date.now()));
+        const response = await fetch(refreshUrl.href, { cache:'no-store' });
+        if (!response.ok) throw new Error('Challenge data could not be loaded.');
+        const data = await response.json();
+        const campaigns = Array.isArray(data.challenges) ? data.challenges : [];
+        renderCampaignDock(data);
+        const campaign = campaigns.find(item => String(item.id) === String(CHALLENGE_ID));
+        if (!campaign) {
+          if(!hasLoadedDetail){
+            document.getElementById('loadingState').hidden = true;
+            document.getElementById('errorState').hidden = false;
+            document.getElementById('errorState').innerHTML = '<strong>Challenge not found</strong>This challenge may have been removed or its link may be incorrect. Return to the challenge catalogue to see the available campaigns.';
+          }
+          return;
+        }
+        renderChallenge(campaign, data);
+        hasLoadedDetail=true;
+        lastDetailLoadAt=Date.now();
+      } catch (error) {
+        if(!hasLoadedDetail){
+          document.getElementById('loadingState').hidden = true;
+          document.getElementById('errorState').hidden = false;
+          document.getElementById('errorState').innerHTML = '<strong>Challenge unavailable</strong>' + escapeHtml(error.message || 'Challenge information could not be loaded.') + ' Try returning to the catalogue.';
+        }
+      } finally {
+        detailLoadInFlight=false;
+      }
+    }
+    function refreshDetailIfStale(force) {
+      if(document.visibilityState!=='visible') return;
+      if(force||Date.now()-lastDetailLoadAt>=30000) loadChallenge();
+    }
+    loadChallenge();
+    window.setInterval(()=>refreshDetailIfStale(false),60000);
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden) refreshDetailIfStale(true);});
+    window.addEventListener('focus',()=>refreshDetailIfStale(false));
+    window.addEventListener('pageshow',()=>refreshDetailIfStale(true));
+  </script>
+</body>
+</html>
+:code+' ',abs=Math.abs(amount);
+      if(abs>=1000)return (amount<0?'−':'')+prefix+String(Math.round(abs/100)/10).replace(/\.0$/,'')+'K';
+      return money(amount,code);
+    }
+    function barrelRunDetailProgressMarkup(campaign,progressValue){
+      const start=Number(campaign.starting_balance||0),target=Number(campaign.target_balance||0),range=Math.max(0,target-start);
+      const ratios=[2/9,4/9,2/3,1],unlocks=['FIRST CREW','TANKER SUPPORT','PIPELINE CREW','FINISH LINE'];
+      const labels=ratios.map((ratio,index)=>{
+        const amount=index===3?target:start+range*ratio,reached=progressValue>=ratio*100;
+        return '<span class="br-detail-checkpoint '+(reached?'reached ':'')+(index===3?'final':'')+'" style="left:'+(ratio*100)+'%"><i></i><b>'+escapeHtml(barrelRunDetailCompactMoney(amount,campaign.currency||'USD'))+'</b></span>';
+      }).join('');
+      const nextIndex=ratios.findIndex(ratio=>progressValue<ratio*100),victory=progressValue>=99.99,markerPosition=Math.max(2,Math.min(98,progressValue));
+      const nextAmount=nextIndex>=0?start+range*ratios[nextIndex]:target;
+      return '<div class="br-detail-route"><div class="br-detail-track"><i style="width:'+progressValue+'%"></i><span class="br-detail-marker" style="left:'+markerPosition+'%"></span></div>'+
+        '<div class="br-detail-checkpoints">'+labels+'</div><div class="br-detail-next"><span>'+(victory?'TARGET CLEARED':'NEXT CHECKPOINT · '+barrelRunDetailCompactMoney(nextAmount,campaign.currency||'USD'))+'</span><strong>'+(victory?'🏁 BARREL RUN VICTORY!':'UNLOCK THE '+unlocks[Math.max(0,nextIndex)])+'</strong></div></div>';
+    }
+
     function campaignIsSatoshiStash(campaign){
       const name=String(campaign&&campaign.name||'').trim().toLowerCase().replace(/[’‘]/g,"'");
       const skin=String(campaign&&campaign.campaign_skin||'').trim().toUpperCase().replace(/-/g,'_');

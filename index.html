@@ -515,6 +515,71 @@
     .campaign-id{font:10px "DM Mono",monospace;color:var(--muted);white-space:nowrap;border:1px solid var(--line);padding:4px 7px}
     .campaign-card-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;padding-top:11px;border-top:1px solid var(--line);font:9px "DM Mono",monospace;color:var(--muted)}
     .campaign-card-footer strong{color:var(--terra);white-space:nowrap;font-size:10px}
+
+    /* BARREL RUN — dedicated oil and energy skin using supplied artwork. */
+    .campaign-hero.barrel-run{padding:0;overflow:hidden;isolation:isolate;cursor:pointer;color:#fff5df;border:1px solid #b87535;border-radius:9px;background:linear-gradient(155deg,#28160d,#100d0b 72%);box-shadow:0 12px 28px rgba(44,23,8,.28)}
+    .campaign-hero.barrel-run:before{display:none}
+    .campaign-hero.barrel-run .br-art{min-height:224px;position:relative;display:flex;align-items:stretch;overflow:hidden;background-image:linear-gradient(90deg,rgba(19,10,5,.02) 0%,rgba(19,10,5,.04) 35%,rgba(16,9,6,.48) 57%,rgba(16,9,6,.9) 100%),linear-gradient(0deg,rgba(18,9,4,.65) 0%,transparent 38%),url('./assets/barrel-run-expedition.webp');background-size:cover;background-position:center 47%;background-repeat:no-repeat}
+    .campaign-hero.barrel-run .br-art-copy{width:49%;max-width:285px;margin-left:auto;padding:14px 14px 14px 4px;display:flex;flex-direction:column;align-items:flex-end;text-align:right;justify-content:flex-start}
+    .campaign-hero.barrel-run .br-art-top{width:100%;display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+    .campaign-hero.barrel-run .br-brand{font:800 7px/1.2 "DM Mono",monospace;letter-spacing:.11em;color:#ffe7b7;text-shadow:0 1px 4px #170c06}
+    .campaign-hero.barrel-run .br-brand i{font-style:normal;color:#ffac43;padding:0 3px}
+    .campaign-hero.barrel-run .br-live{font:900 7px/1 "DM Mono",monospace;letter-spacing:.12em;color:#ffe29e;background:rgba(37,19,9,.82);border:1px solid rgba(242,176,91,.64);padding:5px 7px;border-radius:20px}
+    .campaign-hero.barrel-run .br-wordmark{margin-top:14px;font:950 clamp(28px,8.1vw,39px)/.78 Impact,"Arial Narrow",sans-serif;letter-spacing:-.015em;color:#fff0c7;text-shadow:0 3px 0 #763d16,0 5px 10px rgba(0,0,0,.72);text-transform:uppercase}
+    .campaign-hero.barrel-run .br-tagline{margin-top:9px;font:900 7px/1.2 "DM Mono",monospace;letter-spacing:.08em;color:#2b1608;background:linear-gradient(90deg,#f6d58e,#e9a33c);padding:5px 7px;border-radius:3px;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+    .campaign-hero.barrel-run .br-market-pills{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:4px;margin-top:9px}
+    .campaign-hero.barrel-run .br-market-pills span{font:800 6.5px/1.2 "DM Mono",monospace;letter-spacing:.025em;color:#fff4df;background:rgba(24,13,8,.82);border:1px solid rgba(241,190,118,.62);padding:5px 6px;border-radius:3px;white-space:nowrap}
+    .campaign-hero.barrel-run .br-victory-stamp{margin-top:8px;padding:5px 8px;border:1px solid #ffdf8b;background:rgba(87,43,9,.88);color:#fff0bd;font:950 8px/1 "DM Sans",sans-serif;letter-spacing:.06em;box-shadow:0 0 14px rgba(255,184,64,.38)}
+    .campaign-hero.barrel-run .br-financials{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:rgba(20,13,10,.96);border-top:1px solid rgba(242,179,98,.38);border-bottom:1px solid rgba(242,179,98,.18)}
+    .campaign-hero.barrel-run .br-stat{min-width:0;padding:10px 7px 9px;border-right:1px solid rgba(255,225,176,.13)}
+    .campaign-hero.barrel-run .br-stat:last-child{border-right:0}
+    .campaign-hero.barrel-run .br-stat span{display:block;color:#d1b99b;font:800 6.7px/1.2 "DM Mono",monospace;letter-spacing:.045em;white-space:nowrap}
+    .campaign-hero.barrel-run .br-stat strong{display:block;margin-top:5px;color:#fff3df;font:900 clamp(10px,2.8vw,14px)/1.1 "DM Mono",monospace;letter-spacing:-.04em;white-space:nowrap}
+    .campaign-hero.barrel-run .br-stat.br-current strong{color:#ffdf96}
+    .campaign-hero.barrel-run .br-stat.br-pnl strong{color:#a8ed91}
+    .campaign-hero.barrel-run .br-progress-panel{padding:12px 15px 11px;background:linear-gradient(180deg,#21150e,#140e0b)}
+    .campaign-hero.barrel-run .br-progress-head{display:flex;justify-content:space-between;gap:8px;align-items:center;color:#d8bd98;font:800 8px/1.2 "DM Mono",monospace;letter-spacing:.08em}
+    .campaign-hero.barrel-run .br-progress-head strong{color:#ffe0a0;font-size:12px}
+    .campaign-hero.barrel-run .br-track-wrap{margin:10px 4px 0;position:relative;padding-top:2px}
+    .campaign-hero.barrel-run .br-track{height:9px;position:relative;border:1px solid #95612e;border-radius:20px;background:linear-gradient(180deg,#120d0a,#332115);box-shadow:inset 0 2px 4px rgba(0,0,0,.78),0 1px 0 rgba(255,221,161,.15);overflow:visible}
+    .campaign-hero.barrel-run .br-track>i{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,#a64d13,#f28b24,#ffd06a);box-shadow:0 0 9px rgba(255,164,49,.74),0 0 18px rgba(239,132,27,.3);transition:width .65s cubic-bezier(.2,.75,.2,1)}
+    .campaign-hero.barrel-run .br-marker{position:absolute;top:50%;width:19px;height:19px;transform:translate(-50%,-50%);border:2px solid #fff1b5;border-radius:50%;background:radial-gradient(circle at 32% 25%,#fffce2 0 12%,#ffc34d 35%,#e17b13 72%,#71370d 100%);box-shadow:0 0 0 3px rgba(255,174,54,.16),0 0 13px 5px rgba(255,157,32,.68),0 2px 5px #090604;z-index:3;transition:left .65s cubic-bezier(.2,.75,.2,1)}
+    .campaign-hero.barrel-run .br-checkpoints{position:relative;height:28px;margin-top:7px}
+    .campaign-hero.barrel-run .br-checkpoint{position:absolute;top:0;transform:translateX(-50%);width:58px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+    .campaign-hero.barrel-run .br-checkpoint i{width:7px;height:7px;border-radius:50%;background:#624b32;border:1px solid #987348;box-shadow:0 0 0 2px rgba(0,0,0,.18)}
+    .campaign-hero.barrel-run .br-checkpoint b{font:800 8px/1.1 "DM Mono",monospace;color:#dfbd8e;white-space:nowrap;text-shadow:0 1px 2px #090604}
+    .campaign-hero.barrel-run .br-checkpoint.reached i{background:#ffd36b;border-color:#fff0b4;box-shadow:0 0 0 2px rgba(255,191,74,.18),0 0 8px #f1a332}
+    .campaign-hero.barrel-run .br-checkpoint.reached b{color:#fff0c1}
+    .campaign-hero.barrel-run .br-final-checkpoint{transform:translateX(-100%);align-items:flex-end;text-align:right}
+    .campaign-hero.barrel-run .br-progress-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:7px;padding-top:7px;border-top:1px dashed rgba(231,174,99,.27);font:800 7px/1.3 "DM Mono",monospace;letter-spacing:.055em;color:#cbb08d}
+    .campaign-hero.barrel-run .br-progress-foot b{color:#ffd887;text-align:right}
+    .campaign-hero.barrel-run .br-progress-victory{background:linear-gradient(180deg,#2b1c0d,#170d08)}
+    .campaign-hero.barrel-run.br-victory{border-color:#f6cb63;box-shadow:0 0 0 1px rgba(255,216,124,.16),0 12px 30px rgba(91,47,9,.38)}
+    .campaign-hero.barrel-run.br-victory .br-art{background-image:linear-gradient(90deg,rgba(19,10,5,.02) 0%,rgba(19,10,5,.04) 35%,rgba(35,18,4,.55) 57%,rgba(35,18,4,.92) 100%),linear-gradient(0deg,rgba(18,9,4,.72) 0%,transparent 38%),url('./assets/barrel-run-expedition.webp')}
+    .campaign-hero.barrel-run .br-countdown{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:10px 14px 0}
+    .campaign-hero.barrel-run .br-countdown>div{padding:7px 3px 6px;text-align:center;background:rgba(48,27,13,.72);border:1px solid rgba(238,179,96,.35);border-radius:4px}
+    .campaign-hero.barrel-run .br-countdown b{display:block;color:#ffe1a1;font:900 17px/1 "DM Mono",monospace}
+    .campaign-hero.barrel-run .br-countdown span{display:block;margin-top:4px;color:#cfb18b;font:800 6px/1 "DM Mono",monospace;letter-spacing:.12em}
+    .campaign-hero.barrel-run .br-launch-date{margin:8px 15px 0;text-align:center;color:#d5bb98;font:800 7px/1.3 "DM Mono",monospace;letter-spacing:.06em}
+    .campaign-hero.barrel-run .br-launch-date strong{color:#ffe0a0}
+    @media(max-width:390px){
+      .campaign-hero.barrel-run .br-art{min-height:208px;background-position:46% 48%}
+      .campaign-hero.barrel-run .br-art-copy{width:51%;padding:12px 10px 12px 2px}
+      .campaign-hero.barrel-run .br-wordmark{font-size:clamp(27px,8.2vw,32px);margin-top:12px}
+      .campaign-hero.barrel-run .br-market-pills{gap:3px}
+      .campaign-hero.barrel-run .br-market-pills span{font-size:5.7px;padding:4px 5px}
+      .campaign-hero.barrel-run .br-financials{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .campaign-hero.barrel-run .br-stat{padding:8px 9px;border-bottom:1px solid rgba(255,225,176,.1)}
+      .campaign-hero.barrel-run .br-stat:nth-child(2){border-right:0}
+      .campaign-hero.barrel-run .br-stat:nth-child(3),.campaign-hero.barrel-run .br-stat:nth-child(4){border-bottom:0}
+      .campaign-hero.barrel-run .br-stat span{font-size:7px}
+      .campaign-hero.barrel-run .br-stat strong{font-size:13px}
+      .campaign-hero.barrel-run .br-progress-panel{padding:11px 12px 10px}
+      .campaign-hero.barrel-run .br-checkpoint{width:53px}
+      .campaign-hero.barrel-run .br-checkpoint b{font-size:7.5px}
+      .campaign-hero.barrel-run .br-progress-foot{font-size:6.5px}
+    }
+
     /* Browser-render mode: expose only the same campaign hero used by Home. */
     body.campaign-render-mode{min-height:0!important;height:auto!important;overflow:hidden!important;background:transparent!important}
     body.campaign-render-mode .app{width:100%;max-width:560px;min-height:0;height:auto;margin:0 auto;padding:0 24px!important}
@@ -855,6 +920,78 @@
       return campaignKind(c)==='gold' &&
         String(c&&c.edition||'STANDARD').trim().toUpperCase()==='DESERT_RALLY';
     }
+
+    function campaignIsBarrelRun(c){
+      const name=String(c&&c.name||'').trim().toUpperCase().replace(/[_-]+/g,' ');
+      const skin=String(c&&c.campaign_skin||'').trim().toUpperCase().replace(/-/g,'_');
+      return campaignKind(c)==='energy' && (skin==='BARREL_RUN' || name==='BARREL RUN');
+    }
+    function barrelRunProgressValue(c){
+      const supplied=Number(c&&c.progress_pct);
+      if(c&&c.progress_pct!==undefined&&c.progress_pct!==null&&Number.isFinite(supplied)) return Math.max(0,Math.min(100,supplied));
+      const start=Number(c&&c.starting_balance||0),target=Number(c&&c.target_balance||0),current=Number(c&&c.current_balance||start);
+      return target>start?Math.max(0,Math.min(100,(current-start)/(target-start)*100)):0;
+    }
+    function barrelRunCompactMoney(value,currency){
+      const amount=Number(value||0);
+      const code=String(currency||"USD").toUpperCase();
+      const prefix=(code==="USD" ? "$" : code+" ");
+      const abs=Math.abs(amount);
+      if(abs>=1000){
+        const scaled=Math.round(abs/100)/10;
+        return (amount<0?"−":"")+prefix+String(scaled).replace(/\.0$/,"")+"K";
+      }
+      return campaignMoney(amount,code);
+    }
+    function barrelRunCheckpoints(c){
+      const start=Number(c&&c.starting_balance||0),target=Number(c&&c.target_balance||0),range=Math.max(0,target-start),currency=c&&c.currency||'USD',progress=barrelRunProgressValue(c);
+      const ratios=[2/9,4/9,2/3,1],unlocks=['FIRST CREW','TANKER SUPPORT','PIPELINE CREW','FINISH LINE'];
+      const items=ratios.map((ratio,index)=>{const amount=index===3?target:start+range*ratio;return {amount,ratio:ratio*100,label:barrelRunCompactMoney(amount,currency),unlock:unlocks[index],reached:progress>=ratio*100};});
+      return {items,progress,start,target,currency};
+    }
+    function barrelRunMarketsMarkup(){
+      return '<div class="br-market-pills" aria-label="Eligible markets"><span>WTI CRUDE OIL</span><span>BRENT CRUDE OIL</span><span>NATURAL GAS</span></div>';
+    }
+    function barrelRunArtMarkup(statusLabel,victory){
+      return '<div class="br-art"><div class="br-art-copy">'+
+        '<div class="br-art-top"><span class="br-brand">TRADETHESIS <i>×</i> OIL &amp; ENERGY</span><span class="br-live">'+(victory?'● TARGET CLEARED':statusLabel)+'</span></div>'+
+        '<div class="br-wordmark">BARREL<br>RUN</div><div class="br-tagline">THE OIL &amp; ENERGY CHALLENGE</div>'+
+        barrelRunMarketsMarkup()+(victory?'<div class="br-victory-stamp">🏁 BARREL RUN VICTORY!</div>':'')+
+      '</div></div>';
+    }
+    function barrelRunFinancialsMarkup(c){
+      const currency=c.currency||'USD',realised=Number(c.realised_pnl||0),pnl=(realised>0?'+':realised<0?'−':'')+campaignMoney(Math.abs(realised),currency);
+      return '<div class="br-financials">'+
+        '<div class="br-stat"><span>STARTING BALANCE</span><strong>'+escapeHtml(campaignMoney(c.starting_balance,currency))+'</strong></div>'+
+        '<div class="br-stat br-current"><span>CURRENT BALANCE</span><strong>'+escapeHtml(campaignMoney(c.current_balance,currency))+'</strong></div>'+
+        '<div class="br-stat"><span>TARGET</span><strong>'+escapeHtml(campaignMoney(c.target_balance,currency))+'</strong></div>'+
+        '<div class="br-stat br-pnl"><span>REALISED P&amp;L</span><strong>'+escapeHtml(pnl)+'</strong></div></div>';
+    }
+    function barrelRunProgressMarkup(c){
+      const data=barrelRunCheckpoints(c),victory=data.progress>=99.99,markerPosition=Math.max(2,Math.min(98,data.progress));
+      const checkpoints=data.items.map((item,index)=>'<span class="br-checkpoint '+(item.reached?'reached ':'')+(index===3?'br-final-checkpoint':'')+'" style="left:'+item.ratio+'%"><i></i><b>'+escapeHtml(item.label)+'</b></span>').join('');
+      const next=data.items.find(item=>!item.reached);
+      return '<div class="br-progress-panel '+(victory?'br-progress-victory':'')+'">'+
+        '<div class="br-progress-head"><span>CAMPAIGN PROGRESS</span><strong>'+escapeHtml(fmt(data.progress))+'%</strong></div>'+
+        '<div class="br-track-wrap"><div class="br-track"><i style="width:'+data.progress+'%"></i><span class="br-marker" style="left:'+markerPosition+'%" aria-hidden="true"></span></div><div class="br-checkpoints">'+checkpoints+'</div></div>'+
+        '<div class="br-progress-foot"><span>'+(next?'NEXT CHECKPOINT · '+escapeHtml(next.label):'TARGET CLEARED · 100%')+'</span><b>'+(next?'UNLOCK THE '+escapeHtml(next.unlock):'🏁 THE RUN IS WON!')+'</b></div></div>';
+    }
+    function campaignBarrelRunBanner(c,source){
+      const progress=barrelRunProgressValue(c),victory=progress>=99.99,href=challengeUrl(c,source),campaignStatus=String(c&&c.status||'').toUpperCase(),statusLabel=campaignStatus==='PAUSED'?'PAUSED CAMPAIGN':campaignStatus==='COMPLETED'?'CAMPAIGN ENDED':'● LIVE CAMPAIGN';
+      return '<div class="campaign-hero barrel-run '+(victory?'br-victory':'')+'" role="link" tabindex="0" onclick="window.location.href=&quot;'+href+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+href+'&quot;" aria-label="Open BARREL RUN oil and energy campaign">'+barrelRunArtMarkup(statusLabel,victory)+barrelRunFinancialsMarkup(c)+barrelRunProgressMarkup(c)+'</div>';
+    }
+    function campaignBarrelRunLaunchBanner(c,source){
+      const timestamp=Date.parse(c.starts_at||'');
+      if(!Number.isFinite(timestamp))return campaignBarrelRunBanner(c,source);
+      const href=challengeUrl(c,source),launchLabel=new Date(timestamp).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true})+' IST';
+      return '<div class="campaign-hero barrel-run br-upcoming" role="link" tabindex="0" onclick="window.location.href=&quot;'+href+'&quot;" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;)window.location.href=&quot;'+href+'&quot;" aria-label="Open upcoming BARREL RUN campaign">'+barrelRunArtMarkup('UP NEXT · BARREL RUN',false)+barrelRunFinancialsMarkup(c)+
+        '<div class="br-countdown" data-countdown-target="'+timestamp+'"><div><b data-countdown-days>00</b><span>DAYS</span></div><div><b data-countdown-hours>00</b><span>HOURS</span></div><div><b data-countdown-minutes>00</b><span>MINUTES</span></div><div><b data-countdown-seconds>00</b><span>SECONDS</span></div></div>'+
+        '<div class="br-launch-date">LAUNCH · <strong>'+escapeHtml(launchLabel)+'</strong></div>'+barrelRunProgressMarkup(c)+'</div>';
+    }
+    function campaignBarrelRunSummaryCard(c,label){
+      return campaignBarrelRunBanner(c,'challenges').replace('campaign-hero barrel-run','campaign-hero barrel-run barrel-run-summary');
+    }
+
     function campaignDisplayName(c){
       const name=String(c&&c.name||'').trim();
       if(name){
